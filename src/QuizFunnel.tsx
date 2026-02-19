@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import { IMaskInput } from "react-imask";
@@ -355,12 +355,12 @@ Aguardo orientação para iniciar.`;
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="flex flex-col items-center justify-center text-center px-5 py-10 min-h-[80vh]"
+            className="flex flex-col items-center justify-center text-center px-5 pt-20 pb-10 min-h-[80vh]"
         >
             <motion.img
-                src="/new-logo.png"
+                src="/logowhiteB.png"
                 alt="Bforense"
-                className="h-24 sm:h-32 mb-10 opacity-90"
+                className="h-10 sm:h-12 mb-10 opacity-90"
                 initial={{ opacity: 0, y: -15 }}
                 animate={{ opacity: 0.9, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -396,9 +396,9 @@ Aguardo orientação para iniciar.`;
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
             >
-                Seu caso tem solução.{" "}
+                Seu caso tem solução{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0030fd] to-blue-400">
-                    Descubra em 60 segundos.
+                    Descubra em 60 segundos
                 </span>
             </motion.h1>
 
@@ -408,7 +408,7 @@ Aguardo orientação para iniciar.`;
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.45 }}
             >
-                Diagnóstico gratuito e 100% sigiloso feito por especialistas em investigação forense digital
+                Diagnóstico gratuito e 100% sigiloso feito por especialistas em investigação e inteligência forense.
             </motion.p>
 
             {/* Hero image — operations center */}
@@ -428,7 +428,7 @@ Aguardo orientação para iniciar.`;
                         loading="eager"
                     />
                     {/* Bottom gradient fade */}
-                    <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#141414] to-transparent pointer-events-none" />
+                    <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0a0e1a] to-transparent pointer-events-none" />
                 </div>
             </motion.div>
 
@@ -609,7 +609,7 @@ Aguardo orientação para iniciar.`;
             animate="center"
             exit="exit"
             transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] as const }}
-            className="px-5 pt-14 pb-10"
+            className="px-5 pt-[106px] pb-10"
         >
             <motion.div
                 className="flex items-center justify-center gap-2 mb-3"
@@ -733,7 +733,7 @@ Aguardo orientação para iniciar.`;
                 animate="center"
                 exit="exit"
                 transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] as const }}
-                className="px-5 pt-14 pb-10"
+                className="px-5 pt-[106px] pb-10"
             >
                 <motion.div
                     className="w-14 h-14 rounded-2xl bg-[#0030fd]/10 border border-[#0030fd]/20 flex items-center justify-center mx-auto mb-5"
@@ -914,7 +914,7 @@ Aguardo orientação para iniciar.`;
                 <meta name="robots" content="noindex,nofollow" />
             </Helmet>
 
-            <div className="min-h-screen bg-[#060b18] relative overflow-hidden selection:bg-blue-500/30">
+            <div className="min-h-screen bg-[#141414] relative overflow-hidden selection:bg-blue-500/30">
                 {/* Ambient background */}
                 <div className="pointer-events-none fixed inset-0">
                     <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-blue-700/[0.04] rounded-full blur-[150px]" />
@@ -929,10 +929,30 @@ Aguardo orientação para iniciar.`;
                     />
                 </div>
 
+                {/* ── Top Bar marquee ── */}
+                <div className="fixed top-0 left-0 right-0 z-[60] h-9 bg-[#0026CC] overflow-hidden flex items-center">
+                    <div className="flex whitespace-nowrap animate-marquee">
+                        {[
+                            "INVESTIGAÇÃO", "INTELIGÊNCIA", "HACKING ÉTICO", "FORENSE",
+                            "CYBERCRIME", "FRAUDE", "DILLIGENCE", "SIGILO",
+                            "INVESTIGAÇÃO", "INTELIGÊNCIA", "HACKING ÉTICO", "FORENSE",
+                            "CYBERCRIME", "FRAUDE", "DILLIGENCE", "SIGILO",
+                        ].map((word, i) => (
+                            <span
+                                key={i}
+                                className="inline-flex items-center gap-2 text-white font-semibold text-[11px] tracking-[0.18em] uppercase mx-5"
+                            >
+                                <span className="w-1 h-1 rounded-full bg-white/50 flex-shrink-0" />
+                                {word}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+
                 {/* Progress bar */}
                 {step > S.COVER && step < S.RESULTADO && (
-                    <div className="fixed top-0 left-0 right-0 z-50 bg-[#060b18]/80 backdrop-blur-xl border-b border-white/[0.04]">
-                        <div className="flex items-center gap-3 max-w-xl mx-auto px-4 py-3">
+                    <div className="fixed top-9 left-0 right-0 z-50 bg-[#141414]/80 backdrop-blur-xl border-b border-white/[0.04]" style={{ height: '56px' }}>
+                        <div className="h-full flex items-center gap-3 max-w-xl mx-auto px-4">
                             {step <= S.COLETA && (
                                 <button
                                     onClick={goBack}
@@ -1005,7 +1025,7 @@ function QScreen({
             animate="center"
             exit="exit"
             transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] as const }}
-            className="px-5 pt-14 pb-10"
+            className="px-5 pt-[106px] pb-10"
         >
             {/* Step badge */}
             <div className="flex items-center justify-center gap-4 mb-4">
