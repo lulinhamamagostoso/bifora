@@ -360,7 +360,7 @@ Aguardo orientação para iniciar.`;
             <motion.img
                 src="/new-logo.png"
                 alt="Bforense"
-                className="h-10 sm:h-12 mb-10 opacity-90"
+                className="h-24 sm:h-32 mb-10 opacity-90"
                 initial={{ opacity: 0, y: -15 }}
                 animate={{ opacity: 0.9, y: 0 }}
                 transition={{ duration: 0.5 }}
