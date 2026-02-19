@@ -358,7 +358,7 @@ Aguardo orientação para iniciar.`;
             className="flex flex-col items-center justify-center text-center px-5 py-10 min-h-[80vh]"
         >
             <motion.img
-                src="/logowhiteB.png"
+                src="/new-logo.png"
                 alt="Bforense"
                 className="h-10 sm:h-12 mb-10 opacity-90"
                 initial={{ opacity: 0, y: -15 }}
@@ -428,7 +428,7 @@ Aguardo orientação para iniciar.`;
                         loading="eager"
                     />
                     {/* Bottom gradient fade */}
-                    <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0a0e1a] to-transparent pointer-events-none" />
+                    <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#141414] to-transparent pointer-events-none" />
                 </div>
             </motion.div>
 
