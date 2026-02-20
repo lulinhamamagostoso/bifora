@@ -129,49 +129,49 @@ const INVESTIMENTOS = [
 const TESTIMONIALS = [
     {
         cidade: "São Paulo, SP",
-        avatar: "https://i.pravatar.cc/80?img=12",
+        initials: "CV",
         texto: "Paguei R$ 5 mil de sinal e depois mais R$ 755 mil por uma BMW X6 que nunca recebi. Era uma quadrilha especializada em fraude veicular. A Bforense não só investigou e identificou todos os envolvidos da organização criminosa, como rastreou os responsáveis e conseguiu o congelamento judicial das contas. Recuperei um valor que eu já considerava perdido. Profissionalismo absurdo.",
         estrelas: 5,
     },
     {
         cidade: "Curitiba, PR",
-        avatar: "https://i.pravatar.cc/80?img=32",
+        initials: "MR",
         texto: "Caí num golpe do PIX de R$ 23 mil. A polícia disse que não tinha o que fazer. A Bforense rastreou a conta destino, identificou o golpista e montou o dossiê completo. Em 12 dias meu advogado já tinha tudo pra entrar na justiça. Estou em processo de recuperação do valor.",
         estrelas: 5,
     },
     {
         cidade: "Rio de Janeiro, RJ",
-        avatar: "https://i.pravatar.cc/80?img=53",
+        initials: "LS",
         texto: "Minha empresa estava sangrando dinheiro e eu não entendia por quê. A investigação revelou que um gerente desviava valores há 2 anos usando notas frias. Montaram o dossiê com todas as provas, datas e valores. Demiti com justa causa e entrei na justiça.",
         estrelas: 5,
     },
     {
         cidade: "Belo Horizonte, MG",
-        avatar: "https://i.pravatar.cc/80?img=25",
+        initials: "PA",
         texto: "Desconfiava do meu sócio há meses. A Bforense confirmou que ele estava desviando clientes e usando a estrutura da empresa pra benefício próprio. As provas foram tão sólidas que resolvemos tudo extrajudicialmente em 3 semanas.",
         estrelas: 5,
     },
     {
         cidade: "Florianópolis, SC",
-        avatar: "https://i.pravatar.cc/80?img=59",
+        initials: "TF",
         texto: "Tive meu Instagram hackeado e o criminoso estava extorquindo meus contatos. A Bforense rastreou o IP, identificou o invasor e elaborou o laudo técnico. O delegado elogiou a qualidade do material. Caso resolvido em 10 dias.",
         estrelas: 5,
     },
     {
         cidade: "Brasília, DF",
-        avatar: "https://i.pravatar.cc/80?img=44",
+        initials: "AC",
         texto: "Precisava de provas digitais para um processo de guarda. A equipe coletou e preservou todas as evidências seguindo os protocolos legais. Meu advogado disse que foi o laudo mais completo que ele já trabalhou.",
         estrelas: 5,
     },
     {
         cidade: "Campinas, SP",
-        avatar: "https://i.pravatar.cc/80?img=14",
+        initials: "RB",
         texto: "Perdi R$ 48 mil num esquema de investimento falso. Achei que nunca ia ver esse dinheiro de novo. A Bforense identificou as contas dos golpistas, montou toda a cadeia de transações e o juiz deferiu o bloqueio. Já recuperei 70% do valor.",
         estrelas: 5,
     },
     {
         cidade: "Porto Alegre, RS",
-        avatar: "https://i.pravatar.cc/80?img=38",
+        initials: "JM",
         texto: "Recebi ameaças anônimas por WhatsApp durante semanas. A investigação identificou quem estava por trás em menos de uma semana. O sigilo foi total do início ao fim. Me senti segura o tempo todo.",
         estrelas: 5,
     },
@@ -364,7 +364,7 @@ Aguardo orientação para iniciar.`;
                 className="h-7 sm:h-10 mb-8 sm:mb-12 opacity-80"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 0.8, y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
             />
 
             {/* Category label */}
@@ -372,9 +372,9 @@ Aguardo orientação para iniciar.`;
                 className="inline-flex items-center gap-2 bg-surface-card border border-border-subtle rounded-full px-4 py-1.5 mb-5 sm:mb-6"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15, duration: 0.5 }}
+                transition={{ delay: 0.08, duration: 0.4 }}
             >
-                <img src="/eagle-icon.png" alt="" className="w-8 h-5 object-contain" />
+                <img src="/eagle-icon.png" alt="" className="w-8 h-5 object-contain" decoding="async" />
                 <span className="text-[11px] sm:text-xs text-text-secondary font-medium tracking-wide uppercase">{'Agência Privada de Investigações'}</span>
             </motion.div>
 
@@ -383,7 +383,7 @@ Aguardo orientação para iniciar.`;
                 className="font-black text-text-primary leading-[1.08] mb-4 sm:mb-5 text-center text-balance"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.25, duration: 0.6 }}
+                transition={{ delay: 0.12, duration: 0.45 }}
             >
                 <span className="block text-[clamp(1.6rem,8vw,3rem)]">{'Seu caso tem solução.'}</span>
                 <span className="block text-[clamp(1.3rem,6.5vw,2.5rem)] text-brand mt-1">{'Descubra em 60 segundos.'}</span>
@@ -394,7 +394,7 @@ Aguardo orientação para iniciar.`;
                 className="text-text-secondary text-sm sm:text-base max-w-sm sm:max-w-md mb-6 sm:mb-8 leading-relaxed"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
+                transition={{ delay: 0.2, duration: 0.4 }}
             >
                 {'Diagnóstico gratuito e 100% sigiloso feito por especialistas em investigação e inteligência forense.'}
             </motion.p>
@@ -404,7 +404,7 @@ Aguardo orientação para iniciar.`;
                 className="relative w-full max-w-sm sm:max-w-md mb-6 sm:mb-8 rounded-2xl overflow-hidden"
                 initial={{ opacity: 0, y: 20, scale: 0.97 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ delay: 0.45, duration: 0.6 }}
+                transition={{ delay: 0.25, duration: 0.45 }}
             >
                 <div className="absolute -inset-2 bg-brand-glow rounded-3xl blur-2xl pointer-events-none opacity-40" />
                 <div className="relative rounded-2xl overflow-hidden border border-border-muted shadow-2xl shadow-blue-950/30">
@@ -413,6 +413,8 @@ Aguardo orientação para iniciar.`;
                         alt="Centro de operações Bforense"
                         className="w-full h-auto object-cover"
                         loading="eager"
+                        fetchPriority="high"
+                        decoding="async"
                     />
                     <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-surface to-transparent pointer-events-none" />
                 </div>
@@ -423,7 +425,7 @@ Aguardo orientação para iniciar.`;
                 className="flex items-stretch justify-center gap-0 w-full max-w-sm sm:max-w-md mb-6 sm:mb-8 rounded-xl overflow-hidden border border-border-subtle bg-surface-card"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.55, duration: 0.5 }}
+                transition={{ delay: 0.3, duration: 0.4 }}
             >
                 {[
                     { value: "3.200+", label: "casos" },
@@ -446,9 +448,9 @@ Aguardo orientação para iniciar.`;
                 className="group relative w-full max-w-sm sm:max-w-md inline-flex items-center justify-center gap-3 bg-brand hover:bg-brand-hover text-text-primary font-bold text-[15px] sm:text-base px-6 py-4 sm:py-[18px] rounded-2xl shadow-lg shadow-blue-900/25 transition-all duration-200 hover:shadow-blue-800/40 hover:scale-[1.015] active:scale-[0.98]"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.65, duration: 0.5 }}
+                transition={{ delay: 0.35, duration: 0.4 }}
             >
-                <span className="absolute inset-0 rounded-2xl bg-brand/20 animate-ping pointer-events-none" style={{ animationDuration: "2.5s" }} />
+                <span className="absolute inset-0 rounded-2xl bg-brand/15 animate-pulse pointer-events-none" style={{ animationDuration: "2s" }} />
                 <span className="relative flex items-center gap-2.5">
                     {'INICIAR DIAGNÓSTICO GRATUITO'}
                     <ArrowRight className="w-4.5 h-4.5 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-0.5" />
@@ -460,7 +462,7 @@ Aguardo orientação para iniciar.`;
                 className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mt-5 sm:mt-8"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.8, duration: 0.5 }}
+                transition={{ delay: 0.4, duration: 0.4 }}
             >
                 {[
                     { icon: Lock, text: "Dados protegidos" },
@@ -482,7 +484,7 @@ Aguardo orientação para iniciar.`;
                 className="mt-5 sm:mt-6 flex items-center gap-2 bg-surface-card border border-border-subtle rounded-full px-4 py-2"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 1, duration: 0.5 }}
+                transition={{ delay: 0.5, duration: 0.4 }}
             >
                 <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-emerald opacity-60" />
@@ -498,7 +500,7 @@ Aguardo orientação para iniciar.`;
                 className="w-full max-w-lg mx-auto mt-10 px-5 pb-8"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 1.2, duration: 0.6 }}
+                transition={{ delay: 0.6, duration: 0.5 }}
             >
                 <div className="border-t border-border-subtle pt-5">
                     <p className="text-[12px] leading-[1.6] text-text-muted/50">
@@ -691,14 +693,8 @@ Aguardo orientação para iniciar.`;
                             "{t.texto}"
                         </p>
                         <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-full overflow-hidden border border-border-subtle flex-shrink-0">
-                                <img
-                                    src={t.avatar}
-                                    alt=""
-                                    className="w-full h-full object-cover"
-                                    style={{ filter: 'blur(4px)', transform: 'scale(1.15)' }}
-                                    loading="lazy"
-                                />
+                            <div className="w-8 h-8 rounded-full border border-border-subtle flex-shrink-0 bg-surface-elevated flex items-center justify-center">
+                                <span className="text-[10px] font-bold text-text-muted select-none">{t.initials}</span>
                             </div>
                             <div>
                                 <p className="text-text-primary/60 text-[12px] font-semibold">Cliente verificado</p>
