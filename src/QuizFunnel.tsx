@@ -389,17 +389,16 @@ Aguardo orientação para iniciar.`;
                 </div>
             </motion.div>
 
-            {/* Headline */}
+            {/* Headline — always exactly 2 lines, never wraps */}
             <motion.h1
-                className="text-[1.75rem] sm:text-4xl md:text-[2.75rem] font-black text-white leading-[1.15] mb-4 max-w-lg"
+                className="font-black text-white leading-[1.15] mb-4 w-full whitespace-nowrap text-center"
+                style={{ fontSize: 'clamp(1.25rem, 6.5vw, 2.75rem)' }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
             >
                 <span className="block">Seu caso tem solucao</span>
-                <span className="block text-[#0026cc]">
-                    Descubra em 60 segundos
-                </span>
+                <span className="block text-[#0026cc]">Descubra em 60 segundos</span>
             </motion.h1>
 
             <motion.p
