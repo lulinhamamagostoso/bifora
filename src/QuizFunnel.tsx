@@ -1,5 +1,15 @@
-import { useState, useEffect, useCallback, lazy, Suspense } from "react";
+import { useState, useEffect, useCallback, useRef, lazy, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+    trackPageView,
+    trackQuizStart,
+    trackQuizAnswer,
+    trackViewTestimonials,
+    trackLeadSubmit,
+    trackResultView,
+    trackWhatsAppClick,
+    trackDownloadGuide,
+} from "./lib/gtm";
 
 const LazyIMaskInput = lazy(() => import("react-imask").then(m => ({ default: m.IMaskInput })));
 import {
@@ -259,6 +269,15 @@ export default function QuizFunnel() {
     const [loadIdx, setLoadIdx] = useState<number>(0);
     const [tier, setTier] = useState<LeadTier>("warm");
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
+    const hasTrackedPageView = useRef(false);
+
+    /* Track page view once on mount */
+    useEffect(() => {
+        if (!hasTrackedPageView.current) {
+            trackPageView();
+            hasTrackedPageView.current = true;
+        }
+    }, []);
 
     /* Navigation */
     const goTo = useCallback(
@@ -275,11 +294,23 @@ export default function QuizFunnel() {
         if (step > S.COVER && step <= S.COLETA) goTo(step - 1);
     }, [step, goTo]);
 
+    /* Step name map for tracking */
+    const stepNameMap: Record<keyof QuizAnswers, { num: number; name: string }> = {
+        situacao:     { num: 1, name: "situacao" },
+        tempo:        { num: 2, name: "tempo" },
+        prejuizo:     { num: 3, name: "prejuizo" },
+        providencia:  { num: 4, name: "providencia" },
+        urgencia:     { num: 5, name: "urgencia" },
+        investimento: { num: 6, name: "investimento" },
+    };
+
     /* Select with micro-delay for checkmark animation */
     const selectOption = useCallback(
         (key: string, answerKey: keyof QuizAnswers, value: string, nextStep: number) => {
             setSelectedOption(key);
             setAnswers((p) => ({ ...p, [answerKey]: value }));
+            const info = stepNameMap[answerKey];
+            trackQuizAnswer(info.num, info.name, value);
             setTimeout(() => goTo(nextStep), 350);
         },
         [goTo],
@@ -308,6 +339,7 @@ export default function QuizFunnel() {
     const phone = tier === "hot" ? PHONE_MAIN : PHONE_TRIAGE;
 
     const openWhatsApp = () => {
+        trackWhatsAppClick(tier);
         const nome = leadData.nome || "Cliente";
         const tierLabel = tier === "hot" ? "alta viabilidade" : "análise necessária";
         const msg = `Olá! Sou ${nome}. Fiz o diagnóstico no site e meu caso foi classificado como ${tierLabel}.
@@ -447,7 +479,7 @@ Aguardo orientação para iniciar.`;
 
             {/* CTA */}
             <motion.button
-                onClick={() => goTo(S.SITUACAO)}
+                onClick={() => { trackQuizStart(); goTo(S.SITUACAO); }}
                 className="group relative w-full max-w-sm sm:max-w-md inline-flex items-center justify-center gap-3 bg-brand hover:bg-brand-hover text-text-primary font-bold text-[15px] sm:text-base px-6 py-4 sm:py-[18px] rounded-xl shadow-lg shadow-blue-900/25 transition-all duration-200 hover:shadow-blue-800/40 hover:scale-[1.015] active:scale-[0.98]"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -633,7 +665,13 @@ Aguardo orientação para iniciar.`;
     );
 
     /* ---------- DEPOIMENTOS (Social Proof interlude) ---------- */
-    const renderDepoimentos = () => (
+    const hasTrackedTestimonials = useRef(false);
+    const renderDepoimentos = () => {
+        if (!hasTrackedTestimonials.current) {
+            trackViewTestimonials();
+            hasTrackedTestimonials.current = true;
+        }
+        return (
         <motion.div
             key="depoimentos"
             custom={dir}
@@ -720,7 +758,8 @@ Aguardo orientação para iniciar.`;
                 <ArrowRight className="w-5 h-5" />
             </motion.button>
         </motion.div>
-    );
+        );
+    };
 
     /* ---------- P6: INVESTIMENTO ---------- */
     const renderInvestimento = () => (
@@ -848,7 +887,18 @@ Aguardo orientação para iniciar.`;
                     </div>
 
                     <button
-                        onClick={() => canSubmitLead && goTo(S.LOADING)}
+                        onClick={() => {
+                            if (!canSubmitLead) return;
+                            const computedTier = calcTier(answers);
+                            trackLeadSubmit({
+                                nome: leadData.nome,
+                                tier: computedTier,
+                                situacao: answers.situacao,
+                                prejuizo: answers.prejuizo,
+                                urgencia: answers.urgencia,
+                            });
+                            goTo(S.LOADING);
+                        }}
                         disabled={!canSubmitLead}
                         className={`w-full flex items-center justify-center gap-3 font-bold text-base px-8 py-4 rounded-xl shadow-lg transition-all duration-200 mt-2 ${canSubmitLead
                             ? "bg-brand hover:bg-brand-hover text-text-primary shadow-blue-900/20 hover:shadow-blue-800/40 hover:scale-[1.015] active:scale-[0.98] cursor-pointer"
@@ -923,9 +973,14 @@ Aguardo orientação para iniciar.`;
     );
 
     /* ---------- RESULTADO ---------- */
+    const hasTrackedResult = useRef(false);
     const renderResultado = () => {
-        if (tier === "hot") return <ResultHot onCTA={openWhatsApp} nome={leadData.nome} />;
-        if (tier === "warm") return <ResultWarm onCTA={openWhatsApp} nome={leadData.nome} />;
+        if (!hasTrackedResult.current) {
+            trackResultView(tier);
+            hasTrackedResult.current = true;
+        }
+        if (tier === "hot") return <ResultHot onCTA={openWhatsApp} nome={leadData.nome} tier={tier} />;
+        if (tier === "warm") return <ResultWarm onCTA={openWhatsApp} nome={leadData.nome} tier={tier} />;
         return <ResultCold nome={leadData.nome} />;
     };
 
@@ -1113,7 +1168,7 @@ function OptionCard({
 }
 
 /* ---------- Result: HOT ---------- */
-function ResultHot({ onCTA, nome }: { onCTA: () => void; nome: string }) {
+function ResultHot({ onCTA, nome }: { onCTA: () => void; nome: string; tier?: string }) {
     const displayName = nome ? `, ${nome.split(" ")[0]}` : "";
     const [countdown, setCountdown] = useState(15 * 60); // 15 min in seconds
 
@@ -1220,7 +1275,7 @@ function ResultHot({ onCTA, nome }: { onCTA: () => void; nome: string }) {
 }
 
 /* ---------- Result: WARM ---------- */
-function ResultWarm({ onCTA, nome }: { onCTA: () => void; nome: string }) {
+function ResultWarm({ onCTA, nome }: { onCTA: () => void; nome: string; tier?: string }) {
     const displayName = nome ? `, ${nome.split(" ")[0]}` : "";
     return (
         <motion.div
@@ -1338,6 +1393,7 @@ function ResultCold({ nome }: { nome: string }) {
 
             <motion.a
                 href="#"
+                onClick={() => trackDownloadGuide()}
                 className="w-full max-w-sm flex items-center justify-center gap-3 bg-surface-card hover:bg-white/[0.08] border border-border-muted text-text-primary font-bold text-base px-8 py-4 rounded-xl transition-all duration-200 hover:scale-[1.015] active:scale-[0.98]"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
