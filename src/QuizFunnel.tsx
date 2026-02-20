@@ -374,7 +374,7 @@ Aguardo orientação para iniciar.`;
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15, duration: 0.5 }}
             >
-                <ShieldCheck className="w-3.5 h-3.5 text-brand" />
+                <img src="/eagle-icon.png" alt="" className="w-5 h-3 object-contain" />
                 <span className="text-[11px] sm:text-xs text-text-secondary font-medium tracking-wide uppercase">{'Agencia Privada de Investigacoes'}</span>
             </motion.div>
 
