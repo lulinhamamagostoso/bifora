@@ -355,130 +355,160 @@ Aguardo orientação para iniciar.`;
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="flex flex-col items-center justify-center text-center px-4 pt-14 pb-8 sm:px-5 sm:pt-20 sm:pb-10 min-h-[80vh]"
+            className="flex flex-col items-center text-center px-5 pt-12 pb-10 sm:px-6 sm:pt-20 sm:pb-12 min-h-dvh justify-center safe-bottom"
         >
+            {/* Logo */}
             <motion.img
                 src="/logowhiteB.png"
                 alt="Bforense"
-                className="h-8 sm:h-12 mb-6 sm:mb-10 opacity-90"
-                initial={{ opacity: 0, y: -15 }}
-                animate={{ opacity: 0.9, y: 0 }}
-                transition={{ duration: 0.5 }}
+                className="h-7 sm:h-10 mb-8 sm:mb-12 opacity-80"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 0.8, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
             />
 
-            {/* Social proof — editorial stats */}
+            {/* Category label */}
             <motion.div
-                className="flex items-center justify-center gap-5 sm:gap-8 mb-6 sm:mb-8"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
+                className="inline-flex items-center gap-2 bg-surface-card border border-border-subtle rounded-full px-4 py-1.5 mb-5 sm:mb-6"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15, duration: 0.5 }}
             >
-                <div className="text-center">
-                    <p className="text-white font-black text-xl sm:text-2xl leading-none font-heading">3.200+</p>
-                    <p className="text-gray-500 text-[10px] sm:text-[11px] uppercase tracking-widest mt-1">casos</p>
-                </div>
-                <div className="w-px h-8 bg-white/[0.08]" />
-                <div className="text-center">
-                    <p className="text-white font-black text-xl sm:text-2xl leading-none font-heading">4.9</p>
-                    <p className="text-gray-500 text-[10px] sm:text-[11px] uppercase tracking-widest mt-1">avaliação</p>
-                </div>
-                <div className="w-px h-8 bg-white/[0.08]" />
-                <div className="text-center">
-                    <p className="text-white font-black text-xl sm:text-2xl leading-none font-heading">94%</p>
-                    <p className="text-gray-500 text-[10px] sm:text-[11px] uppercase tracking-widest mt-1">sucesso</p>
-                </div>
+                <img src="/eagle-icon.png" alt="" className="w-8 h-5 object-contain" />
+                <span className="text-[11px] sm:text-xs text-text-secondary font-medium tracking-wide uppercase">{'Agência Privada de Investigações'}</span>
             </motion.div>
 
-            {/* Headline — always exactly 2 lines */}
+            {/* Headline */}
             <motion.h1
-                className="font-black text-white leading-[1.1] mb-4 text-center"
+                className="font-black text-text-primary leading-[1.08] mb-4 sm:mb-5 text-center text-balance"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
+                transition={{ delay: 0.25, duration: 0.6 }}
             >
-                <span className="block text-[clamp(1.5rem,7vw,2.75rem)] whitespace-nowrap">Seu caso tem solu&#xE7;&#xE3;o</span>
-                <span className="block text-[clamp(1.2rem,5.5vw,2.75rem)] whitespace-nowrap text-[#0026cc]">Descubra em 60 segundos</span>
+                <span className="block text-[clamp(1.6rem,8vw,3rem)]">{'Seu caso tem solução.'}</span>
+                <span className="block text-[clamp(1.3rem,6.5vw,2.5rem)] text-brand mt-1">{'Descubra em 60 segundos.'}</span>
             </motion.h1>
 
+            {/* Subtitle */}
             <motion.p
-                className="text-gray-400 text-sm sm:text-lg max-w-md mb-6 sm:mb-8 leading-relaxed"
+                className="text-text-secondary text-sm sm:text-base max-w-sm sm:max-w-md mb-6 sm:mb-8 leading-relaxed"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.45 }}
+                transition={{ delay: 0.4, duration: 0.5 }}
             >
-                Diagnóstico gratuito e 100% sigiloso feito por especialistas em investigação e inteligência forense.
+                {'Diagnóstico gratuito e 100% sigiloso feito por especialistas em investigação e inteligência forense.'}
             </motion.p>
 
-            {/* Hero image — operations center */}
+            {/* Hero image */}
             <motion.div
-                className="relative w-full max-w-md mb-6 sm:mb-10 rounded-2xl overflow-hidden"
+                className="relative w-full max-w-sm sm:max-w-md mb-6 sm:mb-8 rounded-2xl overflow-hidden"
                 initial={{ opacity: 0, y: 20, scale: 0.97 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
+                transition={{ delay: 0.45, duration: 0.6 }}
             >
-                {/* Subtle blue glow behind image */}
-                <div className="absolute -inset-1 bg-gradient-to-br from-[#0030fd]/20 via-transparent to-blue-500/10 rounded-2xl blur-xl pointer-events-none" />
-                <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl shadow-blue-900/20">
+                <div className="absolute -inset-2 bg-brand-glow rounded-3xl blur-2xl pointer-events-none opacity-40" />
+                <div className="relative rounded-2xl overflow-hidden border border-border-muted shadow-2xl shadow-blue-950/30">
                     <img
                         src="/cover-team.png"
                         alt="Centro de operações Bforense"
                         className="w-full h-auto object-cover"
                         loading="eager"
                     />
-                    {/* Bottom gradient fade */}
-                    <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0a0e1a] to-transparent pointer-events-none" />
+                    <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-surface to-transparent pointer-events-none" />
                 </div>
             </motion.div>
 
-            {/* CTA — pulsating */}
+            {/* Social proof stats — refined horizontal cards */}
+            <motion.div
+                className="flex items-stretch justify-center gap-0 w-full max-w-sm sm:max-w-md mb-6 sm:mb-8 rounded-xl overflow-hidden border border-border-subtle bg-surface-card"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.55, duration: 0.5 }}
+            >
+                {[
+                    { value: "3.200+", label: "casos" },
+                    { value: "4.9", label: "avaliação" },
+                    { value: "94%", label: "sucesso" },
+                ].map((stat, i) => (
+                    <div
+                        key={stat.label}
+                        className={`flex-1 flex flex-col items-center justify-center py-3.5 sm:py-4 ${i < 2 ? "border-r border-border-subtle" : ""}`}
+                    >
+                        <p className="text-text-primary font-black text-lg sm:text-xl leading-none font-heading">{stat.value}</p>
+                        <p className="text-text-muted text-[9px] sm:text-[10px] uppercase tracking-[0.15em] mt-1 font-medium">{stat.label}</p>
+                    </div>
+                ))}
+            </motion.div>
+
+            {/* CTA */}
             <motion.button
                 onClick={() => goTo(S.SITUACAO)}
-                className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#0030fd] hover:bg-[#0026cc] text-white font-bold text-[15px] sm:text-lg px-6 sm:px-10 py-4 sm:py-5 rounded-xl shadow-lg shadow-blue-700/20 transition-all duration-200 hover:shadow-blue-700/40 hover:scale-[1.02] active:scale-[0.98]"
+                className="group relative w-full max-w-sm sm:max-w-md inline-flex items-center justify-center gap-3 bg-brand hover:bg-brand-hover text-text-primary font-bold text-[15px] sm:text-base px-6 py-4 sm:py-[18px] rounded-2xl shadow-lg shadow-blue-900/25 transition-all duration-200 hover:shadow-blue-800/40 hover:scale-[1.015] active:scale-[0.98]"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
+                transition={{ delay: 0.65, duration: 0.5 }}
             >
-                {/* Pulse ring */}
-                <span className="absolute inset-0 rounded-xl bg-[#0030fd]/20 animate-ping pointer-events-none" style={{ animationDuration: "2s" }} />
-                <span className="relative flex items-center gap-3">
-                    INICIAR DIAGNÓSTICO GRATUITO
-                    <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                <span className="absolute inset-0 rounded-2xl bg-brand/20 animate-ping pointer-events-none" style={{ animationDuration: "2.5s" }} />
+                <span className="relative flex items-center gap-2.5">
+                    {'INICIAR DIAGNÓSTICO GRATUITO'}
+                    <ArrowRight className="w-4.5 h-4.5 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-0.5" />
                 </span>
             </motion.button>
 
-            {/* Trust row */}
+            {/* Trust badges */}
             <motion.div
-                className="flex flex-wrap items-center justify-center gap-3 sm:gap-5 mt-6 sm:mt-10 text-[10px] sm:text-xs text-gray-500 uppercase tracking-wider"
+                className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mt-5 sm:mt-8"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.8 }}
+                transition={{ delay: 0.8, duration: 0.5 }}
             >
-                <span className="flex items-center gap-1.5">
-                    <Lock className="w-3 h-3" /> Dados protegidos
+                {[
+                    { icon: Lock, text: "Dados protegidos" },
+                    { icon: Clock, text: "Menos de 1 min" },
+                    { icon: ShieldCheck, text: "Sem compromisso" },
+                ].map((badge) => (
+                    <span
+                        key={badge.text}
+                        className="flex items-center gap-1.5 text-[10px] sm:text-[11px] text-text-muted uppercase tracking-wider font-medium"
+                    >
+                        <badge.icon className="w-3 h-3 text-text-secondary" />
+                        {badge.text}
+                    </span>
+                ))}
+            </motion.div>
+
+            {/* Online indicator */}
+            <motion.div
+                className="mt-5 sm:mt-6 flex items-center gap-2 bg-surface-card border border-border-subtle rounded-full px-4 py-2"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1, duration: 0.5 }}
+            >
+                <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-emerald opacity-60" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-emerald" />
                 </span>
-                <span className="flex items-center gap-1.5">
-                    <Clock className="w-3 h-3" /> Menos de 1 min
-                </span>
-                <span className="flex items-center gap-1.5">
-                    <ShieldCheck className="w-3 h-3" /> Sem compromisso
+                <span className="text-[11px] sm:text-xs text-text-secondary">
+                    <span className="text-accent-emerald font-semibold">3 especialistas</span>{' online agora'}
                 </span>
             </motion.div>
 
-            {/* Online now indicator */}
-            <motion.div
-                className="mt-6 flex items-center gap-2"
+            {/* Disclaimer footer — cover only */}
+            <motion.footer
+                className="w-full max-w-lg mx-auto mt-10 px-5 pb-8"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 1 }}
+                transition={{ delay: 1.2, duration: 0.6 }}
             >
-                <span className="relative flex h-2.5 w-2.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
-                </span>
-                <span className="text-[12px] text-gray-500">
-                    <span className="text-emerald-400 font-semibold">3 especialistas</span> online agora
-                </span>
-            </motion.div>
+                <div className="border-t border-border-subtle pt-5">
+                    <p className="text-[12px] leading-[1.6] text-text-muted/50">
+                        {'Este site não faz parte do site do Facebook ou do Facebook Inc. Adicionalmente, este site NÃO é endossado pelo Facebook de forma alguma. FACEBOOK é uma marca comercial de FACEBOOK, Inc. Os depoimentos e resultados mencionados são reais, mas não garantem que você terá os mesmos resultados.'}
+                    </p>
+                    <p className="text-[12px] leading-[1.6] text-text-muted/50 mt-3">
+                        {'AVISO LEGAL E LIMITES DE ATUAÇÃO: A Bforense é uma agência de Investigações Privada, operando estritamente sob a Lei Federal 13.432/2017. Declaramos expressamente que não possuímos vínculo com a Polícia Civil, Polícia Federal ou órgãos do Poder Judiciário. Nossos serviços restringem-se à investigação, produção de provas técnicas e inteligência em fontes abertas (OSINT) para suporte a litígios. Não realizamos interceptações telefônicas, quebra de sigilo bancário sem ordem judicial, bloqueios de contas ou prisões. Todo o material produzido destina-se a fundamentar a atuação de advogados e autoridades competentes.'}
+                    </p>
+                </div>
+            </motion.footer>
         </motion.div>
     );
 
@@ -496,10 +526,10 @@ Aguardo orientação para iniciar.`;
                             selected={selectedOption === key}
                             onClick={() => selectOption(key, "situacao", item.label, S.TEMPO)}
                         >
-                            <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-white/[0.05] group-hover:bg-[#0030fd]/10 flex items-center justify-center transition-colors">
-                                <Icon className="w-[18px] h-[18px] text-gray-500 group-hover:text-blue-400 transition-colors" />
+                            <div className="flex-shrink-0 w-9 h-9 rounded-xl bg-surface-card border border-border-subtle group-hover:bg-brand/10 group-hover:border-brand/20 flex items-center justify-center transition-colors">
+                                <Icon className="w-[18px] h-[18px] text-text-secondary group-hover:text-brand transition-colors" />
                             </div>
-                            <span className="text-[14px] sm:text-[15px] text-white/90 font-medium leading-snug">{item.label}</span>
+                            <span className="text-[14px] sm:text-[15px] text-text-primary/90 font-medium leading-snug">{item.label}</span>
                         </OptionCard>
                     );
                 })}
@@ -520,9 +550,9 @@ Aguardo orientação para iniciar.`;
                             selected={selectedOption === key}
                             onClick={() => selectOption(key, "tempo", item.label, S.PREJUIZO)}
                         >
-                            <span className={`w-3 h-3 rounded-full flex-shrink-0 ${i === 0 ? "bg-[#0030fd]" : i === 1 ? "bg-amber-400" : i === 2 ? "bg-blue-400" : "bg-gray-500"
+                            <span className={`w-3 h-3 rounded-full flex-shrink-0 ${i === 0 ? "bg-brand" : i === 1 ? "bg-accent-amber" : i === 2 ? "bg-blue-400" : "bg-text-muted"
                                 }`} />
-                            <span className="text-[15px] text-white/90 font-medium">{item.label}</span>
+                            <span className="text-[15px] text-text-primary/90 font-medium">{item.label}</span>
                         </OptionCard>
                     );
                 })}
@@ -543,7 +573,7 @@ Aguardo orientação para iniciar.`;
                             selected={selectedOption === key}
                             onClick={() => selectOption(key, "prejuizo", item.label, S.PROVIDENCIA)}
                         >
-                            <span className="text-[15px] text-white/90 font-medium">{item.label}</span>
+                            <span className="text-[15px] text-text-primary/90 font-medium">{item.label}</span>
                         </OptionCard>
                     );
                 })}
@@ -565,8 +595,8 @@ Aguardo orientação para iniciar.`;
                             selected={selectedOption === key}
                             onClick={() => selectOption(key, "providencia", item.label, S.URGENCIA)}
                         >
-                            <Icon className="w-5 h-5 text-gray-500 group-hover:text-blue-400 transition-colors flex-shrink-0" />
-                            <span className="text-[15px] text-white/90 font-medium">{item.label}</span>
+                            <Icon className="w-5 h-5 text-text-secondary group-hover:text-brand transition-colors flex-shrink-0" />
+                            <span className="text-[15px] text-text-primary/90 font-medium">{item.label}</span>
                         </OptionCard>
                     );
                 })}
@@ -588,8 +618,8 @@ Aguardo orientação para iniciar.`;
                             selected={selectedOption === key}
                             onClick={() => selectOption(key, "urgencia", item.label, S.DEPOIMENTOS)}
                         >
-                            <Icon className="w-5 h-5 text-gray-500 group-hover:text-blue-400 transition-colors flex-shrink-0" />
-                            <span className="text-[15px] text-white/90 font-medium">{item.label}</span>
+                            <Icon className="w-5 h-5 text-text-secondary group-hover:text-brand transition-colors flex-shrink-0" />
+                            <span className="text-[15px] text-text-primary/90 font-medium">{item.label}</span>
                         </OptionCard>
                     );
                 })}
@@ -607,19 +637,19 @@ Aguardo orientação para iniciar.`;
             animate="center"
             exit="exit"
             transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] as const }}
-            className="px-4 sm:px-5 pt-[90px] sm:pt-[106px] pb-8 sm:pb-10"
+            className="px-5 sm:px-6 pt-[86px] sm:pt-[106px] pb-8 sm:pb-10"
         >
             <motion.div
                 className="flex items-center justify-center gap-2 mb-2 sm:mb-3"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
             >
-                <Quote className="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
-                <p className="text-[10px] sm:text-[11px] text-gray-500 uppercase tracking-widest font-semibold">O que nossos clientes dizem</p>
+                <Quote className="w-4 sm:w-5 h-4 sm:h-5 text-accent-amber" />
+                <p className="text-[10px] sm:text-[11px] text-text-muted uppercase tracking-widest font-semibold">O que nossos clientes dizem</p>
             </motion.div>
 
             <motion.h2
-                className="text-base sm:text-xl font-bold text-white text-center mb-2 leading-snug max-w-md mx-auto"
+                className="text-base sm:text-xl font-bold text-text-primary text-center mb-2 leading-snug max-w-md mx-auto"
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
@@ -628,7 +658,7 @@ Aguardo orientação para iniciar.`;
             </motion.h2>
 
             <motion.p
-                className="text-gray-500 text-xs sm:text-sm text-center mb-4 sm:mb-6 max-w-sm mx-auto"
+                className="text-text-secondary text-xs sm:text-sm text-center mb-4 sm:mb-6 max-w-sm mx-auto"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.15 }}
@@ -636,7 +666,7 @@ Aguardo orientação para iniciar.`;
                 Mais de 3.200 casos resolvidos com sigilo total
             </motion.p>
 
-            {/* Testimonial cards — show 2 at a time on desktop, 1 on mobile */}
+            {/* Testimonial cards */}
             <motion.div
                 className="space-y-2.5 sm:space-y-3 max-w-md mx-auto max-h-[40vh] sm:max-h-[45vh] overflow-y-auto pr-1 scrollbar-thin"
                 initial={{ opacity: 0, y: 15 }}
@@ -647,21 +677,21 @@ Aguardo orientação para iniciar.`;
                 {TESTIMONIALS.map((t, i) => (
                     <motion.div
                         key={i}
-                        className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-4"
+                        className="bg-surface-card border border-border-subtle rounded-2xl p-4"
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 + i * 0.06 }}
                     >
                         <div className="flex items-center gap-1 mb-2">
                             {Array.from({ length: t.estrelas }).map((_, j) => (
-                                <Star key={j} className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+                                <Star key={j} className="w-3.5 h-3.5 text-accent-amber fill-accent-amber" />
                             ))}
                         </div>
-                        <p className="text-white/80 text-[13px] leading-relaxed mb-3">
+                        <p className="text-text-primary/80 text-[13px] leading-relaxed mb-3">
                             "{t.texto}"
                         </p>
                         <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-full overflow-hidden border border-white/[0.08] flex-shrink-0">
+                            <div className="w-8 h-8 rounded-full overflow-hidden border border-border-subtle flex-shrink-0">
                                 <img
                                     src={t.avatar}
                                     alt=""
@@ -671,8 +701,8 @@ Aguardo orientação para iniciar.`;
                                 />
                             </div>
                             <div>
-                                <p className="text-white/60 text-[12px] font-semibold">Cliente verificado</p>
-                                <p className="text-gray-600 text-[11px]">{t.cidade}</p>
+                                <p className="text-text-primary/60 text-[12px] font-semibold">Cliente verificado</p>
+                                <p className="text-text-muted text-[11px]">{t.cidade}</p>
                             </div>
                         </div>
                     </motion.div>
@@ -682,12 +712,12 @@ Aguardo orientação para iniciar.`;
             {/* CTA to continue */}
             <motion.button
                 onClick={() => goTo(S.INVESTIMENTO)}
-                className="w-full max-w-md mx-auto flex items-center justify-center gap-3 bg-[#0030fd] hover:bg-[#0026cc] text-white font-bold text-base px-8 py-4 rounded-xl shadow-lg shadow-blue-700/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] mt-6"
+                className="w-full max-w-md mx-auto flex items-center justify-center gap-3 bg-brand hover:bg-brand-hover text-text-primary font-bold text-base px-8 py-4 rounded-2xl shadow-lg shadow-blue-900/20 transition-all duration-200 hover:scale-[1.015] active:scale-[0.98] mt-6"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
             >
-                CONTINUAR DIAGNÓSTICO
+                {'CONTINUAR DIAGNÓSTICO'}
                 <ArrowRight className="w-5 h-5" />
             </motion.button>
         </motion.div>
@@ -712,7 +742,7 @@ Aguardo orientação para iniciar.`;
                             selected={selectedOption === key}
                             onClick={() => selectOption(key, "investimento", item.label, S.COLETA)}
                         >
-                            <span className="text-[15px] text-white/90 font-medium">{item.label}</span>
+                            <span className="text-[15px] text-text-primary/90 font-medium">{item.label}</span>
                         </OptionCard>
                     );
                 })}
@@ -731,33 +761,33 @@ Aguardo orientação para iniciar.`;
                 animate="center"
                 exit="exit"
                 transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] as const }}
-                className="px-4 sm:px-5 pt-[90px] sm:pt-[106px] pb-8 sm:pb-10"
+                className="px-5 sm:px-6 pt-[86px] sm:pt-[106px] pb-8 sm:pb-10"
             >
                 <motion.div
-                    className="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl bg-[#0030fd]/10 border border-[#0030fd]/20 flex items-center justify-center mx-auto mb-4 sm:mb-5"
+                    className="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center mx-auto mb-4 sm:mb-5"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 200 }}
                 >
-                    <Send className="w-7 h-7 text-blue-400" />
+                    <Send className="w-7 h-7 text-brand" />
                 </motion.div>
 
                 <motion.h2
-                    className="text-base sm:text-xl font-bold text-white text-center mb-2 leading-snug max-w-md mx-auto"
+                    className="text-base sm:text-xl font-bold text-text-primary text-center mb-2 leading-snug max-w-md mx-auto"
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.15 }}
                 >
-                    Falta pouco! Preencha seus dados para receber seu diagnostico personalizado.
+                    Falta pouco! Preencha seus dados para receber seu diagnóstico personalizado.
                 </motion.h2>
 
                 <motion.p
-                    className="text-gray-500 text-xs sm:text-sm text-center mb-6 sm:mb-8 max-w-sm mx-auto"
+                    className="text-text-secondary text-xs sm:text-sm text-center mb-6 sm:mb-8 max-w-sm mx-auto"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.25 }}
                 >
-                    Seus dados são usados exclusivamente para o diagnóstico. Nenhum spam.
+                    {'Seus dados são usados exclusivamente para o diagnóstico. Nenhum spam.'}
                 </motion.p>
 
                 <motion.div
@@ -768,7 +798,7 @@ Aguardo orientação para iniciar.`;
                 >
                     {/* Nome */}
                     <div>
-                        <label className="block text-[12px] text-gray-500 uppercase tracking-wider font-semibold mb-1.5 ml-1">
+                        <label className="block text-[12px] text-text-muted uppercase tracking-wider font-semibold mb-1.5 ml-1">
                             Seu nome
                         </label>
                         <div className="relative">
@@ -777,7 +807,7 @@ Aguardo orientação para iniciar.`;
                                 value={leadData.nome}
                                 onChange={(e) => setLeadData((p) => ({ ...p, nome: e.target.value }))}
                                 placeholder="Como podemos te chamar?"
-                                className="w-full bg-white/[0.04] border border-white/[0.08] focus:border-[#0030fd]/50 rounded-xl px-4 py-3.5 text-white text-[15px] placeholder:text-gray-600 outline-none transition-colors"
+                                className="w-full bg-surface-card border border-border-muted focus:border-brand/50 rounded-2xl px-4 py-3.5 text-text-primary text-[15px] placeholder:text-text-muted outline-none transition-colors"
                             />
                             {leadData.nome.trim().length >= 2 && (
                                 <motion.div
@@ -785,15 +815,15 @@ Aguardo orientação para iniciar.`;
                                     animate={{ scale: 1 }}
                                     className="absolute right-3 top-1/2 -translate-y-1/2"
                                 >
-                                    <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+                                    <CheckCircle2 className="w-5 h-5 text-accent-emerald" />
                                 </motion.div>
                             )}
                         </div>
                     </div>
 
-                    {/* WhatsApp com máscara */}
+                    {/* WhatsApp */}
                     <div>
-                        <label className="block text-[12px] text-gray-500 uppercase tracking-wider font-semibold mb-1.5 ml-1">
+                        <label className="block text-[12px] text-text-muted uppercase tracking-wider font-semibold mb-1.5 ml-1">
                             Seu WhatsApp
                         </label>
                         <div className="relative">
@@ -802,7 +832,7 @@ Aguardo orientação para iniciar.`;
                                 value={leadData.whatsapp}
                                 onAccept={(value: string) => setLeadData((p) => ({ ...p, whatsapp: value }))}
                                 placeholder="(11) 99999-0000"
-                                className="w-full bg-white/[0.04] border border-white/[0.08] focus:border-[#0030fd]/50 rounded-xl px-4 py-3.5 text-white text-[15px] placeholder:text-gray-600 outline-none transition-colors"
+                                className="w-full bg-surface-card border border-border-muted focus:border-brand/50 rounded-2xl px-4 py-3.5 text-text-primary text-[15px] placeholder:text-text-muted outline-none transition-colors"
                             />
                             {phoneIsValid && (
                                 <motion.div
@@ -810,7 +840,7 @@ Aguardo orientação para iniciar.`;
                                     animate={{ scale: 1 }}
                                     className="absolute right-3 top-1/2 -translate-y-1/2"
                                 >
-                                    <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+                                    <CheckCircle2 className="w-5 h-5 text-accent-emerald" />
                                 </motion.div>
                             )}
                         </div>
@@ -819,18 +849,18 @@ Aguardo orientação para iniciar.`;
                     <button
                         onClick={() => canSubmitLead && goTo(S.LOADING)}
                         disabled={!canSubmitLead}
-                        className={`w-full flex items-center justify-center gap-3 font-bold text-base px-8 py-4 rounded-xl shadow-lg transition-all duration-200 mt-2 ${canSubmitLead
-                            ? "bg-[#0030fd] hover:bg-[#0026cc] text-white shadow-blue-700/20 hover:shadow-blue-700/40 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
-                            : "bg-white/[0.04] text-gray-600 cursor-not-allowed shadow-none"
+                        className={`w-full flex items-center justify-center gap-3 font-bold text-base px-8 py-4 rounded-2xl shadow-lg transition-all duration-200 mt-2 ${canSubmitLead
+                            ? "bg-brand hover:bg-brand-hover text-text-primary shadow-blue-900/20 hover:shadow-blue-800/40 hover:scale-[1.015] active:scale-[0.98] cursor-pointer"
+                            : "bg-surface-card text-text-muted cursor-not-allowed shadow-none"
                             }`}
                     >
-                        VER MEU DIAGNÓSTICO
+                        {'VER MEU DIAGNÓSTICO'}
                         <ArrowRight className="w-5 h-5" />
                     </button>
 
-                    <p className="text-[11px] text-gray-600 text-center mt-1 flex items-center justify-center gap-1.5">
+                    <p className="text-[11px] text-text-muted text-center mt-1 flex items-center justify-center gap-1.5">
                         <Lock className="w-3 h-3" />
-                        Seus dados estão protegidos e criptografados.
+                        {'Seus dados estão protegidos e criptografados.'}
                     </p>
                 </motion.div>
             </motion.div>
@@ -847,8 +877,8 @@ Aguardo orientação para iniciar.`;
             className="flex flex-col items-center justify-center text-center px-6 min-h-[60vh]"
         >
             <div className="relative mb-10">
-                <Loader2 className="w-14 h-14 text-[#0030fd] animate-spin" />
-                <div className="absolute inset-0 w-14 h-14 rounded-full bg-[#0030fd]/10 animate-ping" />
+                <Loader2 className="w-14 h-14 text-brand animate-spin" />
+                <div className="absolute inset-0 w-14 h-14 rounded-full bg-brand/10 animate-ping" />
             </div>
 
             <AnimatePresence mode="wait">
@@ -862,9 +892,9 @@ Aguardo orientação para iniciar.`;
                 >
                     {(() => {
                         const IconComp = LOADING_MESSAGES[loadIdx].icon;
-                        return <IconComp className="w-5 h-5 text-blue-400" />;
+                        return <IconComp className="w-5 h-5 text-brand" />;
                     })()}
-                    <p className="text-gray-300 text-base sm:text-lg font-medium">
+                    <p className="text-text-secondary text-base sm:text-lg font-medium">
                         {LOADING_MESSAGES[loadIdx].text}
                     </p>
                 </motion.div>
@@ -874,7 +904,7 @@ Aguardo orientação para iniciar.`;
                 {LOADING_MESSAGES.map((_, i) => (
                     <div
                         key={i}
-                        className={`h-1.5 rounded-full transition-all duration-500 ${i <= loadIdx ? "bg-[#0030fd] w-6" : "bg-white/10 w-1.5"
+                        className={`h-1.5 rounded-full transition-all duration-500 ${i <= loadIdx ? "bg-brand w-6" : "bg-white/10 w-1.5"
                             }`}
                     />
                 ))}
@@ -882,7 +912,7 @@ Aguardo orientação para iniciar.`;
 
             {/* Analyzing your answers text */}
             <motion.p
-                className="text-gray-600 text-xs mt-6"
+                className="text-text-muted text-xs mt-6"
                 animate={{ opacity: [0.3, 0.7, 0.3] }}
                 transition={{ duration: 2, repeat: Infinity }}
             >
@@ -904,23 +934,23 @@ Aguardo orientação para iniciar.`;
 
     return (
         <>
-            <div className="min-h-screen bg-[#141414] relative overflow-hidden selection:bg-blue-500/30">
+            <div className="min-h-screen bg-surface relative overflow-hidden selection:bg-blue-500/30">
                 {/* Ambient background */}
                 <div className="pointer-events-none fixed inset-0">
-                    <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-blue-700/[0.04] rounded-full blur-[150px]" />
-                    <div className="absolute bottom-[-100px] right-[-100px] w-[500px] h-[500px] bg-blue-600/[0.03] rounded-full blur-[120px]" />
-                    {/* Extra subtle grid pattern */}
+                    <div className="absolute top-[-30vh] left-1/2 -translate-x-1/2 w-[80vw] max-w-[700px] aspect-square bg-brand-glow rounded-full blur-[120px] opacity-60" />
+                    <div className="absolute bottom-[-10vh] right-[-5vw] w-[50vw] max-w-[400px] aspect-square bg-blue-600/[0.04] rounded-full blur-[100px]" />
+                    {/* Refined dot grid pattern */}
                     <div
-                        className="absolute inset-0 opacity-[0.02]"
+                        className="absolute inset-0 opacity-[0.03]"
                         style={{
-                            backgroundImage: `linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)`,
-                            backgroundSize: "60px 60px",
+                            backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px)`,
+                            backgroundSize: "32px 32px",
                         }}
                     />
                 </div>
 
                 {/* ── Top Bar marquee ── */}
-                <div className="fixed top-0 left-0 right-0 z-[60] h-9 bg-[#0026CC] overflow-hidden flex items-center">
+                <div className="fixed top-0 left-0 right-0 z-[60] h-8 sm:h-9 bg-brand overflow-hidden flex items-center safe-top">
                     <div className="flex whitespace-nowrap animate-marquee">
                         {[
                             "INVESTIGAÇÃO", "INTELIGÊNCIA", "HACKING ÉTICO", "FORENSE",
@@ -930,9 +960,9 @@ Aguardo orientação para iniciar.`;
                         ].map((word, i) => (
                             <span
                                 key={i}
-                                className="inline-flex items-center gap-2 text-white font-semibold text-[11px] tracking-[0.18em] uppercase mx-5"
+                                className="inline-flex items-center gap-2.5 text-text-primary font-semibold text-[10px] sm:text-[11px] tracking-[0.2em] uppercase mx-4 sm:mx-5"
                             >
-                                <span className="w-1 h-1 rounded-full bg-white/50 flex-shrink-0" />
+                                <span className="w-1 h-1 rounded-full bg-white/40 flex-shrink-0" />
                                 {word}
                             </span>
                         ))}
@@ -941,12 +971,12 @@ Aguardo orientação para iniciar.`;
 
                 {/* Progress bar */}
                 {step > S.COVER && step < S.RESULTADO && (
-                    <div className="fixed top-9 left-0 right-0 z-50 bg-[#141414]/80 backdrop-blur-xl border-b border-white/[0.04]" style={{ height: '48px' }}>
+                    <div className="fixed top-8 sm:top-9 left-0 right-0 z-50 bg-surface/80 backdrop-blur-xl border-b border-border-subtle" style={{ height: '48px' }}>
                         <div className="h-full flex items-center gap-2.5 sm:gap-3 max-w-xl mx-auto px-3 sm:px-4">
                             {step <= S.COLETA && (
                                 <button
                                     onClick={goBack}
-                                    className="p-2 -ml-2 rounded-full hover:bg-white/5 text-gray-500 hover:text-white transition-colors"
+                                    className="p-2 -ml-2 rounded-full hover:bg-white/5 text-text-muted hover:text-text-primary transition-colors"
                                     aria-label="Voltar"
                                 >
                                     <ArrowLeft className="w-5 h-5" />
@@ -954,12 +984,12 @@ Aguardo orientação para iniciar.`;
                             )}
                             <div className="flex-1 h-1.5 bg-white/[0.04] rounded-full overflow-hidden">
                                 <motion.div
-                                    className="h-full bg-gradient-to-r from-blue-700 to-[#0030fd] rounded-full"
+                                    className="h-full bg-brand rounded-full"
                                     animate={{ width: `${progress}%` }}
-                                    transition={{ duration: 0.4 }}
+                                    transition={{ duration: 0.4, ease: "easeOut" }}
                                 />
                             </div>
-                            <span className="text-[11px] text-gray-600 font-semibold tabular-nums w-8 text-right">
+                            <span className="text-[11px] text-text-muted font-semibold tabular-nums w-8 text-right">
                                 {progress}%
                             </span>
                         </div>
@@ -1015,31 +1045,31 @@ function QScreen({
             animate="center"
             exit="exit"
             transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] as const }}
-            className="px-4 sm:px-5 pt-[90px] sm:pt-[106px] pb-8 sm:pb-10"
+            className="px-5 sm:px-6 pt-[86px] sm:pt-[106px] pb-8 sm:pb-10"
         >
             {/* Step badge */}
             <div className="flex items-center justify-center gap-3 sm:gap-4 mb-3 sm:mb-4">
-                <p className="text-[10px] sm:text-[11px] text-gray-600 uppercase tracking-widest font-semibold text-center">
+                <p className="text-[10px] sm:text-[11px] text-text-muted uppercase tracking-widest font-semibold text-center">
                     Pergunta {step} de {TOTAL_QUESTIONS}
                 </p>
                 {badge && (
                     <motion.div
-                        className="inline-flex items-center gap-1.5 bg-white/[0.04] border border-white/[0.06] rounded-full px-2.5 sm:px-3 py-1"
+                        className="inline-flex items-center gap-1.5 bg-surface-card border border-border-subtle rounded-full px-2.5 sm:px-3 py-1"
                         initial={{ opacity: 0, x: 10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.1 }}
                     >
-                        <badge.icon className="w-3 h-3 text-gray-500" />
-                        <span className="text-[9px] sm:text-[10px] text-gray-500 font-medium uppercase tracking-wider">{badge.text}</span>
+                        <badge.icon className="w-3 h-3 text-text-muted" />
+                        <span className="text-[9px] sm:text-[10px] text-text-muted font-medium uppercase tracking-wider">{badge.text}</span>
                     </motion.div>
                 )}
             </div>
 
-            <h2 className="text-base sm:text-xl font-bold text-white text-center mb-2 leading-snug max-w-md mx-auto">
+            <h2 className="text-base sm:text-xl font-bold text-text-primary text-center mb-2 leading-snug max-w-md mx-auto text-balance">
                 {title}
             </h2>
             {subtitle && (
-                <p className="text-gray-500 text-xs sm:text-sm text-center mb-5 sm:mb-7 max-w-sm mx-auto">
+                <p className="text-text-secondary text-xs sm:text-sm text-center mb-5 sm:mb-7 max-w-sm mx-auto leading-relaxed">
                     {subtitle}
                 </p>
             )}
@@ -1068,14 +1098,13 @@ function OptionCard({
             initial="hidden"
             animate="visible"
             onClick={onClick}
-            className={`group flex items-center gap-3.5 border rounded-xl px-4 py-3.5 text-left transition-all duration-200 cursor-pointer
+            className={`group flex items-center gap-3.5 border rounded-2xl px-4 py-3.5 sm:py-4 text-left transition-all duration-200 cursor-pointer
                 ${selected
-                    ? "bg-[#0030fd]/10 border-[#0030fd]/40 scale-[0.98]"
-                    : "bg-white/[0.03] hover:bg-white/[0.07] border-white/[0.07] hover:border-[#0030fd]/40 hover:scale-[1.015] active:scale-[0.98]"
+                    ? "bg-brand/10 border-brand/40 scale-[0.98]"
+                    : "bg-surface-card hover:bg-white/[0.06] border-border-muted hover:border-brand/30 hover:scale-[1.01] active:scale-[0.98]"
                 }`}
         >
             {children}
-            {/* Checkmark animation */}
             {selected && (
                 <motion.div
                     className="ml-auto flex-shrink-0"
@@ -1083,7 +1112,7 @@ function OptionCard({
                     animate={{ scale: 1, rotate: 0 }}
                     transition={{ type: "spring", stiffness: 300, damping: 15 }}
                 >
-                    <CheckCircle2 className="w-5 h-5 text-blue-400" />
+                    <CheckCircle2 className="w-5 h-5 text-brand" />
                 </motion.div>
             )}
         </motion.button>
@@ -1108,39 +1137,39 @@ function ResultHot({ onCTA, nome }: { onCTA: () => void; nome: string }) {
             key="hot"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="flex flex-col items-center text-center px-4 sm:px-5 py-8 sm:py-10 min-h-[70vh] justify-center"
+            className="flex flex-col items-center text-center px-5 sm:px-6 py-8 sm:py-10 min-h-[70vh] justify-center"
         >
             <motion.div
-                className="w-14 sm:w-16 h-14 sm:h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-4 sm:mb-5"
+                className="w-14 sm:w-16 h-14 sm:h-16 rounded-2xl bg-accent-emerald/10 border border-accent-emerald/20 flex items-center justify-center mb-4 sm:mb-5"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", delay: 0.15, stiffness: 200 }}
             >
-                <CheckCircle2 className="w-7 sm:w-8 h-7 sm:h-8 text-emerald-400" />
+                <CheckCircle2 className="w-7 sm:w-8 h-7 sm:h-8 text-accent-emerald" />
             </motion.div>
 
             <motion.h2
-                className="text-lg sm:text-2xl font-black text-white mb-2"
+                className="text-lg sm:text-2xl font-black text-text-primary mb-2"
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
             >
                 Otima noticia{displayName}: seu caso tem{" "}
-                <span className="text-emerald-400">alta viabilidade.</span>
+                <span className="text-accent-emerald">alta viabilidade.</span>
             </motion.h2>
 
             <motion.p
-                className="text-gray-400 text-sm mb-5 max-w-sm"
+                className="text-text-secondary text-sm mb-5 max-w-sm"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.45 }}
             >
-                Um perito sênior foi pré-designado para o seu perfil de caso. Fale agora para iniciar a análise sem custos.
+                {'Um perito sênior foi pré-designado para o seu perfil de caso. Fale agora para iniciar a análise sem custos.'}
             </motion.p>
 
             {/* Urgency timer */}
             <motion.div
-                className="flex items-center gap-2 bg-amber-500/[0.08] border border-amber-500/[0.15] rounded-full px-4 py-2 mb-6"
+                className="flex items-center gap-2 bg-accent-amber/[0.08] border border-accent-amber/[0.15] rounded-full px-4 py-2 mb-6"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5 }}
@@ -1158,16 +1187,16 @@ function ResultHot({ onCTA, nome }: { onCTA: () => void; nome: string }) {
                 transition={{ delay: 0.55 }}
             >
                 {[
-                    { icon: BadgeCheck, text: "Protocolo compatível identificado", color: "text-emerald-400" },
-                    { icon: Timer, text: "Prazo estimado para conclusão do caso: 3 a 12 dias úteis", color: "text-blue-400" },
-                    { icon: Trophy, text: "Taxa de sucesso: 94% em casos similares", color: "text-amber-400" },
+                    { icon: BadgeCheck, text: "Protocolo compatível identificado", color: "text-accent-emerald" },
+                    { icon: Timer, text: "Prazo estimado para conclusão do caso: 3 a 12 dias úteis", color: "text-brand" },
+                    { icon: Trophy, text: "Taxa de sucesso: 94% em casos similares", color: "text-accent-amber" },
                 ].map((b) => (
                     <div
                         key={b.text}
-                        className="flex items-center gap-3 bg-white/[0.03] border border-white/[0.06] rounded-xl px-4 py-3"
+                        className="flex items-center gap-3 bg-surface-card border border-border-subtle rounded-2xl px-4 py-3"
                     >
                         <b.icon className={`w-4 h-4 flex-shrink-0 ${b.color}`} />
-                        <span className="text-white/70 text-[13px] text-left">{b.text}</span>
+                        <span className="text-text-primary/70 text-[13px] text-left">{b.text}</span>
                     </div>
                 ))}
             </motion.div>
@@ -1175,23 +1204,23 @@ function ResultHot({ onCTA, nome }: { onCTA: () => void; nome: string }) {
             {/* CTA  */}
             <motion.button
                 onClick={onCTA}
-                className="w-full max-w-sm flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1ebd5a] text-white font-bold text-base px-8 py-4 rounded-xl shadow-lg shadow-emerald-600/15 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] relative overflow-hidden"
+                className="w-full max-w-sm flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1ebd5a] text-text-primary font-bold text-base px-8 py-4 rounded-2xl shadow-lg shadow-emerald-600/15 transition-all duration-200 hover:scale-[1.015] active:scale-[0.98] relative overflow-hidden"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
             >
-                <span className="absolute inset-0 rounded-xl bg-emerald-400/10 animate-ping pointer-events-none" style={{ animationDuration: "2.5s" }} />
+                <span className="absolute inset-0 rounded-2xl bg-emerald-400/10 animate-ping pointer-events-none" style={{ animationDuration: "2.5s" }} />
                 <MessageCircle className="w-5 h-5 relative z-10" />
                 <span className="relative z-10">FALAR COM PERITO AGORA</span>
             </motion.button>
 
             <motion.p
-                className="text-[11px] text-gray-600 mt-4"
+                className="text-[11px] text-text-muted mt-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.9 }}
             >
-                Consulta inicial sigilosa &middot; Sem compromisso
+                {'Consulta inicial sigilosa \u00B7 Sem compromisso'}
             </motion.p>
         </motion.div>
     );
@@ -1205,19 +1234,19 @@ function ResultWarm({ onCTA, nome }: { onCTA: () => void; nome: string }) {
             key="warm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="flex flex-col items-center text-center px-4 sm:px-5 py-8 sm:py-10 min-h-[70vh] justify-center"
+            className="flex flex-col items-center text-center px-5 sm:px-6 py-8 sm:py-10 min-h-[70vh] justify-center"
         >
             <motion.div
-                className="w-14 sm:w-16 h-14 sm:h-16 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-4 sm:mb-5"
+                className="w-14 sm:w-16 h-14 sm:h-16 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center mb-4 sm:mb-5"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", delay: 0.15, stiffness: 200 }}
             >
-                <User className="w-7 sm:w-8 h-7 sm:h-8 text-blue-400" />
+                <User className="w-7 sm:w-8 h-7 sm:h-8 text-brand" />
             </motion.div>
 
             <motion.h2
-                className="text-lg sm:text-2xl font-black text-white mb-2"
+                className="text-lg sm:text-2xl font-black text-text-primary mb-2"
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
@@ -1226,13 +1255,12 @@ function ResultWarm({ onCTA, nome }: { onCTA: () => void; nome: string }) {
             </motion.h2>
 
             <motion.p
-                className="text-gray-400 text-sm mb-6 max-w-sm leading-relaxed"
+                className="text-text-secondary text-sm mb-6 max-w-sm leading-relaxed"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.45 }}
             >
-                Para o seu tipo de caso, recomendamos uma consulta rápida com o nosso time de triagem.
-                Eles vão avaliar as melhores opções e esclarecer valores.
+                {'Para o seu tipo de caso, recomendamos uma consulta rápida com o nosso time de triagem. Eles vão avaliar as melhores opções e esclarecer valores.'}
             </motion.p>
 
             {/* Next steps */}
@@ -1243,20 +1271,20 @@ function ResultWarm({ onCTA, nome }: { onCTA: () => void; nome: string }) {
                 transition={{ delay: 0.5 }}
             >
                 {[
-                    "Conversa rápida de 5 min — sem compromisso",
+                    "Conversa rápida de 5 min \u2014 sem compromisso",
                     "Orientação personalizada para o seu caso",
                     "Opções flexíveis de investimento",
                 ].map((text, i) => (
-                    <div key={i} className="flex items-center gap-3 bg-white/[0.03] border border-white/[0.06] rounded-xl px-4 py-3">
-                        <CheckCircle2 className="w-4 h-4 text-blue-400 flex-shrink-0" />
-                        <span className="text-white/70 text-[13px] text-left">{text}</span>
+                    <div key={i} className="flex items-center gap-3 bg-surface-card border border-border-subtle rounded-2xl px-4 py-3">
+                        <CheckCircle2 className="w-4 h-4 text-brand flex-shrink-0" />
+                        <span className="text-text-primary/70 text-[13px] text-left">{text}</span>
                     </div>
                 ))}
             </motion.div>
 
             <motion.button
                 onClick={onCTA}
-                className="w-full max-w-sm flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1ebd5a] text-white font-bold text-base px-8 py-4 rounded-xl shadow-lg shadow-emerald-600/15 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                className="w-full max-w-sm flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1ebd5a] text-text-primary font-bold text-base px-8 py-4 rounded-2xl shadow-lg shadow-emerald-600/15 transition-all duration-200 hover:scale-[1.015] active:scale-[0.98]"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
@@ -1266,7 +1294,7 @@ function ResultWarm({ onCTA, nome }: { onCTA: () => void; nome: string }) {
             </motion.button>
 
             <motion.p
-                className="text-[11px] text-gray-600 mt-4"
+                className="text-[11px] text-text-muted mt-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8 }}
@@ -1285,19 +1313,19 @@ function ResultCold({ nome }: { nome: string }) {
             key="cold"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="flex flex-col items-center text-center px-4 sm:px-5 py-8 sm:py-10 min-h-[70vh] justify-center"
+            className="flex flex-col items-center text-center px-5 sm:px-6 py-8 sm:py-10 min-h-[70vh] justify-center"
         >
             <motion.div
-                className="w-14 sm:w-16 h-14 sm:h-16 rounded-2xl bg-gray-500/10 border border-gray-500/20 flex items-center justify-center mb-4 sm:mb-5"
+                className="w-14 sm:w-16 h-14 sm:h-16 rounded-2xl bg-text-muted/10 border border-text-muted/20 flex items-center justify-center mb-4 sm:mb-5"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", delay: 0.15, stiffness: 200 }}
             >
-                <BookOpen className="w-7 sm:w-8 h-7 sm:h-8 text-gray-400" />
+                <BookOpen className="w-7 sm:w-8 h-7 sm:h-8 text-text-secondary" />
             </motion.div>
 
             <motion.h2
-                className="text-lg sm:text-2xl font-black text-white mb-2"
+                className="text-lg sm:text-2xl font-black text-text-primary mb-2"
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
@@ -1306,7 +1334,7 @@ function ResultCold({ nome }: { nome: string }) {
             </motion.h2>
 
             <motion.p
-                className="text-gray-400 text-sm mb-8 max-w-sm leading-relaxed"
+                className="text-text-secondary text-sm mb-8 max-w-sm leading-relaxed"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.45 }}
@@ -1317,7 +1345,7 @@ function ResultCold({ nome }: { nome: string }) {
 
             <motion.a
                 href="#"
-                className="w-full max-w-sm flex items-center justify-center gap-3 bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.08] text-white font-bold text-base px-8 py-4 rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                className="w-full max-w-sm flex items-center justify-center gap-3 bg-surface-card hover:bg-white/[0.08] border border-border-muted text-text-primary font-bold text-base px-8 py-4 rounded-2xl transition-all duration-200 hover:scale-[1.015] active:scale-[0.98]"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
@@ -1327,17 +1355,17 @@ function ResultCold({ nome }: { nome: string }) {
             </motion.a>
 
             <motion.p
-                className="text-[11px] text-gray-600 mt-6"
+                className="text-[11px] text-text-muted mt-6"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8 }}
             >
-                Se mudar de ideia, fale com a gente:{" "}
+                {'Se mudar de ideia, fale com a gente: '}
                 <a
                     href={`https://wa.me/${PHONE_TRIAGE}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-400 hover:text-blue-300 underline"
+                    className="text-brand hover:text-brand-hover underline"
                 >
                     WhatsApp
                 </a>
