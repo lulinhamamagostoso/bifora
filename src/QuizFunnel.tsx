@@ -396,7 +396,7 @@ Aguardo orientação para iniciar.`;
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
             >
-                <span className="block text-[clamp(1.5rem,7vw,2.75rem)] whitespace-nowrap">Seu caso tem solucao</span>
+                <span className="block text-[clamp(1.5rem,7vw,2.75rem)] whitespace-nowrap">Seu caso tem solu&#xE7;&#xE3;o</span>
                 <span className="block text-[clamp(1.2rem,5.5vw,2.75rem)] whitespace-nowrap text-[#0026cc]">Descubra em 60 segundos</span>
             </motion.h1>
 
