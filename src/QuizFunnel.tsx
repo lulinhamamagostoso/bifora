@@ -385,8 +385,8 @@ Aguardo orientação para iniciar.`;
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.12, duration: 0.45 }}
             >
-                <span className="block text-[clamp(1.6rem,8vw,3rem)]">{'Seu caso tem solução.'}</span>
-                <span className="block text-[clamp(1.3rem,6.5vw,2.5rem)] text-brand mt-1">{'Descubra em 60 segundos.'}</span>
+                <span className="block text-[clamp(1.45rem,7vw,2.75rem)]">{'Seu caso tem solução'}</span>
+                <span className="block text-[clamp(1.15rem,5.8vw,2.25rem)] text-brand mt-1">{'Descubra em 60 segundos'}</span>
             </motion.h1>
 
             {/* Subtitle */}
