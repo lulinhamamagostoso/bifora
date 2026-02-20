@@ -1,7 +1,7 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, lazy, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import { IMaskInput } from "react-imask";
+const LazyIMaskInput = lazy(() => import("react-imask").then(m => ({ default: m.IMaskInput })));
 import {
     ArrowLeft,
     ArrowRight,
@@ -406,11 +406,13 @@ Aguardo orientação para iniciar.`;
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ delay: 0.25, duration: 0.45 }}
             >
-                <div className="absolute -inset-2 bg-brand-glow rounded-xl blur-2xl pointer-events-none opacity-40" />
+                <div className="absolute -inset-2 bg-brand-glow rounded-xl blur-xl sm:blur-2xl pointer-events-none opacity-30 sm:opacity-40" />
                 <div className="relative rounded-xl overflow-hidden border border-border-muted shadow-2xl shadow-blue-950/30">
                     <img
-                        src="/cover-team.png"
+                        src="/cover-team.webp"
                         alt="Centro de operações Bforense"
+                        width={800}
+                        height={450}
                         className="w-full h-auto object-cover"
                         loading="eager"
                         fetchPriority="high"
@@ -823,13 +825,15 @@ Aguardo orientação para iniciar.`;
                             Seu WhatsApp
                         </label>
                         <div className="relative">
-                            <IMaskInput
-                                mask="(00) 00000-0000"
-                                value={leadData.whatsapp}
-                                onAccept={(value: string) => setLeadData((p) => ({ ...p, whatsapp: value }))}
-                                placeholder="(11) 99999-0000"
-                                className="w-full bg-surface-card border border-border-muted focus:border-brand/50 rounded-xl px-4 py-3.5 text-text-primary text-[15px] placeholder:text-text-muted outline-none transition-colors"
-                            />
+                            <Suspense fallback={<input placeholder="(11) 99999-0000" className="w-full bg-surface-card border border-border-muted rounded-xl px-4 py-3.5 text-text-primary text-[15px] placeholder:text-text-muted outline-none" />}>
+                                <LazyIMaskInput
+                                    mask="(00) 00000-0000"
+                                    value={leadData.whatsapp}
+                                    onAccept={(value: string) => setLeadData((p) => ({ ...p, whatsapp: value }))}
+                                    placeholder="(11) 99999-0000"
+                                    className="w-full bg-surface-card border border-border-muted focus:border-brand/50 rounded-xl px-4 py-3.5 text-text-primary text-[15px] placeholder:text-text-muted outline-none transition-colors"
+                                />
+                            </Suspense>
                             {phoneIsValid && (
                                 <motion.div
                                     initial={{ scale: 0 }}
@@ -931,18 +935,10 @@ Aguardo orientação para iniciar.`;
     return (
         <>
             <div className="min-h-screen bg-surface relative overflow-hidden selection:bg-blue-500/30">
-                {/* Ambient background */}
-                <div className="pointer-events-none fixed inset-0">
-                    <div className="absolute top-[-30vh] left-1/2 -translate-x-1/2 w-[80vw] max-w-[700px] aspect-square bg-brand-glow rounded-full blur-[120px] opacity-60" />
-                    <div className="absolute bottom-[-10vh] right-[-5vw] w-[50vw] max-w-[400px] aspect-square bg-blue-600/[0.04] rounded-full blur-[100px]" />
-                    {/* Refined dot grid pattern */}
-                    <div
-                        className="absolute inset-0 opacity-[0.03]"
-                        style={{
-                            backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px)`,
-                            backgroundSize: "32px 32px",
-                        }}
-                    />
+                {/* Ambient background - simplified for mobile perf */}
+                <div className="pointer-events-none fixed inset-0" style={{ contain: 'strict' }}>
+                    <div className="absolute top-[-20vh] left-1/2 -translate-x-1/2 w-[60vw] max-w-[500px] aspect-square bg-brand-glow rounded-full blur-3xl sm:blur-[120px] opacity-40 sm:opacity-60" />
+                    <div className="hidden sm:block absolute bottom-[-10vh] right-[-5vw] w-[50vw] max-w-[400px] aspect-square bg-blue-600/[0.04] rounded-full blur-[100px]" />
                 </div>
 
                 {/* ── Top Bar marquee ── */}

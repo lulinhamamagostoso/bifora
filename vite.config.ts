@@ -13,12 +13,24 @@ export default defineConfig({
         emptyOutDir: true,
         target: "es2020",
         cssMinify: true,
+        minify: "terser",
+        terserOptions: {
+            compress: {
+                drop_console: true,
+                drop_debugger: true,
+                passes: 2,
+            },
+        },
         rollupOptions: {
             output: {
                 manualChunks: {
                     "framer": ["framer-motion"],
                     "react-vendor": ["react", "react-dom"],
+                    "imask": ["react-imask"],
                 },
+            },
+            treeshake: {
+                preset: "recommended",
             },
         },
     },
