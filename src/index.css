@@ -72,6 +72,7 @@
 .animate-marquee {
   animation: marquee 22s linear infinite;
   will-change: transform;
+  contain: layout style;
 }
 
 @keyframes float {
@@ -103,6 +104,18 @@
 .scrollbar-thin::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.08);
   border-radius: 2px;
+}
+
+/* Reduce paint cost for ambient backgrounds */
+.pointer-events-none[class*="blur-"] {
+  contain: strict;
+}
+
+/* Hardware-accelerated transforms only */
+@layer base {
+  img {
+    content-visibility: auto;
+  }
 }
 
 /* Safe area padding for mobile notch */
