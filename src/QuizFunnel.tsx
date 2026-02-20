@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Helmet } from "react-helmet-async";
+
 import { IMaskInput } from "react-imask";
 import {
     ArrowLeft,
@@ -355,12 +355,12 @@ Aguardo orientação para iniciar.`;
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="flex flex-col items-center justify-center text-center px-5 pt-20 pb-10 min-h-[80vh]"
+            className="flex flex-col items-center justify-center text-center px-4 pt-14 pb-8 sm:px-5 sm:pt-20 sm:pb-10 min-h-[80vh]"
         >
             <motion.img
                 src="/logowhiteB.png"
                 alt="Bforense"
-                className="h-10 sm:h-12 mb-10 opacity-90"
+                className="h-8 sm:h-12 mb-6 sm:mb-10 opacity-90"
                 initial={{ opacity: 0, y: -15 }}
                 animate={{ opacity: 0.9, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -368,42 +368,40 @@ Aguardo orientação para iniciar.`;
 
             {/* Social proof — editorial stats */}
             <motion.div
-                className="flex items-center justify-center gap-6 sm:gap-8 mb-8"
+                className="flex items-center justify-center gap-5 sm:gap-8 mb-6 sm:mb-8"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
             >
                 <div className="text-center">
-                    <p className="text-white font-black text-xl sm:text-2xl leading-none">3.200+</p>
+                    <p className="text-white font-black text-xl sm:text-2xl leading-none font-heading">3.200+</p>
                     <p className="text-gray-500 text-[10px] sm:text-[11px] uppercase tracking-widest mt-1">casos</p>
                 </div>
                 <div className="w-px h-8 bg-white/[0.08]" />
                 <div className="text-center">
-                    <p className="text-white font-black text-xl sm:text-2xl leading-none">4.9</p>
+                    <p className="text-white font-black text-xl sm:text-2xl leading-none font-heading">4.9</p>
                     <p className="text-gray-500 text-[10px] sm:text-[11px] uppercase tracking-widest mt-1">avaliação</p>
                 </div>
                 <div className="w-px h-8 bg-white/[0.08]" />
                 <div className="text-center">
-                    <p className="text-white font-black text-xl sm:text-2xl leading-none">94%</p>
+                    <p className="text-white font-black text-xl sm:text-2xl leading-none font-heading">94%</p>
                     <p className="text-gray-500 text-[10px] sm:text-[11px] uppercase tracking-widest mt-1">sucesso</p>
                 </div>
             </motion.div>
 
-            {/* Headline */}
+            {/* Headline — always exactly 2 lines */}
             <motion.h1
-                className="text-[2rem] sm:text-4xl md:text-[2.75rem] font-black text-white leading-[1.15] mb-4 max-w-lg"
+                className="font-black text-white leading-[1.1] mb-4 text-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
             >
-                Seu caso tem solução{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0030fd] to-blue-400">
-                    Descubra em 60 segundos
-                </span>
+                <span className="block text-[clamp(1.5rem,7vw,2.75rem)] whitespace-nowrap">Seu caso tem solu&#xE7;&#xE3;o</span>
+                <span className="block text-[clamp(1.2rem,5.5vw,2.75rem)] whitespace-nowrap text-[#0026cc]">Descubra em 60 segundos</span>
             </motion.h1>
 
             <motion.p
-                className="text-gray-400 text-base sm:text-lg max-w-md mb-8 leading-relaxed"
+                className="text-gray-400 text-sm sm:text-lg max-w-md mb-6 sm:mb-8 leading-relaxed"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.45 }}
@@ -413,7 +411,7 @@ Aguardo orientação para iniciar.`;
 
             {/* Hero image — operations center */}
             <motion.div
-                className="relative w-full max-w-md mb-10 rounded-2xl overflow-hidden"
+                className="relative w-full max-w-md mb-6 sm:mb-10 rounded-2xl overflow-hidden"
                 initial={{ opacity: 0, y: 20, scale: 0.97 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ delay: 0.5, duration: 0.5 }}
@@ -435,7 +433,7 @@ Aguardo orientação para iniciar.`;
             {/* CTA — pulsating */}
             <motion.button
                 onClick={() => goTo(S.SITUACAO)}
-                className="group relative inline-flex items-center gap-3 bg-[#0030fd] hover:bg-[#0026cc] text-white font-bold text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-5 rounded-xl shadow-lg shadow-blue-700/20 transition-all duration-200 hover:shadow-blue-700/40 hover:scale-[1.02] active:scale-[0.98]"
+                className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#0030fd] hover:bg-[#0026cc] text-white font-bold text-[15px] sm:text-lg px-6 sm:px-10 py-4 sm:py-5 rounded-xl shadow-lg shadow-blue-700/20 transition-all duration-200 hover:shadow-blue-700/40 hover:scale-[1.02] active:scale-[0.98]"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
@@ -450,7 +448,7 @@ Aguardo orientação para iniciar.`;
 
             {/* Trust row */}
             <motion.div
-                className="flex flex-wrap items-center justify-center gap-5 mt-10 text-[11px] sm:text-xs text-gray-500 uppercase tracking-wider"
+                className="flex flex-wrap items-center justify-center gap-3 sm:gap-5 mt-6 sm:mt-10 text-[10px] sm:text-xs text-gray-500 uppercase tracking-wider"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8 }}
@@ -609,28 +607,28 @@ Aguardo orientação para iniciar.`;
             animate="center"
             exit="exit"
             transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] as const }}
-            className="px-5 pt-[106px] pb-10"
+            className="px-4 sm:px-5 pt-[90px] sm:pt-[106px] pb-8 sm:pb-10"
         >
             <motion.div
-                className="flex items-center justify-center gap-2 mb-3"
+                className="flex items-center justify-center gap-2 mb-2 sm:mb-3"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
             >
-                <Quote className="w-5 h-5 text-amber-400" />
-                <p className="text-[11px] text-gray-500 uppercase tracking-widest font-semibold">O que nossos clientes dizem</p>
+                <Quote className="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+                <p className="text-[10px] sm:text-[11px] text-gray-500 uppercase tracking-widest font-semibold">O que nossos clientes dizem</p>
             </motion.div>
 
             <motion.h2
-                className="text-lg sm:text-xl font-bold text-white text-center mb-2 leading-snug max-w-md mx-auto"
+                className="text-base sm:text-xl font-bold text-white text-center mb-2 leading-snug max-w-md mx-auto"
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
             >
-                Veja relatos reais de quem já passou por situações parecidas
+                Veja relatos reais de quem ja passou por situacoes parecidas
             </motion.h2>
 
             <motion.p
-                className="text-gray-500 text-sm text-center mb-6 max-w-sm mx-auto"
+                className="text-gray-500 text-xs sm:text-sm text-center mb-4 sm:mb-6 max-w-sm mx-auto"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.15 }}
@@ -640,7 +638,7 @@ Aguardo orientação para iniciar.`;
 
             {/* Testimonial cards — show 2 at a time on desktop, 1 on mobile */}
             <motion.div
-                className="space-y-3 max-w-md mx-auto max-h-[45vh] overflow-y-auto pr-1 scrollbar-thin"
+                className="space-y-2.5 sm:space-y-3 max-w-md mx-auto max-h-[40vh] sm:max-h-[45vh] overflow-y-auto pr-1 scrollbar-thin"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
@@ -733,10 +731,10 @@ Aguardo orientação para iniciar.`;
                 animate="center"
                 exit="exit"
                 transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] as const }}
-                className="px-5 pt-[106px] pb-10"
+                className="px-4 sm:px-5 pt-[90px] sm:pt-[106px] pb-8 sm:pb-10"
             >
                 <motion.div
-                    className="w-14 h-14 rounded-2xl bg-[#0030fd]/10 border border-[#0030fd]/20 flex items-center justify-center mx-auto mb-5"
+                    className="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl bg-[#0030fd]/10 border border-[#0030fd]/20 flex items-center justify-center mx-auto mb-4 sm:mb-5"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 200 }}
@@ -745,16 +743,16 @@ Aguardo orientação para iniciar.`;
                 </motion.div>
 
                 <motion.h2
-                    className="text-lg sm:text-xl font-bold text-white text-center mb-2 leading-snug max-w-md mx-auto"
+                    className="text-base sm:text-xl font-bold text-white text-center mb-2 leading-snug max-w-md mx-auto"
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.15 }}
                 >
-                    Falta pouco! Preencha seus dados para receber seu diagnóstico personalizado.
+                    Falta pouco! Preencha seus dados para receber seu diagnostico personalizado.
                 </motion.h2>
 
                 <motion.p
-                    className="text-gray-500 text-sm text-center mb-8 max-w-sm mx-auto"
+                    className="text-gray-500 text-xs sm:text-sm text-center mb-6 sm:mb-8 max-w-sm mx-auto"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.25 }}
@@ -906,14 +904,6 @@ Aguardo orientação para iniciar.`;
 
     return (
         <>
-            <Helmet>
-                <title>Diagnóstico Gratuito — Bforense | Investigação Digital</title>
-                <meta name="description" content="Descubra em 60 segundos se o seu caso tem solução. Diagnóstico gratuito e 100% sigiloso com especialistas em investigação forense digital." />
-                <meta property="og:title" content="Diagnóstico Gratuito Bforense" />
-                <meta property="og:description" content="Descubra em 60 segundos se o seu caso tem solução. Diagnóstico gratuito e sigiloso." />
-                <meta name="robots" content="noindex,nofollow" />
-            </Helmet>
-
             <div className="min-h-screen bg-[#141414] relative overflow-hidden selection:bg-blue-500/30">
                 {/* Ambient background */}
                 <div className="pointer-events-none fixed inset-0">
@@ -951,8 +941,8 @@ Aguardo orientação para iniciar.`;
 
                 {/* Progress bar */}
                 {step > S.COVER && step < S.RESULTADO && (
-                    <div className="fixed top-9 left-0 right-0 z-50 bg-[#141414]/80 backdrop-blur-xl border-b border-white/[0.04]" style={{ height: '56px' }}>
-                        <div className="h-full flex items-center gap-3 max-w-xl mx-auto px-4">
+                    <div className="fixed top-9 left-0 right-0 z-50 bg-[#141414]/80 backdrop-blur-xl border-b border-white/[0.04]" style={{ height: '48px' }}>
+                        <div className="h-full flex items-center gap-2.5 sm:gap-3 max-w-xl mx-auto px-3 sm:px-4">
                             {step <= S.COLETA && (
                                 <button
                                     onClick={goBack}
@@ -1025,35 +1015,35 @@ function QScreen({
             animate="center"
             exit="exit"
             transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] as const }}
-            className="px-5 pt-[106px] pb-10"
+            className="px-4 sm:px-5 pt-[90px] sm:pt-[106px] pb-8 sm:pb-10"
         >
             {/* Step badge */}
-            <div className="flex items-center justify-center gap-4 mb-4">
-                <p className="text-[11px] text-gray-600 uppercase tracking-widest font-semibold text-center">
+            <div className="flex items-center justify-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+                <p className="text-[10px] sm:text-[11px] text-gray-600 uppercase tracking-widest font-semibold text-center">
                     Pergunta {step} de {TOTAL_QUESTIONS}
                 </p>
                 {badge && (
                     <motion.div
-                        className="inline-flex items-center gap-1.5 bg-white/[0.04] border border-white/[0.06] rounded-full px-3 py-1"
+                        className="inline-flex items-center gap-1.5 bg-white/[0.04] border border-white/[0.06] rounded-full px-2.5 sm:px-3 py-1"
                         initial={{ opacity: 0, x: 10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.1 }}
                     >
                         <badge.icon className="w-3 h-3 text-gray-500" />
-                        <span className="text-[10px] text-gray-500 font-medium uppercase tracking-wider">{badge.text}</span>
+                        <span className="text-[9px] sm:text-[10px] text-gray-500 font-medium uppercase tracking-wider">{badge.text}</span>
                     </motion.div>
                 )}
             </div>
 
-            <h2 className="text-lg sm:text-xl font-bold text-white text-center mb-2 leading-snug max-w-md mx-auto">
+            <h2 className="text-base sm:text-xl font-bold text-white text-center mb-2 leading-snug max-w-md mx-auto">
                 {title}
             </h2>
             {subtitle && (
-                <p className="text-gray-500 text-sm text-center mb-7 max-w-sm mx-auto">
+                <p className="text-gray-500 text-xs sm:text-sm text-center mb-5 sm:mb-7 max-w-sm mx-auto">
                     {subtitle}
                 </p>
             )}
-            {!subtitle && <div className="mb-7" />}
+            {!subtitle && <div className="mb-5 sm:mb-7" />}
             {children}
         </motion.div>
     );
@@ -1118,24 +1108,24 @@ function ResultHot({ onCTA, nome }: { onCTA: () => void; nome: string }) {
             key="hot"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="flex flex-col items-center text-center px-5 py-10 min-h-[70vh] justify-center"
+            className="flex flex-col items-center text-center px-4 sm:px-5 py-8 sm:py-10 min-h-[70vh] justify-center"
         >
             <motion.div
-                className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-5"
+                className="w-14 sm:w-16 h-14 sm:h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-4 sm:mb-5"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", delay: 0.15, stiffness: 200 }}
             >
-                <CheckCircle2 className="w-8 h-8 text-emerald-400" />
+                <CheckCircle2 className="w-7 sm:w-8 h-7 sm:h-8 text-emerald-400" />
             </motion.div>
 
             <motion.h2
-                className="text-xl sm:text-2xl font-black text-white mb-2"
+                className="text-lg sm:text-2xl font-black text-white mb-2"
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
             >
-                Ótima notícia{displayName}: seu caso tem{" "}
+                Otima noticia{displayName}: seu caso tem{" "}
                 <span className="text-emerald-400">alta viabilidade.</span>
             </motion.h2>
 
@@ -1215,19 +1205,19 @@ function ResultWarm({ onCTA, nome }: { onCTA: () => void; nome: string }) {
             key="warm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="flex flex-col items-center text-center px-5 py-10 min-h-[70vh] justify-center"
+            className="flex flex-col items-center text-center px-4 sm:px-5 py-8 sm:py-10 min-h-[70vh] justify-center"
         >
             <motion.div
-                className="w-16 h-16 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-5"
+                className="w-14 sm:w-16 h-14 sm:h-16 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-4 sm:mb-5"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", delay: 0.15, stiffness: 200 }}
             >
-                <User className="w-8 h-8 text-blue-400" />
+                <User className="w-7 sm:w-8 h-7 sm:h-8 text-blue-400" />
             </motion.div>
 
             <motion.h2
-                className="text-xl sm:text-2xl font-black text-white mb-2"
+                className="text-lg sm:text-2xl font-black text-white mb-2"
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
@@ -1295,19 +1285,19 @@ function ResultCold({ nome }: { nome: string }) {
             key="cold"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="flex flex-col items-center text-center px-5 py-10 min-h-[70vh] justify-center"
+            className="flex flex-col items-center text-center px-4 sm:px-5 py-8 sm:py-10 min-h-[70vh] justify-center"
         >
             <motion.div
-                className="w-16 h-16 rounded-2xl bg-gray-500/10 border border-gray-500/20 flex items-center justify-center mb-5"
+                className="w-14 sm:w-16 h-14 sm:h-16 rounded-2xl bg-gray-500/10 border border-gray-500/20 flex items-center justify-center mb-4 sm:mb-5"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", delay: 0.15, stiffness: 200 }}
             >
-                <BookOpen className="w-8 h-8 text-gray-400" />
+                <BookOpen className="w-7 sm:w-8 h-7 sm:h-8 text-gray-400" />
             </motion.div>
 
             <motion.h2
-                className="text-xl sm:text-2xl font-black text-white mb-2"
+                className="text-lg sm:text-2xl font-black text-white mb-2"
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
