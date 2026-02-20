@@ -355,7 +355,7 @@ Aguardo orientação para iniciar.`;
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="flex flex-col items-center text-center px-5 pt-12 pb-10 sm:px-6 sm:pt-20 sm:pb-12 min-h-dvh justify-center safe-bottom"
+            className="flex flex-col items-center text-center px-5 pt-20 pb-10 sm:px-6 sm:pt-28 sm:pb-12 min-h-dvh justify-center safe-bottom"
         >
             {/* Logo */}
             <motion.img
