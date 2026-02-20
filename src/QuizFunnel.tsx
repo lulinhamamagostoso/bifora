@@ -492,6 +492,23 @@ Aguardo orientação para iniciar.`;
                     <span className="text-accent-emerald font-semibold">3 especialistas</span>{' online agora'}
                 </span>
             </motion.div>
+
+            {/* Disclaimer footer — cover only */}
+            <motion.footer
+                className="w-full max-w-lg mx-auto mt-10 px-5 pb-8"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.2, duration: 0.6 }}
+            >
+                <div className="border-t border-border-subtle pt-5">
+                    <p className="text-[12px] leading-[1.6] text-text-muted/50">
+                        {'Este site não faz parte do site do Facebook ou do Facebook Inc. Adicionalmente, este site NÃO é endossado pelo Facebook de forma alguma. FACEBOOK é uma marca comercial de FACEBOOK, Inc. Os depoimentos e resultados mencionados são reais, mas não garantem que você terá os mesmos resultados.'}
+                    </p>
+                    <p className="text-[12px] leading-[1.6] text-text-muted/50 mt-3">
+                        {'AVISO LEGAL E LIMITES DE ATUAÇÃO: A Bforense é uma agência de Investigações Privada, operando estritamente sob a Lei Federal 13.432/2017. Declaramos expressamente que não possuímos vínculo com a Polícia Civil, Polícia Federal ou órgãos do Poder Judiciário. Nossos serviços restringem-se à investigação, produção de provas técnicas e inteligência em fontes abertas (OSINT) para suporte a litígios. Não realizamos interceptações telefônicas, quebra de sigilo bancário sem ordem judicial, bloqueios de contas ou prisões. Todo o material produzido destina-se a fundamentar a atuação de advogados e autoridades competentes.'}
+                    </p>
+                </div>
+            </motion.footer>
         </motion.div>
     );
 
