@@ -375,7 +375,7 @@ Aguardo orientação para iniciar.`;
                 transition={{ delay: 0.15, duration: 0.5 }}
             >
                 <img src="/eagle-icon.png" alt="" className="w-8 h-5 object-contain" />
-                <span className="text-[11px] sm:text-xs text-text-secondary font-medium tracking-wide uppercase">{'Agencia Privada de Investigacoes'}</span>
+                <span className="text-[11px] sm:text-xs text-text-secondary font-medium tracking-wide uppercase">{'Agência Privada de Investigações'}</span>
             </motion.div>
 
             {/* Headline */}
@@ -385,7 +385,7 @@ Aguardo orientação para iniciar.`;
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25, duration: 0.6 }}
             >
-                <span className="block text-[clamp(1.6rem,8vw,3rem)]">{'Seu caso tem solucao.'}</span>
+                <span className="block text-[clamp(1.6rem,8vw,3rem)]">{'Seu caso tem solução.'}</span>
                 <span className="block text-[clamp(1.3rem,6.5vw,2.5rem)] text-brand mt-1">{'Descubra em 60 segundos.'}</span>
             </motion.h1>
 
@@ -396,7 +396,7 @@ Aguardo orientação para iniciar.`;
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.5 }}
             >
-                {'Diagnostico gratuito e 100% sigiloso feito por especialistas em investigacao e inteligencia forense.'}
+                {'Diagnóstico gratuito e 100% sigiloso feito por especialistas em investigação e inteligência forense.'}
             </motion.p>
 
             {/* Hero image */}
@@ -410,7 +410,7 @@ Aguardo orientação para iniciar.`;
                 <div className="relative rounded-2xl overflow-hidden border border-border-muted shadow-2xl shadow-blue-950/30">
                     <img
                         src="/cover-team.png"
-                        alt="Centro de operacoes Bforense"
+                        alt="Centro de operações Bforense"
                         className="w-full h-auto object-cover"
                         loading="eager"
                     />
@@ -427,7 +427,7 @@ Aguardo orientação para iniciar.`;
             >
                 {[
                     { value: "3.200+", label: "casos" },
-                    { value: "4.9", label: "avaliacao" },
+                    { value: "4.9", label: "avaliação" },
                     { value: "94%", label: "sucesso" },
                 ].map((stat, i) => (
                     <div
@@ -450,7 +450,7 @@ Aguardo orientação para iniciar.`;
             >
                 <span className="absolute inset-0 rounded-2xl bg-brand/20 animate-ping pointer-events-none" style={{ animationDuration: "2.5s" }} />
                 <span className="relative flex items-center gap-2.5">
-                    {'INICIAR DIAGNOSTICO GRATUITO'}
+                    {'INICIAR DIAGNÓSTICO GRATUITO'}
                     <ArrowRight className="w-4.5 h-4.5 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-0.5" />
                 </span>
             </motion.button>
@@ -700,7 +700,7 @@ Aguardo orientação para iniciar.`;
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
             >
-                {'CONTINUAR DIAGNOSTICO'}
+                {'CONTINUAR DIAGNÓSTICO'}
                 <ArrowRight className="w-5 h-5" />
             </motion.button>
         </motion.div>
@@ -761,7 +761,7 @@ Aguardo orientação para iniciar.`;
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.15 }}
                 >
-                    Falta pouco! Preencha seus dados para receber seu diagnostico personalizado.
+                    Falta pouco! Preencha seus dados para receber seu diagnóstico personalizado.
                 </motion.h2>
 
                 <motion.p
@@ -770,7 +770,7 @@ Aguardo orientação para iniciar.`;
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.25 }}
                 >
-                    {'Seus dados sao usados exclusivamente para o diagnostico. Nenhum spam.'}
+                    {'Seus dados são usados exclusivamente para o diagnóstico. Nenhum spam.'}
                 </motion.p>
 
                 <motion.div
@@ -837,13 +837,13 @@ Aguardo orientação para iniciar.`;
                             : "bg-surface-card text-text-muted cursor-not-allowed shadow-none"
                             }`}
                     >
-                        {'VER MEU DIAGNOSTICO'}
+                        {'VER MEU DIAGNÓSTICO'}
                         <ArrowRight className="w-5 h-5" />
                     </button>
 
                     <p className="text-[11px] text-text-muted text-center mt-1 flex items-center justify-center gap-1.5">
                         <Lock className="w-3 h-3" />
-                        {'Seus dados estao protegidos e criptografados.'}
+                        {'Seus dados estão protegidos e criptografados.'}
                     </p>
                 </motion.div>
             </motion.div>
@@ -936,9 +936,9 @@ Aguardo orientação para iniciar.`;
                 <div className="fixed top-0 left-0 right-0 z-[60] h-8 sm:h-9 bg-brand overflow-hidden flex items-center safe-top">
                     <div className="flex whitespace-nowrap animate-marquee">
                         {[
-                            "INVESTIGACAO", "INTELIGENCIA", "HACKING ETICO", "FORENSE",
+                            "INVESTIGAÇÃO", "INTELIGÊNCIA", "HACKING ÉTICO", "FORENSE",
                             "CYBERCRIME", "FRAUDE", "DILLIGENCE", "SIGILO",
-                            "INVESTIGACAO", "INTELIGENCIA", "HACKING ETICO", "FORENSE",
+                            "INVESTIGAÇÃO", "INTELIGÊNCIA", "HACKING ÉTICO", "FORENSE",
                             "CYBERCRIME", "FRAUDE", "DILLIGENCE", "SIGILO",
                         ].map((word, i) => (
                             <span
@@ -1147,7 +1147,7 @@ function ResultHot({ onCTA, nome }: { onCTA: () => void; nome: string }) {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.45 }}
             >
-                {'Um perito senior foi pre-designado para o seu perfil de caso. Fale agora para iniciar a analise sem custos.'}
+                {'Um perito sênior foi pré-designado para o seu perfil de caso. Fale agora para iniciar a análise sem custos.'}
             </motion.p>
 
             {/* Urgency timer */}
@@ -1170,8 +1170,8 @@ function ResultHot({ onCTA, nome }: { onCTA: () => void; nome: string }) {
                 transition={{ delay: 0.55 }}
             >
                 {[
-                    { icon: BadgeCheck, text: "Protocolo compativel identificado", color: "text-accent-emerald" },
-                    { icon: Timer, text: "Prazo estimado para conclusao do caso: 3 a 12 dias uteis", color: "text-brand" },
+                    { icon: BadgeCheck, text: "Protocolo compatível identificado", color: "text-accent-emerald" },
+                    { icon: Timer, text: "Prazo estimado para conclusão do caso: 3 a 12 dias úteis", color: "text-brand" },
                     { icon: Trophy, text: "Taxa de sucesso: 94% em casos similares", color: "text-accent-amber" },
                 ].map((b) => (
                     <div
@@ -1243,7 +1243,7 @@ function ResultWarm({ onCTA, nome }: { onCTA: () => void; nome: string }) {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.45 }}
             >
-                {'Para o seu tipo de caso, recomendamos uma consulta rapida com o nosso time de triagem. Eles vao avaliar as melhores opcoes e esclarecer valores.'}
+                {'Para o seu tipo de caso, recomendamos uma consulta rápida com o nosso time de triagem. Eles vão avaliar as melhores opções e esclarecer valores.'}
             </motion.p>
 
             {/* Next steps */}
@@ -1254,9 +1254,9 @@ function ResultWarm({ onCTA, nome }: { onCTA: () => void; nome: string }) {
                 transition={{ delay: 0.5 }}
             >
                 {[
-                    "Conversa rapida de 5 min \u2014 sem compromisso",
-                    "Orientacao personalizada para o seu caso",
-                    "Opcoes flexiveis de investimento",
+                    "Conversa rápida de 5 min \u2014 sem compromisso",
+                    "Orientação personalizada para o seu caso",
+                    "Opções flexíveis de investimento",
                 ].map((text, i) => (
                     <div key={i} className="flex items-center gap-3 bg-surface-card border border-border-subtle rounded-2xl px-4 py-3">
                         <CheckCircle2 className="w-4 h-4 text-brand flex-shrink-0" />
