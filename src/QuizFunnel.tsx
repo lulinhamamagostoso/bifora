@@ -355,7 +355,7 @@ Aguardo orientação para iniciar.`;
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="flex flex-col items-center text-center px-5 pt-12 pb-10 sm:px-6 sm:pt-20 sm:pb-12 min-h-dvh justify-center safe-bottom"
+            className="flex flex-col items-center text-center px-5 pt-20 pb-10 sm:px-6 sm:pt-28 sm:pb-12 min-h-dvh justify-center safe-bottom"
         >
             {/* Logo */}
             <motion.img
@@ -374,7 +374,7 @@ Aguardo orientação para iniciar.`;
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.08, duration: 0.4 }}
             >
-                <img src="/eagle-icon.png" alt="" className="w-8 h-5 object-contain" decoding="async" />
+                <img src="/eagle-icon.png" alt="" className="w-5 h-5 object-contain" decoding="async" />
                 <span className="text-[11px] sm:text-xs text-text-secondary font-medium tracking-wide uppercase">{'Agência Privada de Investigações'}</span>
             </motion.div>
 
@@ -401,13 +401,13 @@ Aguardo orientação para iniciar.`;
 
             {/* Hero image */}
             <motion.div
-                className="relative w-full max-w-sm sm:max-w-md mb-6 sm:mb-8 rounded-2xl overflow-hidden"
+                className="relative w-full max-w-sm sm:max-w-md mb-6 sm:mb-8 rounded-xl overflow-hidden"
                 initial={{ opacity: 0, y: 20, scale: 0.97 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ delay: 0.25, duration: 0.45 }}
             >
-                <div className="absolute -inset-2 bg-brand-glow rounded-3xl blur-2xl pointer-events-none opacity-40" />
-                <div className="relative rounded-2xl overflow-hidden border border-border-muted shadow-2xl shadow-blue-950/30">
+                <div className="absolute -inset-2 bg-brand-glow rounded-xl blur-2xl pointer-events-none opacity-40" />
+                <div className="relative rounded-xl overflow-hidden border border-border-muted shadow-2xl shadow-blue-950/30">
                     <img
                         src="/cover-team.png"
                         alt="Centro de operações Bforense"
@@ -445,12 +445,12 @@ Aguardo orientação para iniciar.`;
             {/* CTA */}
             <motion.button
                 onClick={() => goTo(S.SITUACAO)}
-                className="group relative w-full max-w-sm sm:max-w-md inline-flex items-center justify-center gap-3 bg-brand hover:bg-brand-hover text-text-primary font-bold text-[15px] sm:text-base px-6 py-4 sm:py-[18px] rounded-2xl shadow-lg shadow-blue-900/25 transition-all duration-200 hover:shadow-blue-800/40 hover:scale-[1.015] active:scale-[0.98]"
+                className="group relative w-full max-w-sm sm:max-w-md inline-flex items-center justify-center gap-3 bg-brand hover:bg-brand-hover text-text-primary font-bold text-[15px] sm:text-base px-6 py-4 sm:py-[18px] rounded-xl shadow-lg shadow-blue-900/25 transition-all duration-200 hover:shadow-blue-800/40 hover:scale-[1.015] active:scale-[0.98]"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.35, duration: 0.4 }}
             >
-                <span className="absolute inset-0 rounded-2xl bg-brand/15 animate-pulse pointer-events-none" style={{ animationDuration: "2s" }} />
+                <span className="absolute inset-0 rounded-xl bg-brand/15 animate-pulse pointer-events-none" style={{ animationDuration: "2s" }} />
                 <span className="relative flex items-center gap-2.5">
                     {'INICIAR DIAGNÓSTICO GRATUITO'}
                     <ArrowRight className="w-4.5 h-4.5 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-0.5" />
@@ -528,7 +528,7 @@ Aguardo orientação para iniciar.`;
                             selected={selectedOption === key}
                             onClick={() => selectOption(key, "situacao", item.label, S.TEMPO)}
                         >
-                            <div className="flex-shrink-0 w-9 h-9 rounded-xl bg-surface-card border border-border-subtle group-hover:bg-brand/10 group-hover:border-brand/20 flex items-center justify-center transition-colors">
+                            <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-surface-card border border-border-subtle group-hover:bg-brand/10 group-hover:border-brand/20 flex items-center justify-center transition-colors">
                                 <Icon className="w-[18px] h-[18px] text-text-secondary group-hover:text-brand transition-colors" />
                             </div>
                             <span className="text-[14px] sm:text-[15px] text-text-primary/90 font-medium leading-snug">{item.label}</span>
@@ -679,7 +679,7 @@ Aguardo orientação para iniciar.`;
                 {TESTIMONIALS.map((t, i) => (
                     <motion.div
                         key={i}
-                        className="bg-surface-card border border-border-subtle rounded-2xl p-4"
+                        className="bg-surface-card border border-border-subtle rounded-xl p-4"
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 + i * 0.06 }}
@@ -708,7 +708,7 @@ Aguardo orientação para iniciar.`;
             {/* CTA to continue */}
             <motion.button
                 onClick={() => goTo(S.INVESTIMENTO)}
-                className="w-full max-w-md mx-auto flex items-center justify-center gap-3 bg-brand hover:bg-brand-hover text-text-primary font-bold text-base px-8 py-4 rounded-2xl shadow-lg shadow-blue-900/20 transition-all duration-200 hover:scale-[1.015] active:scale-[0.98] mt-6"
+                className="w-full max-w-md mx-auto flex items-center justify-center gap-3 bg-brand hover:bg-brand-hover text-text-primary font-bold text-base px-8 py-4 rounded-xl shadow-lg shadow-blue-900/20 transition-all duration-200 hover:scale-[1.015] active:scale-[0.98] mt-6"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
@@ -760,7 +760,7 @@ Aguardo orientação para iniciar.`;
                 className="px-5 sm:px-6 pt-[86px] sm:pt-[106px] pb-8 sm:pb-10"
             >
                 <motion.div
-                    className="w-12 sm:w-14 h-12 sm:h-14 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center mx-auto mb-4 sm:mb-5"
+                    className="w-12 sm:w-14 h-12 sm:h-14 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center mx-auto mb-4 sm:mb-5"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 200 }}
@@ -803,7 +803,7 @@ Aguardo orientação para iniciar.`;
                                 value={leadData.nome}
                                 onChange={(e) => setLeadData((p) => ({ ...p, nome: e.target.value }))}
                                 placeholder="Como podemos te chamar?"
-                                className="w-full bg-surface-card border border-border-muted focus:border-brand/50 rounded-2xl px-4 py-3.5 text-text-primary text-[15px] placeholder:text-text-muted outline-none transition-colors"
+                                className="w-full bg-surface-card border border-border-muted focus:border-brand/50 rounded-xl px-4 py-3.5 text-text-primary text-[15px] placeholder:text-text-muted outline-none transition-colors"
                             />
                             {leadData.nome.trim().length >= 2 && (
                                 <motion.div
@@ -828,7 +828,7 @@ Aguardo orientação para iniciar.`;
                                 value={leadData.whatsapp}
                                 onAccept={(value: string) => setLeadData((p) => ({ ...p, whatsapp: value }))}
                                 placeholder="(11) 99999-0000"
-                                className="w-full bg-surface-card border border-border-muted focus:border-brand/50 rounded-2xl px-4 py-3.5 text-text-primary text-[15px] placeholder:text-text-muted outline-none transition-colors"
+                                className="w-full bg-surface-card border border-border-muted focus:border-brand/50 rounded-xl px-4 py-3.5 text-text-primary text-[15px] placeholder:text-text-muted outline-none transition-colors"
                             />
                             {phoneIsValid && (
                                 <motion.div
@@ -845,7 +845,7 @@ Aguardo orientação para iniciar.`;
                     <button
                         onClick={() => canSubmitLead && goTo(S.LOADING)}
                         disabled={!canSubmitLead}
-                        className={`w-full flex items-center justify-center gap-3 font-bold text-base px-8 py-4 rounded-2xl shadow-lg transition-all duration-200 mt-2 ${canSubmitLead
+                        className={`w-full flex items-center justify-center gap-3 font-bold text-base px-8 py-4 rounded-xl shadow-lg transition-all duration-200 mt-2 ${canSubmitLead
                             ? "bg-brand hover:bg-brand-hover text-text-primary shadow-blue-900/20 hover:shadow-blue-800/40 hover:scale-[1.015] active:scale-[0.98] cursor-pointer"
                             : "bg-surface-card text-text-muted cursor-not-allowed shadow-none"
                             }`}
@@ -1094,7 +1094,7 @@ function OptionCard({
             initial="hidden"
             animate="visible"
             onClick={onClick}
-            className={`group flex items-center gap-3.5 border rounded-2xl px-4 py-3.5 sm:py-4 text-left transition-all duration-200 cursor-pointer
+            className={`group flex items-center gap-3.5 border rounded-xl px-4 py-3.5 sm:py-4 text-left transition-all duration-200 cursor-pointer
                 ${selected
                     ? "bg-brand/10 border-brand/40 scale-[0.98]"
                     : "bg-surface-card hover:bg-white/[0.06] border-border-muted hover:border-brand/30 hover:scale-[1.01] active:scale-[0.98]"
@@ -1136,7 +1136,7 @@ function ResultHot({ onCTA, nome }: { onCTA: () => void; nome: string }) {
             className="flex flex-col items-center text-center px-5 sm:px-6 py-8 sm:py-10 min-h-[70vh] justify-center"
         >
             <motion.div
-                className="w-14 sm:w-16 h-14 sm:h-16 rounded-2xl bg-accent-emerald/10 border border-accent-emerald/20 flex items-center justify-center mb-4 sm:mb-5"
+                className="w-14 sm:w-16 h-14 sm:h-16 rounded-xl bg-accent-emerald/10 border border-accent-emerald/20 flex items-center justify-center mb-4 sm:mb-5"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", delay: 0.15, stiffness: 200 }}
@@ -1189,7 +1189,7 @@ function ResultHot({ onCTA, nome }: { onCTA: () => void; nome: string }) {
                 ].map((b) => (
                     <div
                         key={b.text}
-                        className="flex items-center gap-3 bg-surface-card border border-border-subtle rounded-2xl px-4 py-3"
+                        className="flex items-center gap-3 bg-surface-card border border-border-subtle rounded-xl px-4 py-3"
                     >
                         <b.icon className={`w-4 h-4 flex-shrink-0 ${b.color}`} />
                         <span className="text-text-primary/70 text-[13px] text-left">{b.text}</span>
@@ -1200,12 +1200,12 @@ function ResultHot({ onCTA, nome }: { onCTA: () => void; nome: string }) {
             {/* CTA  */}
             <motion.button
                 onClick={onCTA}
-                className="w-full max-w-sm flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1ebd5a] text-text-primary font-bold text-base px-8 py-4 rounded-2xl shadow-lg shadow-emerald-600/15 transition-all duration-200 hover:scale-[1.015] active:scale-[0.98] relative overflow-hidden"
+                className="w-full max-w-sm flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1ebd5a] text-text-primary font-bold text-base px-8 py-4 rounded-xl shadow-lg shadow-emerald-600/15 transition-all duration-200 hover:scale-[1.015] active:scale-[0.98] relative overflow-hidden"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
             >
-                <span className="absolute inset-0 rounded-2xl bg-emerald-400/10 animate-ping pointer-events-none" style={{ animationDuration: "2.5s" }} />
+                <span className="absolute inset-0 rounded-xl bg-emerald-400/10 animate-ping pointer-events-none" style={{ animationDuration: "2.5s" }} />
                 <MessageCircle className="w-5 h-5 relative z-10" />
                 <span className="relative z-10">FALAR COM PERITO AGORA</span>
             </motion.button>
@@ -1233,7 +1233,7 @@ function ResultWarm({ onCTA, nome }: { onCTA: () => void; nome: string }) {
             className="flex flex-col items-center text-center px-5 sm:px-6 py-8 sm:py-10 min-h-[70vh] justify-center"
         >
             <motion.div
-                className="w-14 sm:w-16 h-14 sm:h-16 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center mb-4 sm:mb-5"
+                className="w-14 sm:w-16 h-14 sm:h-16 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center mb-4 sm:mb-5"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", delay: 0.15, stiffness: 200 }}
@@ -1271,7 +1271,7 @@ function ResultWarm({ onCTA, nome }: { onCTA: () => void; nome: string }) {
                     "Orientação personalizada para o seu caso",
                     "Opções flexíveis de investimento",
                 ].map((text, i) => (
-                    <div key={i} className="flex items-center gap-3 bg-surface-card border border-border-subtle rounded-2xl px-4 py-3">
+                    <div key={i} className="flex items-center gap-3 bg-surface-card border border-border-subtle rounded-xl px-4 py-3">
                         <CheckCircle2 className="w-4 h-4 text-brand flex-shrink-0" />
                         <span className="text-text-primary/70 text-[13px] text-left">{text}</span>
                     </div>
@@ -1280,7 +1280,7 @@ function ResultWarm({ onCTA, nome }: { onCTA: () => void; nome: string }) {
 
             <motion.button
                 onClick={onCTA}
-                className="w-full max-w-sm flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1ebd5a] text-text-primary font-bold text-base px-8 py-4 rounded-2xl shadow-lg shadow-emerald-600/15 transition-all duration-200 hover:scale-[1.015] active:scale-[0.98]"
+                className="w-full max-w-sm flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#1ebd5a] text-text-primary font-bold text-base px-8 py-4 rounded-xl shadow-lg shadow-emerald-600/15 transition-all duration-200 hover:scale-[1.015] active:scale-[0.98]"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
@@ -1312,7 +1312,7 @@ function ResultCold({ nome }: { nome: string }) {
             className="flex flex-col items-center text-center px-5 sm:px-6 py-8 sm:py-10 min-h-[70vh] justify-center"
         >
             <motion.div
-                className="w-14 sm:w-16 h-14 sm:h-16 rounded-2xl bg-text-muted/10 border border-text-muted/20 flex items-center justify-center mb-4 sm:mb-5"
+                className="w-14 sm:w-16 h-14 sm:h-16 rounded-xl bg-text-muted/10 border border-text-muted/20 flex items-center justify-center mb-4 sm:mb-5"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", delay: 0.15, stiffness: 200 }}
@@ -1341,7 +1341,7 @@ function ResultCold({ nome }: { nome: string }) {
 
             <motion.a
                 href="#"
-                className="w-full max-w-sm flex items-center justify-center gap-3 bg-surface-card hover:bg-white/[0.08] border border-border-muted text-text-primary font-bold text-base px-8 py-4 rounded-2xl transition-all duration-200 hover:scale-[1.015] active:scale-[0.98]"
+                className="w-full max-w-sm flex items-center justify-center gap-3 bg-surface-card hover:bg-white/[0.08] border border-border-muted text-text-primary font-bold text-base px-8 py-4 rounded-xl transition-all duration-200 hover:scale-[1.015] active:scale-[0.98]"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
