@@ -374,17 +374,17 @@ Aguardo orientação para iniciar.`;
                 transition={{ delay: 0.2 }}
             >
                 <div className="text-center">
-                    <p className="text-white font-black text-xl sm:text-2xl leading-none">3.200+</p>
+                    <p className="text-white font-black text-xl sm:text-2xl leading-none font-heading">3.200+</p>
                     <p className="text-gray-500 text-[10px] sm:text-[11px] uppercase tracking-widest mt-1">casos</p>
                 </div>
                 <div className="w-px h-8 bg-white/[0.08]" />
                 <div className="text-center">
-                    <p className="text-white font-black text-xl sm:text-2xl leading-none">4.9</p>
+                    <p className="text-white font-black text-xl sm:text-2xl leading-none font-heading">4.9</p>
                     <p className="text-gray-500 text-[10px] sm:text-[11px] uppercase tracking-widest mt-1">avaliação</p>
                 </div>
                 <div className="w-px h-8 bg-white/[0.08]" />
                 <div className="text-center">
-                    <p className="text-white font-black text-xl sm:text-2xl leading-none">94%</p>
+                    <p className="text-white font-black text-xl sm:text-2xl leading-none font-heading">94%</p>
                     <p className="text-gray-500 text-[10px] sm:text-[11px] uppercase tracking-widest mt-1">sucesso</p>
                 </div>
             </motion.div>
