@@ -266,6 +266,7 @@ export default function QuizFunnel() {
             setDir(target > step ? 1 : -1);
             setStep(target);
             setSelectedOption(null);
+            window.scrollTo({ top: 0, behavior: "instant" });
         },
         [step],
     );
