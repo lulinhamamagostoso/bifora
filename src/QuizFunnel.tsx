@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Helmet } from "react-helmet-async";
+
 import { IMaskInput } from "react-imask";
 import {
     ArrowLeft,
@@ -906,14 +906,6 @@ Aguardo orientação para iniciar.`;
 
     return (
         <>
-            <Helmet>
-                <title>Diagnóstico Gratuito — Bforense | Investigação Digital</title>
-                <meta name="description" content="Descubra em 60 segundos se o seu caso tem solução. Diagnóstico gratuito e 100% sigiloso com especialistas em investigação forense digital." />
-                <meta property="og:title" content="Diagnóstico Gratuito Bforense" />
-                <meta property="og:description" content="Descubra em 60 segundos se o seu caso tem solução. Diagnóstico gratuito e sigiloso." />
-                <meta name="robots" content="noindex,nofollow" />
-            </Helmet>
-
             <div className="min-h-screen bg-[#141414] relative overflow-hidden selection:bg-blue-500/30">
                 {/* Ambient background */}
                 <div className="pointer-events-none fixed inset-0">
