@@ -374,7 +374,7 @@ Aguardo orientação para iniciar.`;
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.08, duration: 0.4 }}
             >
-                <img src="/eagle-icon.png" alt="" className="w-8 h-5 object-contain" decoding="async" />
+                <img src="/eagle-icon.png" alt="" className="w-5 h-5 object-contain" decoding="async" />
                 <span className="text-[11px] sm:text-xs text-text-secondary font-medium tracking-wide uppercase">{'Agência Privada de Investigações'}</span>
             </motion.div>
 
