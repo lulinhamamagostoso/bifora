@@ -500,48 +500,59 @@ Aguardo orientação para iniciar.`;
 
             {/* Soluções definitivas */}
             <motion.section
-                className="w-full max-w-lg mx-auto mt-10 px-5"
+                className="w-full max-w-2xl mx-auto mt-12 px-5"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.55, duration: 0.5 }}
             >
-                <h2 className="text-lg sm:text-xl font-bold text-text-primary mb-5 text-center">
+                <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-2 text-center">
                     {'Soluções definitivas para:'}
                 </h2>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                <p className="text-sm text-text-muted mb-8 text-center">
+                    {'Expertise em investigação para cada necessidade'}
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {[
-                        "Investigação Digital",
-                        "Due Diligence",
-                        "Dossiês Completos",
-                        "Investigação Empresarial",
-                        "Investigação Patrimonial",
-                        "Busca de Provas",
-                        "Fraude",
-                        "Blindagem Digital",
-                        "Confirmação de Identidade",
-                        "Localização de Devedores",
-                        "Pré-Contratual",
-                        "Trabalhista",
-                        "Conjugal",
-                        "Pré-Nupcial",
-                        "Campanas",
+                        { title: "Investigação Digital", desc: "Rastreamento e análise técnica de dados digitais, infraestrutura online, plataformas, reputação, vazamentos e operações suspeitas." },
+                        { title: "Due Diligence", desc: "Análise aprofundada de risco em negócios, investimentos, parcerias e operações estratégicas." },
+                        { title: "Dossiês Completos", desc: "Relatórios estruturados com inteligência consolidada sobre pessoas ou empresas." },
+                        { title: "Investigação Empresarial", desc: "Fraudes corporativas, conflitos de interesse, desvios, riscos internos e externos." },
+                        { title: "Investigação Patrimonial", desc: "Mapeamento patrimonial estruturado para fins estratégicos, judiciais ou negociais." },
+                        { title: "Busca de Provas", desc: "Levantamento técnico de evidências para suporte jurídico e corporativo." },
+                        { title: "Fraude", desc: "Apuração técnica de indícios de fraude em contextos financeiros ou comerciais." },
+                        { title: "Blindagem Digital", desc: "Proteção estratégica de ativos digitais e redução de vulnerabilidades." },
+                        { title: "Confirmação de Identidade", desc: "Validação de identidade para transações, contratações ou relações comerciais." },
+                        { title: "Localização de Devedores", desc: "Inteligência aplicada à recuperação de crédito." },
+                        { title: "Pré-Contratual", desc: "Análise prévia antes da assinatura de contratos relevantes." },
+                        { title: "Trabalhista", desc: "Levantamento de informações em demandas trabalhistas." },
+                        { title: "Conjugal", desc: "Investigação particular para casos de infidelidade." },
+                        { title: "Pré-Nupcial", desc: "Levantamento informacional antes de casamento ou união estável." },
                     ].map((item, i) => (
-                        <div
+                        <motion.div
                             key={i}
-                            className="bg-surface-card border border-border-subtle rounded-lg px-3 py-2.5 text-center"
+                            className="group bg-surface-card/60 hover:bg-surface-card border border-border-subtle hover:border-brand/40 rounded-xl p-4 transition-all duration-200"
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.6 + i * 0.03, duration: 0.35 }}
                         >
-                            <span className="text-[12px] sm:text-[13px] text-text-secondary font-medium">{item}</span>
-                        </div>
+                            <h3 className="text-sm sm:text-[15px] font-semibold text-text-primary mb-1.5 group-hover:text-brand transition-colors">
+                                {item.title}
+                            </h3>
+                            <p className="text-[12px] sm:text-[13px] leading-relaxed text-text-muted">
+                                {item.desc}
+                            </p>
+                        </motion.div>
                     ))}
                 </div>
 
                 {/* CTA secundário */}
                 <motion.button
                     onClick={() => goTo(S.SITUACAO)}
-                    className="group relative w-full max-w-sm sm:max-w-md mx-auto mt-8 inline-flex items-center justify-center gap-3 bg-brand hover:bg-brand-hover text-text-primary font-bold text-[15px] sm:text-base px-6 py-4 sm:py-[18px] rounded-xl shadow-lg shadow-blue-900/25 transition-all duration-200 hover:shadow-blue-800/40 hover:scale-[1.015] active:scale-[0.98]"
+                    className="group relative w-full max-w-sm sm:max-w-md mx-auto mt-10 flex items-center justify-center gap-3 bg-brand hover:bg-brand-hover text-text-primary font-bold text-[15px] sm:text-base px-6 py-4 sm:py-[18px] rounded-xl shadow-lg shadow-blue-900/25 transition-all duration-200 hover:shadow-blue-800/40 hover:scale-[1.015] active:scale-[0.98]"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.65, duration: 0.4 }}
+                    transition={{ delay: 1.1, duration: 0.4 }}
                 >
                     <span className="absolute inset-0 rounded-xl bg-brand/15 animate-pulse pointer-events-none" style={{ animationDuration: "2s" }} />
                     <span className="relative flex items-center gap-2.5">
