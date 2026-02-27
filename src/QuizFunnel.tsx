@@ -498,6 +498,59 @@ Aguardo orientação para iniciar.`;
                 </span>
             </motion.div>
 
+            {/* Soluções definitivas */}
+            <motion.section
+                className="w-full max-w-lg mx-auto mt-10 px-5"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.55, duration: 0.5 }}
+            >
+                <h2 className="text-lg sm:text-xl font-bold text-text-primary mb-5 text-center">
+                    {'Soluções definitivas para:'}
+                </h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    {[
+                        "Investigação Digital",
+                        "Due Diligence",
+                        "Dossiês Completos",
+                        "Investigação Empresarial",
+                        "Investigação Patrimonial",
+                        "Busca de Provas",
+                        "Fraude",
+                        "Blindagem Digital",
+                        "Confirmação de Identidade",
+                        "Localização de Devedores",
+                        "Pré-Contratual",
+                        "Trabalhista",
+                        "Conjugal",
+                        "Pré-Nupcial",
+                        "Campanas",
+                    ].map((item, i) => (
+                        <div
+                            key={i}
+                            className="bg-surface-card border border-border-subtle rounded-lg px-3 py-2.5 text-center"
+                        >
+                            <span className="text-[12px] sm:text-[13px] text-text-secondary font-medium">{item}</span>
+                        </div>
+                    ))}
+                </div>
+
+                {/* CTA secundário */}
+                <motion.button
+                    onClick={() => goTo(S.SITUACAO)}
+                    className="group relative w-full max-w-sm sm:max-w-md mx-auto mt-8 inline-flex items-center justify-center gap-3 bg-brand hover:bg-brand-hover text-text-primary font-bold text-[15px] sm:text-base px-6 py-4 sm:py-[18px] rounded-xl shadow-lg shadow-blue-900/25 transition-all duration-200 hover:shadow-blue-800/40 hover:scale-[1.015] active:scale-[0.98]"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.65, duration: 0.4 }}
+                >
+                    <span className="absolute inset-0 rounded-xl bg-brand/15 animate-pulse pointer-events-none" style={{ animationDuration: "2s" }} />
+                    <span className="relative flex items-center gap-2.5">
+                        {'INICIAR DIAGNÓSTICO AGORA'}
+                        <ArrowRight className="w-4.5 h-4.5 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-0.5" />
+                    </span>
+                </motion.button>
+            </motion.section>
+
             {/* Disclaimer footer — cover only */}
             <motion.footer
                 className="w-full max-w-lg mx-auto mt-10 px-5 pb-8"
