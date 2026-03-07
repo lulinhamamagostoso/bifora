@@ -526,8 +526,6 @@ Aguardo orientação para iniciar.`;
                         { title: "Localização de Devedores", desc: "Inteligência aplicada à recuperação de crédito." },
                         { title: "Pré-Contratual", desc: "Análise prévia antes da assinatura de contratos relevantes." },
                         { title: "Trabalhista", desc: "Levantamento de informações em demandas trabalhistas." },
-                        { title: "Conjugal", desc: "Investigação particular para casos de infidelidade." },
-                        { title: "Pré-Nupcial", desc: "Levantamento informacional antes de casamento ou união estável." },
                     ].map((item, i) => (
                         <motion.div
                             key={i}
