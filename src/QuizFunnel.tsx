@@ -359,20 +359,17 @@ Aguardo orientação para iniciar.`;
             className="flex flex-col items-center text-center px-5 pt-20 pb-10 sm:px-6 sm:pt-28 sm:pb-12 min-h-dvh justify-center safe-bottom"
         >
             {/* Logo */}
-            <motion.picture
+            <motion.img
+                src="/logowhiteB.png"
+                alt="Bforense"
+                width={313}
+                height={49}
+                className="h-7 sm:h-10 w-auto mb-8 sm:mb-12 opacity-80"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 0.8, y: 0 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-            >
-                <img
-                    src="/logowhiteB.png"
-                    alt="Bforense"
-                    width={157}
-                    height={25}
-                    className="h-7 sm:h-10 w-auto mb-8 sm:mb-12"
-                    decoding="async"
-                />
-            </motion.picture>
+                decoding="async"
+            />
 
             {/* Category label */}
             <motion.div
@@ -414,13 +411,15 @@ Aguardo orientação para iniciar.`;
                 transition={{ delay: 0.25, duration: 0.45 }}
             >
                 <div className="absolute -inset-2 bg-brand-glow rounded-xl blur-xl sm:blur-2xl pointer-events-none opacity-30 sm:opacity-40" />
-                <div className="relative rounded-xl overflow-hidden border border-border-muted shadow-2xl shadow-blue-950/30 max-w-[448px] mx-auto">
+                <div className="relative rounded-xl overflow-hidden border border-border-muted shadow-2xl shadow-blue-950/30">
                     <img
                         src="/cover-team.webp"
+                        srcSet="/cover-team-sm.webp 400w, /cover-team-md.webp 648w, /cover-team.webp 800w"
+                        sizes="(max-width: 640px) 100vw, 448px"
                         alt="Centro de operações Bforense"
-                        width={448}
-                        height={252}
-                        className="w-full h-auto object-cover aspect-video"
+                        width={648}
+                        height={320}
+                        className="w-full h-auto object-cover"
                         loading="eager"
                         fetchPriority="high"
                         decoding="async"
@@ -656,7 +655,7 @@ Aguardo orientação para iniciar.`;
 
     /* ---------- P4: PROVIDÊNCIA ---------- */
     const renderProvidencia = () => (
-        <QScreen key="s4" dir={dir} step={4} title="Você já tomou alguma providência sobre isso?" subtitle="Entender o que j�� foi feito nos ajuda a montar a melhor estratégia">
+        <QScreen key="s4" dir={dir} step={4} title="Você já tomou alguma providência sobre isso?" subtitle="Entender o que já foi feito nos ajuda a montar a melhor estratégia">
             <div className="flex flex-col gap-2.5">
                 {PROVIDENCIAS.map((item, i) => {
                     const Icon = item.icon;
