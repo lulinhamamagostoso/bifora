@@ -362,13 +362,10 @@ Aguardo orientação para iniciar.`;
             <motion.img
                 src="/logowhiteB.png"
                 alt="Bforense"
-                width={313}
-                height={49}
-                className="h-7 sm:h-10 w-auto mb-8 sm:mb-12 opacity-80"
+                className="h-7 sm:h-10 mb-8 sm:mb-12 opacity-80"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 0.8, y: 0 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-                decoding="async"
             />
 
             {/* Category label */}
@@ -414,11 +411,9 @@ Aguardo orientação para iniciar.`;
                 <div className="relative rounded-xl overflow-hidden border border-border-muted shadow-2xl shadow-blue-950/30">
                     <img
                         src="/cover-team.webp"
-                        srcSet="/cover-team-sm.webp 400w, /cover-team-md.webp 648w, /cover-team.webp 800w"
-                        sizes="(max-width: 640px) 100vw, 448px"
                         alt="Centro de operações Bforense"
-                        width={648}
-                        height={320}
+                        width={800}
+                        height={450}
                         className="w-full h-auto object-cover"
                         loading="eager"
                         fetchPriority="high"
