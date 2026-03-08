@@ -390,43 +390,6 @@ Gostaria de falar com o especialista designado para o meu caso.`;
                 ))}
             </motion.div>
 
-            {/* Services grid — compact */}
-            <motion.div
-                className="w-full max-w-sm sm:max-w-md mt-8 sm:mt-10"
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.45, duration: 0.4 }}
-            >
-                <p className="text-[10px] sm:text-[11px] text-text-muted uppercase tracking-widest font-semibold text-center mb-3">Áreas de atuação</p>
-                <div className="grid grid-cols-2 gap-2">
-                    {[
-                        { t: "Investigação Digital", d: "Rastreamento e análise de dados, plataformas e operações suspeitas" },
-                        { t: "Due Diligence", d: "Análise de risco em negócios, investimentos e parcerias" },
-                        { t: "Dossiês Completos", d: "Relatórios com inteligência consolidada sobre pessoas ou empresas" },
-                        { t: "Investigação Empresarial", d: "Fraudes corporativas, conflitos de interesse e riscos internos" },
-                        { t: "Investigação Patrimonial", d: "Mapeamento patrimonial para fins judiciais ou negociais" },
-                        { t: "Busca de Provas", d: "Levantamento técnico de evidências para suporte jurídico" },
-                        { t: "Fraude", d: "Apuração de indícios em contextos financeiros ou comerciais" },
-                        { t: "Blindagem Digital", d: "Proteção de ativos digitais e redução de vulnerabilidades" },
-                        { t: "Confirmação de Identidade", d: "Validação para transações, contratações ou relações comerciais" },
-                        { t: "Localização de Devedores", d: "Inteligência aplicada à recuperação de crédito" },
-                        { t: "Pré-Contratual", d: "Análise prévia antes da assinatura de contratos relevantes" },
-                        { t: "Trabalhista", d: "Levantamento de informações em demandas trabalhistas" },
-                    ].map((s) => (
-                        <div
-                            key={s.t}
-                            className="bg-surface-card border border-border-subtle rounded-xl px-3 py-2.5"
-                        >
-                            <p className="text-[11px] sm:text-xs text-text-primary font-semibold leading-tight flex items-center gap-1.5">
-                                <span className="w-1 h-1 rounded-full bg-brand flex-shrink-0" />
-                                {s.t}
-                            </p>
-                            <p className="text-[9px] sm:text-[10px] text-text-muted leading-snug mt-1 ml-2.5">{s.d}</p>
-                        </div>
-                    ))}
-                </div>
-            </motion.div>
-
             {/* Direct contact link */}
             <motion.a
                 href={`https://wa.me/${PHONE_MAIN}?text=${encodeURIComponent("Olá! Gostaria de falar diretamente com um especialista.")}`}
