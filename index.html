@@ -57,6 +57,37 @@
   <!-- Inline critical background color to avoid FOUC -->
   <style>body{background:#0a0e1a;margin:0}</style>
 
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Bforense",
+    "description": "Agência Privada de Investigações e Inteligência Forense. Especialistas em rastreamento, recuperação de ativos, perícia digital e investigação corporativa.",
+    "url": "https://agenciaprivada.tech",
+    "telephone": "+55-11-3164-1004",
+    "image": "https://agenciaprivada.tech/cover-team.webp",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "São Paulo",
+      "addressRegion": "SP",
+      "addressCountry": "BR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -23.5505,
+      "longitude": -46.6333
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "3200"
+    },
+    "areaServed": "BR",
+    "priceRange": "$$"
+  }
+  </script>
+
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -82,7 +113,15 @@
   <!-- Facebook Pixel (noscript) -->
   <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1240204131582595&ev=PageView&noscript=1"/></noscript>
 
-  <div id="root"></div>
+  <div id="root">
+    <noscript>
+      <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;color:#e2e8f0;font-family:Inter,sans-serif;background:#0a0e1a">
+        <h1 style="font-size:1.5rem;font-weight:800;margin-bottom:8px">Bforense</h1>
+        <p style="font-size:0.875rem;color:#94a3b8;margin-bottom:24px">Ative o JavaScript para usar o diagnóstico gratuito.</p>
+        <a href="https://wa.me/551131641004?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20um%20especialista." style="display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;font-weight:700;padding:14px 28px;border-radius:12px;text-decoration:none;font-size:0.875rem">Falar com especialista via WhatsApp</a>
+      </div>
+    </noscript>
+  </div>
   <script type="module" src="/src/main.tsx"></script>
 </body>
 

@@ -37,7 +37,7 @@ import {
     getFilteredTestimonials,
 } from "./quizData";
 
-import { trackQuizStart, trackQuizStep, trackLead, trackCTAClick } from "./tracking";
+import { trackQuizStart, trackQuizStep, trackLead, trackCTAClick, trackEvent } from "./tracking";
 
 import { QScreen } from "./components/QScreen";
 import { OptionCard } from "./components/OptionCard";
@@ -154,16 +154,28 @@ export default function QuizFunnel() {
     /* Track step transitions for FB Pixel + GTM + GA4 */
     useEffect(() => {
         if (step === S.SITUACAO) trackQuizStart();
-        if (step > S.COVER) trackQuizStep(step);
-    }, [step]);
+        if (step > S.COVER) trackQuizStep(step, step === S.DEPOIMENTOS ? answers.situacao : undefined);
+    }, [step, answers.situacao]);
 
-    /* Send lead data to Formspree (with retry + localStorage fallback) */
+    /* Track quiz abandonment on page close */
+    useEffect(() => {
+        const onBeforeUnload = () => {
+            const s = stepRef.current;
+            if (s > S.COVER && s < S.RESULTADO) {
+                trackEvent("QuizAbandoned", { lastStep: s, stepName: `step_${s}` });
+            }
+        };
+        window.addEventListener("beforeunload", onBeforeUnload);
+        return () => window.removeEventListener("beforeunload", onBeforeUnload);
+    }, []);
+
+    /* Send lead data to Formspree (with retry + exponential backoff + localStorage fallback) */
     const sendToFormspree = useCallback(async () => {
         const computedTier = calcTier(answers);
         const payload = {
-            nome: leadData.nome,
-            email: leadData.email,
-            whatsapp: leadData.whatsapp,
+            nome: leadData.nome.trim(),
+            email: leadData.email.trim(),
+            whatsapp: leadData.whatsapp.trim(),
             tier: computedTier,
             ...answers,
         };
@@ -171,6 +183,7 @@ export default function QuizFunnel() {
         let success = false;
         for (let attempt = 0; attempt < 3; attempt++) {
             try {
+                if (attempt > 0) await new Promise(r => setTimeout(r, 1000 * attempt));
                 const res = await fetch(FORMSPREE_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json", Accept: "application/json" },
@@ -225,7 +238,7 @@ Urgência: ${answers.urgencia}
 
 Gostaria de falar com o especialista designado para o meu caso.`;
         trackCTAClick(tier, "whatsapp");
-        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
+        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
     };
 
     /* Progress — linear across all navigable steps (1 through COLETA) */
@@ -254,7 +267,9 @@ Gostaria de falar com o especialista designado para o meu caso.`;
             <motion.img
                 src="/logowhiteB.png"
                 alt="Bforense"
-                className="h-7 sm:h-10 mb-8 sm:mb-12 opacity-80"
+                width={200}
+                height={40}
+                className="h-7 sm:h-10 w-auto mb-8 sm:mb-12 opacity-80"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 0.8, y: 0 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
@@ -399,10 +414,10 @@ Gostaria de falar com o especialista designado para o meu caso.`;
                 transition={{ delay: 0.6, duration: 0.5 }}
             >
                 <div className="border-t border-border-subtle pt-5">
-                    <p className="text-[12px] leading-[1.6] text-text-muted/50">
+                    <p className="text-[12px] leading-[1.6] text-text-muted/70">
                         Este site não faz parte do site do Facebook ou do Facebook Inc. Adicionalmente, este site NÃO é endossado pelo Facebook de forma alguma. FACEBOOK é uma marca comercial de FACEBOOK, Inc. Os depoimentos e resultados mencionados são reais, mas não garantem que você terá os mesmos resultados.
                     </p>
-                    <p className="text-[12px] leading-[1.6] text-text-muted/50 mt-3">
+                    <p className="text-[12px] leading-[1.6] text-text-muted/70 mt-3">
                         AVISO LEGAL E LIMITES DE ATUAÇÃO: A Bforense é uma agência de Investigações Privada, operando estritamente sob a Lei Federal 13.432/2017. Declaramos expressamente que não possuímos vínculo com a Polícia Civil, Polícia Federal ou órgãos do Poder Judiciário. Nossos serviços restringem-se à investigação, produção de provas técnicas e inteligência em fontes abertas (OSINT) para suporte a litígios. Não realizamos interceptações telefônicas, quebra de sigilo bancário sem ordem judicial, bloqueios de contas ou prisões. Todo o material produzido destina-se a fundamentar a atuação de advogados e autoridades competentes.
                     </p>
                 </div>
@@ -713,6 +728,7 @@ Gostaria de falar com o especialista designado para o meu caso.`;
                             value={leadData.nome}
                             onChange={(e) => setLeadData((p) => ({ ...p, nome: e.target.value }))}
                             placeholder="Como podemos te chamar?"
+                            autoComplete="name"
                             className="w-full bg-surface-card border border-border-muted focus:border-brand/50 rounded-xl px-4 py-3.5 text-text-primary text-[15px] placeholder:text-text-muted outline-none transition-colors"
                         />
                         {leadData.nome.trim().length >= 2 && (
@@ -734,6 +750,7 @@ Gostaria de falar com o especialista designado para o meu caso.`;
                             value={leadData.email}
                             onChange={(e) => setLeadData((p) => ({ ...p, email: e.target.value }))}
                             placeholder="seu@email.com"
+                            autoComplete="email"
                             className="w-full bg-surface-card border border-border-muted focus:border-brand/50 rounded-xl px-4 py-3.5 text-text-primary text-[15px] placeholder:text-text-muted outline-none transition-colors"
                         />
                         {emailIsValid && (
@@ -756,6 +773,7 @@ Gostaria de falar com o especialista designado para o meu caso.`;
                                 value={leadData.whatsapp}
                                 onAccept={(value: string) => setLeadData((p) => ({ ...p, whatsapp: value }))}
                                 placeholder="(11) 99999-0000"
+                                autoComplete="tel"
                                 className="w-full bg-surface-card border border-border-muted focus:border-brand/50 rounded-xl px-4 py-3.5 text-text-primary text-[15px] placeholder:text-text-muted outline-none transition-colors"
                             />
                         </Suspense>

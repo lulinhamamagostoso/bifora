@@ -13,6 +13,19 @@ export class ErrorBoundary extends Component<Props, State> {
         return { hasError: true };
     }
 
+    componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+        try {
+            const w = window as unknown as { dataLayer?: Record<string, unknown>[] };
+            w.dataLayer = w.dataLayer || [];
+            w.dataLayer.push({
+                event: "AppError",
+                errorMessage: error?.message,
+                errorStack: error?.stack?.slice(0, 500),
+                componentStack: errorInfo?.componentStack?.slice(0, 500),
+            });
+        } catch { /* silent */ }
+    }
+
     render() {
         if (this.state.hasError) {
             return (
