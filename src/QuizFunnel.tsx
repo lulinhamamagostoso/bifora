@@ -390,6 +390,40 @@ Gostaria de falar com o especialista designado para o meu caso.`;
                 ))}
             </motion.div>
 
+            {/* Services grid — compact */}
+            <motion.div
+                className="w-full max-w-sm sm:max-w-md mt-8 sm:mt-10"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.45, duration: 0.4 }}
+            >
+                <p className="text-[10px] sm:text-[11px] text-text-muted uppercase tracking-widest font-semibold text-center mb-3">Áreas de atuação</p>
+                <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
+                    {[
+                        "Investigação Digital",
+                        "Due Diligence",
+                        "Dossiês Completos",
+                        "Investigação Empresarial",
+                        "Investigação Patrimonial",
+                        "Busca de Provas",
+                        "Fraude",
+                        "Blindagem Digital",
+                        "Confirmação de Identidade",
+                        "Localização de Devedores",
+                        "Análise Pré-Contratual",
+                        "Investigação Trabalhista",
+                    ].map((service) => (
+                        <span
+                            key={service}
+                            className="inline-flex items-center gap-1.5 bg-surface-card border border-border-subtle rounded-full px-3 py-1.5 text-[10px] sm:text-[11px] text-text-secondary font-medium whitespace-nowrap"
+                        >
+                            <span className="w-1 h-1 rounded-full bg-brand flex-shrink-0" />
+                            {service}
+                        </span>
+                    ))}
+                </div>
+            </motion.div>
+
             {/* Direct contact link */}
             <motion.a
                 href={`https://wa.me/${PHONE_MAIN}?text=${encodeURIComponent("Olá! Gostaria de falar diretamente com um especialista.")}`}
