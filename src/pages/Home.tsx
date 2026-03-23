@@ -7,51 +7,52 @@ import {
     Lock,
     Scale,
     Brain,
-    Search,
-    FileCheck,
-    Gavel,
-    TrendingUp,
-    Heart,
-    Globe,
-    Mail,
     Check,
-    ShieldCheck,
-    Map,
-    Radar,
-    FileText,
+    Star,
 } from "lucide-react";
+import { NetworkBackground } from "../components/NetworkBackground";
+import {
+    IconPatrimonial,
+    IconDueDiligence,
+    IconLitigios,
+    IconFinanceira,
+    IconConjugal,
+    IconDigital,
+    ProcessIcon,
+    useIntersectionObserver,
+} from "../components/ServiceIcons";
 
 const PHONE = "555131641004";
 const EMAIL = "bscy@pm.me";
 
 const SERVICES = [
     {
-        icon: Search,
+        Icon: IconPatrimonial,
         title: "Investigação patrimonial",
         desc: "Rastreamento de bens, empresas de fachada e patrimônio oculto.",
     },
     {
-        icon: ShieldCheck,
+        Icon: IconDueDiligence,
         title: "Due diligence",
         desc: "Verificação profunda de pessoas e empresas antes de decisões críticas.",
     },
     {
-        icon: Gavel,
+        Icon: IconLitigios,
         title: "Suporte a litígios",
         desc: "Produção de provas e inteligência para disputas judiciais e arbitragens.",
     },
     {
-        icon: TrendingUp,
+        Icon: IconFinanceira,
         title: "Inteligência financeira",
         desc: "Investigação de desvios, movimentações suspeitas e fraude societária.",
     },
     {
-        icon: Heart,
+        Icon: IconConjugal,
         title: "Investigação conjugal",
         desc: "Monitoramento, levantamento de provas e documentação para casos pessoais.",
     },
     {
-        icon: Globe,
+        Icon: IconDigital,
         title: "Investigação digital",
         desc: "Análise de pegada digital, redes sociais, domínios e rastros online.",
     },
@@ -60,25 +61,25 @@ const SERVICES = [
 const STEPS = [
     {
         num: "01",
-        icon: MessageCircle,
+        type: "contact" as const,
         title: "Contato confidencial",
         desc: "Você fala com um especialista. Tudo sob sigilo desde o primeiro minuto.",
     },
     {
         num: "02",
-        icon: Map,
+        type: "assessment" as const,
         title: "Avaliação do caso",
         desc: "Entendemos a situação, definimos o que é viável e apresentamos um plano.",
     },
     {
         num: "03",
-        icon: Radar,
+        type: "execution" as const,
         title: "Execução da operação",
         desc: "Nossa equipe coleta, analisa e cruza informações em campo e no digital.",
     },
     {
         num: "04",
-        icon: FileText,
+        type: "delivery" as const,
         title: "Entrega do dossiê",
         desc: "Relatório completo com provas documentadas, pronto para uso jurídico.",
     },
@@ -153,11 +154,89 @@ function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
     );
 }
 
+// Text reveal component for section titles
+function TextReveal({ children, className = "" }: { children: string; className?: string }) {
+    const ref = useRef<HTMLHeadingElement>(null);
+    const isInView = useInView(ref, { once: true, margin: "-50px" });
+    const words = children.split(" ");
+
+    return (
+        <h2 ref={ref} className={className}>
+            {words.map((word, i) => (
+                <span
+                    key={i}
+                    className="text-reveal-word"
+                    style={{
+                        transitionDelay: `${i * 0.08}s`,
+                        ...(isInView ? { opacity: 1, transform: "translateY(0)" } : {}),
+                    }}
+                >
+                    {word}{" "}
+                </span>
+            ))}
+        </h2>
+    );
+}
+
+// Service card with animated icon
+function ServiceCard({ service, index }: { service: typeof SERVICES[0]; index: number }) {
+    const [isHovered, setIsHovered] = useState(false);
+    const { Icon } = service;
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+            className="service-card p-8 rounded-xl group service-icon-container"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            <Icon className="mb-5" animate={isHovered} />
+            <h3 className="font-semibold text-lg text-text-primary mb-2">{service.title}</h3>
+            <p className="text-text-secondary text-sm leading-relaxed mb-4">{service.desc}</p>
+            <ArrowRight className="w-5 h-5 text-gold card-arrow" />
+        </motion.div>
+    );
+}
+
+// Process step card with animated icon
+function ProcessCard({ step, index }: { step: typeof STEPS[0]; index: number }) {
+    const { ref, isInView } = useIntersectionObserver(0.3);
+
+    return (
+        <motion.div
+            ref={ref}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+            className="process-card"
+        >
+            <span className="process-card-number">{step.num}</span>
+            <div className="relative z-10">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-surface-card border border-border-subtle mb-4">
+                    <ProcessIcon type={step.type} inView={isInView} />
+                </div>
+                <h3 className="font-semibold text-text-primary mb-2">{step.title}</h3>
+                <p className="text-text-secondary text-sm leading-relaxed">{step.desc}</p>
+            </div>
+        </motion.div>
+    );
+}
+
 export function Home() {
     return (
         <div className="pt-16 sm:pt-18">
             {/* Hero */}
             <section className="hero-gradient relative min-h-[85vh] flex items-center justify-center px-6 sm:px-8 py-20 sm:py-32">
+                {/* Network background animation */}
+                <NetworkBackground />
+                
+                {/* City background image */}
+                <div className="hero-city-bg" aria-hidden="true" />
+
                 <div className="max-w-3xl mx-auto text-center relative z-10">
                     <motion.h1
                         initial={{ opacity: 0, y: 30 }}
@@ -227,9 +306,9 @@ export function Home() {
             </section>
 
             {/* Metrics Section */}
-            <section className="metrics-section px-6 sm:px-8 py-16 sm:py-20">
+            <section className="metrics-section metrics-grid-pattern px-6 sm:px-8 py-16 sm:py-20">
                 <div className="max-w-6xl mx-auto">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0">
                         {METRICS.map((metric, i) => (
                             <motion.div
                                 key={metric.label}
@@ -237,10 +316,11 @@ export function Home() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                                className="text-center"
+                                className="text-center relative"
                             >
                                 <AnimatedCounter value={metric.value} suffix={metric.suffix} />
                                 <p className="counter-label">{metric.label}</p>
+                                {i < METRICS.length - 1 && <div className="metrics-divider" />}
                             </motion.div>
                         ))}
                     </div>
@@ -287,27 +367,14 @@ export function Home() {
                 <div className="max-w-6xl mx-auto">
                     <motion.div {...fadeIn} className="text-center mb-12">
                         <span className="section-label">Serviços</span>
-                        <h2 className="font-heading text-2xl sm:text-3xl text-text-primary">O que resolvemos</h2>
+                        <TextReveal className="font-heading text-2xl sm:text-3xl text-text-primary">
+                            O que resolvemos
+                        </TextReveal>
                     </motion.div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {SERVICES.map((service, i) => {
-                            const Icon = service.icon;
-                            return (
-                                <motion.div
-                                    key={service.title}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
-                                    className="service-card p-8 rounded-xl group"
-                                >
-                                    <Icon className="w-8 h-8 text-text-secondary card-icon mb-5" strokeWidth={1.5} />
-                                    <h3 className="font-semibold text-lg text-text-primary mb-2">{service.title}</h3>
-                                    <p className="text-text-secondary text-sm leading-relaxed mb-4">{service.desc}</p>
-                                    <ArrowRight className="w-5 h-5 text-gold card-arrow" />
-                                </motion.div>
-                            );
-                        })}
+                        {SERVICES.map((service, i) => (
+                            <ServiceCard key={service.title} service={service} index={i} />
+                        ))}
                     </div>
                     <motion.div {...fadeIn} className="text-center mt-10">
                         <Link
@@ -326,33 +393,14 @@ export function Home() {
                 <div className="max-w-6xl mx-auto">
                     <motion.div {...fadeIn} className="text-center mb-12">
                         <span className="section-label">Processo</span>
-                        <h2 className="font-heading text-2xl sm:text-3xl text-text-primary">
+                        <TextReveal className="font-heading text-2xl sm:text-3xl text-text-primary">
                             Do primeiro contato ao relatório final
-                        </h2>
+                        </TextReveal>
                     </motion.div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                        {STEPS.map((step, i) => {
-                            const Icon = step.icon;
-                            return (
-                                <motion.div
-                                    key={step.num}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
-                                    className="process-card"
-                                >
-                                    <span className="process-card-number">{step.num}</span>
-                                    <div className="relative z-10">
-                                        <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-surface-card border border-border-subtle mb-4">
-                                            <Icon className="w-5 h-5 text-gold" strokeWidth={1.5} />
-                                        </div>
-                                        <h3 className="font-semibold text-text-primary mb-2">{step.title}</h3>
-                                        <p className="text-text-secondary text-sm leading-relaxed">{step.desc}</p>
-                                    </div>
-                                </motion.div>
-                            );
-                        })}
+                        {STEPS.map((step, i) => (
+                            <ProcessCard key={step.num} step={step} index={i} />
+                        ))}
                     </div>
                     <motion.div {...fadeIn} className="text-center mt-10">
                         <a
@@ -373,9 +421,9 @@ export function Home() {
                 <div className="max-w-6xl mx-auto">
                     <motion.div {...fadeIn} className="text-center mb-12">
                         <span className="section-label">Depoimentos</span>
-                        <h2 className="font-heading text-2xl sm:text-3xl text-text-primary">
+                        <TextReveal className="font-heading text-2xl sm:text-3xl text-text-primary">
                             O que dizem nossos clientes
-                        </h2>
+                        </TextReveal>
                     </motion.div>
                     <motion.div
                         initial={{ opacity: 0 }}
@@ -387,10 +435,16 @@ export function Home() {
                         {TESTIMONIALS.map((testimonial, i) => (
                             <div key={i} className="testimonial-card">
                                 <span className="testimonial-quote">"</span>
-                                <p className="text-text-primary text-base leading-relaxed mb-6 relative z-10">
+                                {/* Stars */}
+                                <div className="testimonial-stars relative z-10 mt-4">
+                                    {[...Array(5)].map((_, j) => (
+                                        <Star key={j} className="w-4 h-4" />
+                                    ))}
+                                </div>
+                                <p className="text-text-primary text-base leading-relaxed my-4 relative z-10">
                                     {testimonial.text}
                                 </p>
-                                <div className="flex items-center gap-3">
+                                <div className="flex items-center gap-3 relative z-10">
                                     <div className="testimonial-initials">
                                         {testimonial.initials}
                                     </div>
@@ -407,57 +461,64 @@ export function Home() {
 
             {/* Credibility */}
             <section className="credibility-section px-6 sm:px-8 py-20 bg-surface-alt">
-                <div className="max-w-4xl mx-auto text-center">
-                    <motion.div {...fadeIn}>
-                        <span className="section-label">Credibilidade</span>
-                    </motion.div>
-                    <motion.p
-                        {...fadeIn}
-                        className="text-text-secondary text-base sm:text-lg leading-relaxed"
-                    >
-                        Equipe com background em investigação forense, inteligência de fontes abertas e análise financeira. 
-                        Atuação em todo o território nacional. Relatórios aceitos como prova em processos judiciais e arbitragens.
-                    </motion.p>
+                <div className="max-w-6xl mx-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <motion.div {...fadeIn}>
+                            <span className="section-label">Credibilidade</span>
+                            <p className="text-text-secondary text-base sm:text-lg leading-relaxed">
+                                Equipe com background em investigação forense, inteligência de fontes abertas e análise financeira. 
+                                Atuação em todo o território nacional. Relatórios aceitos como prova em processos judiciais e arbitragens.
+                            </p>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, x: 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                            className="credibility-image hidden lg:block"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800"
+                                alt="Mesa de trabalho de analista"
+                                className="w-full h-64 object-cover rounded-xl"
+                                loading="lazy"
+                            />
+                        </motion.div>
+                    </div>
                 </div>
             </section>
 
             {/* Final CTA */}
-            <section className="cta-gradient px-6 sm:px-8 py-20 sm:py-28 grid-pattern">
+            <section className="cta-gradient px-6 sm:px-8 py-20 sm:py-28 grid-pattern relative overflow-hidden">
+                <div className="cta-bg-image" aria-hidden="true" />
                 <div className="max-w-3xl mx-auto text-center relative z-10">
                     <motion.div {...fadeIn}>
-                        <span className="section-label">Contato</span>
+                        <span className="section-label">Comece agora</span>
                         <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl text-text-primary mb-4">
-                            Tem uma situação que precisa resolver?
+                            Pronto para ter clareza sobre a situação?
                         </h2>
-                    </motion.div>
-                    <motion.p
-                        {...fadeIn}
-                        className="text-text-secondary text-base sm:text-lg mb-10"
-                    >
-                        Entre em contato para uma avaliação confidencial. Sem compromisso.
-                    </motion.p>
-                    <motion.div
-                        {...fadeIn}
-                        className="flex flex-col sm:flex-row items-center justify-center gap-4"
-                    >
-                        <a
-                            href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Olá! Gostaria de falar com um especialista.")}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full sm:w-auto btn-primary text-base"
-                        >
-                            <MessageCircle className="w-5 h-5" />
-                            Falar pelo WhatsApp
-                            <ArrowRight className="w-4 h-4" />
-                        </a>
-                        <a
-                            href={`mailto:${EMAIL}`}
-                            className="w-full sm:w-auto btn-secondary text-base"
-                        >
-                            <Mail className="w-5 h-5" />
-                            Enviar email criptografado
-                            <ArrowRight className="w-4 h-4" />
-                        </a>
+                        <p className="text-text-secondary mb-8 max-w-xl mx-auto">
+                            O primeiro contato é sigiloso e sem compromisso. Avaliamos seu caso e apresentamos as possibilidades.
+                        </p>
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <a
+                                href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Olá! Gostaria de uma avaliação confidencial do meu caso.")}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full sm:w-auto btn-primary text-base"
+                            >
+                                <MessageCircle className="w-5 h-5" />
+                                Falar com especialista
+                                <ArrowRight className="w-4 h-4" />
+                            </a>
+                            <a
+                                href={`mailto:${EMAIL}`}
+                                className="w-full sm:w-auto btn-secondary text-base"
+                            >
+                                Enviar e-mail seguro
+                                <ArrowRight className="w-4 h-4" />
+                            </a>
+                        </div>
                     </motion.div>
                 </div>
             </section>

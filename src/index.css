@@ -85,26 +85,18 @@
   overflow: hidden;
 }
 
-/* Animated mesh background for hero */
-.hero-gradient::before {
-  content: "";
+/* Hero city background image */
+.hero-city-bg {
   position: absolute;
-  inset: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 400px;
   background: 
-    radial-gradient(circle at 20% 80%, rgba(184, 150, 78, 0.03) 0%, transparent 40%),
-    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 40%);
-  animation: mesh-float 20s ease-in-out infinite;
-}
-
-@keyframes mesh-float {
-  0%, 100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  50% {
-    opacity: 0.8;
-    transform: translateY(-10px);
-  }
+    linear-gradient(180deg, #0a0a0a 0%, transparent 20%, rgba(0,0,0,0.7) 80%, #0a0a0a 100%),
+    url('https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=1200') center bottom / cover no-repeat;
+  opacity: 0.3;
+  pointer-events: none;
 }
 
 /* Grid pattern overlay */
@@ -113,10 +105,28 @@
     linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   background-size: 60px 60px;
+  position: relative;
+}
+
+/* Metrics grid pattern - network nodes */
+.metrics-grid-pattern {
+  position: relative;
+}
+
+.metrics-grid-pattern::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at center, rgba(184, 150, 78, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 /* Section label (like SecureFlow's "Features", "Services") */
 .section-label {
+  display: block;
   font-size: 0.75rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -169,27 +179,189 @@
   color: var(--color-gold);
 }
 
-/* Card styles */
-.premium-card {
-  background: var(--color-surface-card);
-  border: 1px solid var(--color-border-subtle);
-  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
-  position: relative;
+/* ============================================
+   CUSTOM SVG ICON ANIMATIONS
+   ============================================ */
+
+/* Base service icon styles */
+.service-icon {
+  width: 48px;
+  height: 48px;
+  color: var(--color-gold);
+  transition: filter 0.4s ease;
 }
 
-.premium-card:hover {
-  border-color: var(--color-gold-hover);
-  box-shadow: 0 0 30px var(--color-gold-glow);
-  transform: translateY(-2px);
+.service-icon-container:hover .service-icon {
+  filter: drop-shadow(0 0 8px rgba(184, 150, 78, 0.3));
 }
 
-/* Service card with arrow */
+/* Draw-in animation for SVG strokes */
+.icon-draw {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: draw-in 1.2s ease forwards;
+}
+
+@keyframes draw-in {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Reveal animation for text lines in patrimonial icon */
+.icon-reveal {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.icon-reveal.revealed,
+.service-card:hover .icon-reveal {
+  opacity: 1;
+}
+
+/* Blink animation for due diligence eye */
+.icon-blink {
+  transform-origin: center;
+  transition: transform 0.15s ease;
+}
+
+.icon-blink.blinking,
+.service-card:hover .icon-blink {
+  animation: blink 0.3s ease;
+}
+
+@keyframes blink {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.1); }
+}
+
+/* Scale animation for litigios balance */
+.icon-scale {
+  transform-origin: top center;
+  transition: transform 0.4s ease;
+}
+
+.icon-scale.weighted,
+.service-card:hover .icon-scale {
+  transform: translateY(4px);
+}
+
+/* Flow animation for financial tracking arrows */
+.icon-flow {
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.icon-flow.flow-1,
+.service-card:hover .icon-flow:nth-child(1) {
+  animation: flow-pulse 0.6s ease 0s forwards;
+}
+
+.icon-flow.flow-2,
+.service-card:hover .icon-flow:nth-child(2) {
+  animation: flow-pulse 0.6s ease 0.2s forwards;
+}
+
+.icon-flow.flow-3,
+.service-card:hover .icon-flow:nth-child(3) {
+  animation: flow-pulse 0.6s ease 0.4s forwards;
+}
+
+@keyframes flow-pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; stroke: var(--color-gold); }
+  100% { opacity: 0.8; }
+}
+
+/* Break animation for conjugal line */
+.icon-break {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.icon-break.broken:first-of-type,
+.service-card:hover .icon-break:first-of-type {
+  transform: translateX(-4px);
+  opacity: 0.5;
+}
+
+.icon-break.broken:last-of-type,
+.service-card:hover .icon-break:last-of-type {
+  transform: translateX(4px);
+  opacity: 0.5;
+}
+
+/* Code scroll animation for digital icon */
+.icon-code {
+  transition: transform 0.5s ease;
+}
+
+.icon-code.scrolling,
+.service-card:hover .icon-code {
+  animation: code-scroll 1s ease infinite;
+}
+
+@keyframes code-scroll {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+/* ============================================
+   PROCESS ICON DRAW-IN ANIMATIONS
+   ============================================ */
+
+.process-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--color-gold);
+}
+
+.process-draw {
+  stroke-dasharray: 150;
+  stroke-dashoffset: 150;
+}
+
+.process-icon.animate-draw .process-draw {
+  animation: process-draw-in 1.2s ease forwards;
+}
+
+@keyframes process-draw-in {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Radar sweep animation */
+.radar-sweep {
+  transform-origin: center;
+  opacity: 0;
+}
+
+.radar-sweep.sweeping {
+  opacity: 1;
+  animation: radar-sweep 2s linear infinite;
+}
+
+@keyframes radar-sweep {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   CARD STYLES
+   ============================================ */
+
+/* Service card with crosshair cursor */
 .service-card {
   background: var(--color-surface-card);
   border: 1px solid var(--color-border-subtle);
   transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
+  cursor: crosshair;
 }
 
 .service-card:hover {
@@ -210,11 +382,12 @@
 }
 
 .service-card .card-icon {
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .service-card:hover .card-icon {
   color: var(--color-gold);
+  filter: drop-shadow(0 0 8px rgba(184, 150, 78, 0.3));
 }
 
 /* Process card */
@@ -243,22 +416,60 @@
   font-family: var(--font-heading);
 }
 
-/* Counter styles */
+/* ============================================
+   COUNTER & METRICS STYLES
+   ============================================ */
+
 .counter-value {
   font-size: 3rem;
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: var(--color-gold);
   line-height: 1;
   font-family: var(--font-heading);
 }
 
-.counter-label {
-  font-size: 0.875rem;
-  color: var(--color-text-secondary);
-  margin-top: 8px;
+@media (min-width: 768px) {
+  .counter-value {
+    font-size: 3.75rem;
+  }
 }
 
-/* Testimonial card */
+.counter-label {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 12px;
+}
+
+/* Metrics section */
+.metrics-section {
+  background: linear-gradient(180deg, #0d0d0d 0%, #0a0a0a 100%);
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.metrics-divider {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .metrics-divider {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 60%;
+    background: rgba(255, 255, 255, 0.06);
+  }
+}
+
+/* ============================================
+   TESTIMONIAL STYLES
+   ============================================ */
+
 .testimonial-card {
   background: var(--color-surface-card);
   border: 1px solid var(--color-border-subtle);
@@ -267,14 +478,36 @@
   min-width: 350px;
   max-width: 400px;
   flex-shrink: 0;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+  border-color: var(--color-gold-hover);
+  box-shadow: 0 0 20px var(--color-gold-glow);
 }
 
 .testimonial-quote {
-  font-size: 4rem;
+  font-size: 5rem;
   line-height: 1;
-  color: rgba(184, 150, 78, 0.2);
+  color: rgba(184, 150, 78, 0.15);
   font-family: Georgia, serif;
-  margin-bottom: -20px;
+  position: absolute;
+  top: 16px;
+  left: 24px;
+}
+
+.testimonial-stars {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 12px;
+}
+
+.testimonial-stars svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--color-gold);
+  color: var(--color-gold);
 }
 
 .testimonial-initials {
@@ -290,7 +523,24 @@
   font-size: 1rem;
 }
 
-/* Button styles */
+.testimonial-scroll {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 16px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.testimonial-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* ============================================
+   BUTTON STYLES
+   ============================================ */
+
 .btn-primary {
   background: var(--color-gold);
   color: #0a0a0a;
@@ -337,7 +587,113 @@
   background: rgba(184, 150, 78, 0.1);
 }
 
-/* Input styles */
+/* ============================================
+   WHATSAPP BUTTON WITH PULSE RING
+   ============================================ */
+
+.whatsapp-btn {
+  position: relative;
+}
+
+.whatsapp-btn::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 2px solid var(--color-gold);
+  animation: whatsapp-ring-pulse 3s ease-out infinite;
+}
+
+@keyframes whatsapp-ring-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   SCROLL GLOW LINE
+   ============================================ */
+
+.scroll-glow-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.scroll-glow-line.visible {
+  opacity: 0.3;
+}
+
+/* ============================================
+   TEXT REVEAL ANIMATION
+   ============================================ */
+
+.text-reveal-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
+}
+
+.text-reveal-word.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   CREDIBILITY & CTA SECTIONS
+   ============================================ */
+
+.credibility-section {
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
+  position: relative;
+}
+
+.credibility-image {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.credibility-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%);
+}
+
+.cta-gradient {
+  background: 
+    radial-gradient(ellipse at 50% 50%, rgba(184, 150, 78, 0.05) 0%, transparent 60%),
+    linear-gradient(180deg, #0e0e0e 0%, #0a0a0a 100%);
+  position: relative;
+}
+
+.cta-bg-image {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.9) 100%),
+    url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1400') center / cover no-repeat;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* ============================================
+   INPUT STYLES
+   ============================================ */
+
 .input-premium {
   background: var(--color-surface-card);
   border: 1px solid var(--color-border-muted);
@@ -357,32 +713,10 @@
   box-shadow: 0 0 0 2px rgba(184, 150, 78, 0.1);
 }
 
-/* WhatsApp pulse animation */
-@keyframes whatsapp-pulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.3;
-  }
-  100% {
-    transform: scale(1.5);
-    opacity: 0;
-  }
-}
+/* ============================================
+   MISC UTILITIES
+   ============================================ */
 
-.whatsapp-btn {
-  position: relative;
-}
-
-.whatsapp-btn::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 1px solid var(--color-border-muted);
-  animation: whatsapp-pulse 3s ease-out infinite;
-}
-
-/* Quote decorative */
 .quote-mark {
   font-size: 6rem;
   line-height: 1;
@@ -390,63 +724,10 @@
   font-family: Georgia, serif;
 }
 
-/* Process timeline */
-.process-line {
-  position: absolute;
-  left: 24px;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.process-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--color-gold);
-  position: absolute;
-  left: 20px;
-  top: 20px;
-}
-
-.process-number {
-  font-size: 8rem;
-  font-weight: 100;
-  color: rgba(255, 255, 255, 0.04);
-  position: absolute;
-  top: -20px;
-  left: 0;
-  z-index: 0;
-  line-height: 1;
-  font-family: var(--font-heading);
-}
-
-/* CTA gradient section */
-.cta-gradient {
-  background: 
-    radial-gradient(ellipse at 50% 50%, rgba(184, 150, 78, 0.05) 0%, transparent 60%),
-    linear-gradient(180deg, #0e0e0e 0%, #0a0a0a 100%);
-}
-
-/* Credibility section borders */
-.credibility-section {
-  border-top: 1px solid var(--color-border-subtle);
-  border-bottom: 1px solid var(--color-border-subtle);
-}
-
-/* Metrics section */
-.metrics-section {
-  background: linear-gradient(180deg, #0d0d0d 0%, #0a0a0a 100%);
-  border-top: 1px solid var(--color-border-subtle);
-  border-bottom: 1px solid var(--color-border-subtle);
-}
-
 @keyframes marquee {
   0% {
     transform: translateX(0);
   }
-
   100% {
     transform: translateX(-50%);
   }
@@ -458,22 +739,7 @@
   contain: layout style;
 }
 
-/* Carousel scroll */
-.testimonial-scroll {
-  display: flex;
-  gap: 24px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding-bottom: 16px;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-
-.testimonial-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-/* Custom scrollbar for testimonials */
+/* Custom scrollbar */
 .scrollbar-thin::-webkit-scrollbar {
   width: 4px;
 }
@@ -485,24 +751,43 @@
   border-radius: 2px;
 }
 
-/* Reduce paint cost for ambient backgrounds */
+/* Reduce paint cost */
 .pointer-events-none[class*="blur-"] {
   contain: strict;
 }
 
-/* Hardware-accelerated transforms only */
 @layer base {
   img {
     content-visibility: auto;
   }
 }
 
-/* Safe area padding for mobile notch */
+/* Safe area padding for mobile */
 @supports (padding-top: env(safe-area-inset-top)) {
   .safe-top {
     padding-top: env(safe-area-inset-top);
   }
   .safe-bottom {
     padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .icon-draw,
+  .process-draw,
+  .radar-sweep,
+  .whatsapp-btn::before {
+    animation: none !important;
+  }
+  
+  .icon-draw,
+  .process-draw {
+    stroke-dashoffset: 0;
+  }
+  
+  .text-reveal-word {
+    opacity: 1;
+    transform: none;
   }
 }
