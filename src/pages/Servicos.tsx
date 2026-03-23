@@ -66,32 +66,29 @@ const SERVICES = [
     },
 ];
 
-const fadeIn = {
-    initial: { opacity: 0, y: 20 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true },
-    transition: { duration: 0.5 },
-};
-
 export function Servicos() {
     return (
         <div className="pt-16 sm:pt-18">
             {/* Hero */}
-            <section className="px-5 sm:px-8 py-16 sm:py-24">
+            <section className="hero-gradient px-6 sm:px-8 py-16 sm:py-24">
                 <div className="max-w-4xl mx-auto text-center">
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="font-heading text-3xl sm:text-4xl md:text-5xl text-text-primary leading-tight mb-4"
-                    >
-                        Serviços de investigação e inteligência
-                    </motion.h1>
+                    <motion.div className="section-title-accent-center">
+                        <motion.h1
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="font-heading text-3xl sm:text-4xl md:text-5xl leading-tight mb-4 font-extralight tracking-tight text-gradient-headline"
+                            style={{ fontWeight: 200, letterSpacing: "-0.03em" }}
+                        >
+                            Serviços de investigação e inteligência
+                        </motion.h1>
+                    </motion.div>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.15 }}
-                        className="text-text-secondary text-lg sm:text-xl max-w-2xl mx-auto"
+                        transition={{ duration: 0.5, delay: 0.4 }}
+                        className="text-text-secondary text-lg max-w-2xl mx-auto font-light"
+                        style={{ lineHeight: 1.8, fontWeight: 300 }}
                     >
                         Cada caso define a operação. Nós definimos o resultado.
                     </motion.p>
@@ -99,9 +96,9 @@ export function Servicos() {
             </section>
 
             {/* Services */}
-            <section className="px-5 sm:px-8 pb-20 sm:pb-28">
+            <section className="px-6 sm:px-8 pb-20 sm:pb-28 bg-surface">
                 <div className="max-w-4xl mx-auto">
-                    <div className="flex flex-col gap-8">
+                    <div className="flex flex-col gap-8 -mt-8">
                         {SERVICES.map((service, i) => {
                             const Icon = service.icon;
                             return (
@@ -110,15 +107,15 @@ export function Servicos() {
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.4, delay: i * 0.05 }}
-                                    className="p-6 sm:p-8 rounded-xl bg-surface-card border border-border-subtle"
+                                    transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
+                                    className="premium-card p-8 rounded-xl"
                                 >
                                     <div className="flex items-start gap-4 mb-4">
                                         <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-surface border border-border-subtle flex items-center justify-center">
-                                            <Icon className="w-6 h-6 text-brand" />
+                                            <Icon className="w-6 h-6 text-gold" />
                                         </div>
                                         <div>
-                                            <h2 className="font-heading text-xl sm:text-2xl text-text-primary mb-2">
+                                            <h2 className="premium-card-title font-heading text-xl sm:text-2xl text-text-primary mb-2">
                                                 {service.title}
                                             </h2>
                                             <p className="text-text-secondary text-sm sm:text-base leading-relaxed">
@@ -132,7 +129,7 @@ export function Servicos() {
                                                 key={bullet}
                                                 className="text-text-secondary text-sm flex items-start gap-2"
                                             >
-                                                <span className="w-1.5 h-1.5 rounded-full bg-brand mt-2 flex-shrink-0" />
+                                                <span className="w-1.5 h-1.5 rounded-full bg-gold mt-2 flex-shrink-0" />
                                                 {bullet}
                                             </li>
                                         ))}
@@ -142,7 +139,7 @@ export function Servicos() {
                                             href={`https://wa.me/${PHONE}?text=${encodeURIComponent(`Olá! Gostaria de falar sobre ${service.title}.`)}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-2 text-brand hover:text-brand-hover font-medium text-sm transition-colors"
+                                            className="inline-flex items-center gap-2 text-gold hover:text-[#d4ac5a] font-medium text-sm transition-colors"
                                         >
                                             <MessageCircle className="w-4 h-4" />
                                             Fale com um especialista sobre esse serviço

@@ -12,7 +12,6 @@ import {
     TrendingUp,
     Heart,
     Globe,
-    Quote,
     Mail,
 } from "lucide-react";
 
@@ -79,49 +78,51 @@ const fadeIn = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
-    transition: { duration: 0.5 },
+    transition: { duration: 0.6, ease: "easeOut" },
 };
 
 export function Home() {
     return (
         <div className="pt-16 sm:pt-18">
             {/* Hero */}
-            <section className="relative min-h-[80vh] flex items-center justify-center px-5 sm:px-8 py-20 sm:py-32">
+            <section className="hero-gradient relative min-h-[80vh] flex items-center justify-center px-6 sm:px-8 py-20 sm:py-32">
                 <div className="max-w-3xl mx-auto text-center">
                     <motion.h1
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-text-primary leading-tight mb-6"
+                        transition={{ duration: 0.8 }}
+                        className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight mb-6 font-extralight tracking-tight text-gradient-headline"
+                        style={{ fontWeight: 200, letterSpacing: "-0.03em" }}
                     >
                         A informação certa muda o resultado.
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.15 }}
-                        className="text-text-secondary text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
+                        transition={{ duration: 0.5, delay: 0.4 }}
+                        className="text-text-secondary text-lg max-w-2xl mx-auto mb-10 font-light"
+                        style={{ lineHeight: 1.8, fontWeight: 300 }}
                     >
                         Investigação privada e inteligência para quem precisa de respostas — não de suposições.
                     </motion.p>
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.3 }}
+                        transition={{ duration: 0.5, delay: 0.6 }}
                         className="flex flex-col sm:flex-row items-center justify-center gap-4"
                     >
                         <a
                             href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Olá! Gostaria de falar com um especialista.")}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-text-primary text-surface font-semibold text-base px-8 py-4 rounded-xl hover:bg-text-secondary transition-colors"
+                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 btn-primary text-base"
                         >
                             <MessageCircle className="w-5 h-5" />
                             Fale com um especialista
                         </a>
                         <Link
                             to="/servicos"
-                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-border-muted text-text-primary font-semibold text-base px-8 py-4 rounded-xl hover:bg-surface-card transition-colors"
+                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 btn-secondary text-base"
                         >
                             Conheça os serviços
                             <ArrowRight className="w-5 h-5" />
@@ -131,12 +132,12 @@ export function Home() {
             </section>
 
             {/* Value Proposition */}
-            <section className="px-5 sm:px-8 py-16 sm:py-24 bg-surface-elevated">
+            <section className="px-6 sm:px-8 py-16 sm:py-24 bg-surface-alt">
                 <div className="max-w-6xl mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
                         <motion.div {...fadeIn} className="text-center md:text-left">
                             <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-surface-card border border-border-subtle mb-4">
-                                <Lock className="w-6 h-6 text-brand" />
+                                <Lock className="w-6 h-6 text-gold" />
                             </div>
                             <h3 className="font-heading text-xl text-text-primary mb-2">Sigilo operacional</h3>
                             <p className="text-text-secondary text-sm leading-relaxed">
@@ -145,7 +146,7 @@ export function Home() {
                         </motion.div>
                         <motion.div {...fadeIn} transition={{ delay: 0.1 }} className="text-center md:text-left">
                             <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-surface-card border border-border-subtle mb-4">
-                                <Scale className="w-6 h-6 text-brand" />
+                                <Scale className="w-6 h-6 text-gold" />
                             </div>
                             <h3 className="font-heading text-xl text-text-primary mb-2">Atuação dentro da lei</h3>
                             <p className="text-text-secondary text-sm leading-relaxed">
@@ -154,7 +155,7 @@ export function Home() {
                         </motion.div>
                         <motion.div {...fadeIn} transition={{ delay: 0.2 }} className="text-center md:text-left">
                             <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-surface-card border border-border-subtle mb-4">
-                                <Brain className="w-6 h-6 text-brand" />
+                                <Brain className="w-6 h-6 text-gold" />
                             </div>
                             <h3 className="font-heading text-xl text-text-primary mb-2">Inteligência, não achismo</h3>
                             <p className="text-text-secondary text-sm leading-relaxed">
@@ -166,10 +167,12 @@ export function Home() {
             </section>
 
             {/* Services */}
-            <section className="px-5 sm:px-8 py-16 sm:py-24">
+            <section className="px-6 sm:px-8 py-16 sm:py-24 bg-surface">
                 <div className="max-w-6xl mx-auto">
                     <motion.div {...fadeIn} className="text-center mb-12">
-                        <h2 className="font-heading text-2xl sm:text-3xl text-text-primary mb-3">O que resolvemos</h2>
+                        <div className="section-title-accent-center">
+                            <h2 className="font-heading text-2xl sm:text-3xl text-text-primary">O que resolvemos</h2>
+                        </div>
                     </motion.div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {SERVICES.map((service, i) => {
@@ -180,11 +183,11 @@ export function Home() {
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.4, delay: i * 0.05 }}
-                                    className="p-6 rounded-xl bg-surface-card border border-border-subtle hover:border-brand/30 transition-colors"
+                                    transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
+                                    className="premium-card p-8 rounded-xl"
                                 >
-                                    <Icon className="w-6 h-6 text-brand mb-4" />
-                                    <h3 className="font-semibold text-text-primary mb-2">{service.title}</h3>
+                                    <Icon className="w-6 h-6 text-gold mb-4" />
+                                    <h3 className="premium-card-title font-semibold text-text-primary mb-2">{service.title}</h3>
                                     <p className="text-text-secondary text-sm leading-relaxed">{service.desc}</p>
                                 </motion.div>
                             );
@@ -193,7 +196,7 @@ export function Home() {
                     <motion.div {...fadeIn} className="text-center mt-8">
                         <Link
                             to="/servicos"
-                            className="inline-flex items-center gap-2 text-brand hover:text-brand-hover font-medium text-sm transition-colors"
+                            className="inline-flex items-center gap-2 text-gold hover:text-[#d4ac5a] font-medium text-sm transition-colors"
                         >
                             Ver todos os serviços
                             <ArrowRight className="w-4 h-4" />
@@ -203,35 +206,61 @@ export function Home() {
             </section>
 
             {/* How it works */}
-            <section className="px-5 sm:px-8 py-16 sm:py-24 bg-surface-elevated">
+            <section className="px-6 sm:px-8 py-16 sm:py-24 bg-surface-alt">
                 <div className="max-w-6xl mx-auto">
                     <motion.div {...fadeIn} className="text-center mb-12">
-                        <h2 className="font-heading text-2xl sm:text-3xl text-text-primary mb-3">
-                            Do primeiro contato ao relatório final
-                        </h2>
+                        <div className="section-title-accent-center">
+                            <h2 className="font-heading text-2xl sm:text-3xl text-text-primary">
+                                Do primeiro contato ao relatório final
+                            </h2>
+                        </div>
                     </motion.div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {STEPS.map((step, i) => (
-                            <motion.div
-                                key={step.num}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.4, delay: i * 0.1 }}
-                                className="relative"
-                            >
-                                <span className="text-5xl font-heading text-brand/20 mb-2 block">{step.num}</span>
-                                <h3 className="font-semibold text-text-primary mb-2">{step.title}</h3>
-                                <p className="text-text-secondary text-sm leading-relaxed">{step.desc}</p>
-                            </motion.div>
-                        ))}
+                    <div className="relative">
+                        {/* Desktop: horizontal timeline */}
+                        <div className="hidden lg:grid lg:grid-cols-4 gap-6">
+                            {STEPS.map((step, i) => (
+                                <motion.div
+                                    key={step.num}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
+                                    className="relative"
+                                >
+                                    <span className="process-number">{step.num}</span>
+                                    <div className="relative z-10 pt-12">
+                                        <h3 className="font-semibold text-text-primary mb-2">{step.title}</h3>
+                                        <p className="text-text-secondary text-sm leading-relaxed">{step.desc}</p>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                        {/* Mobile/Tablet: vertical timeline */}
+                        <div className="lg:hidden relative pl-12">
+                            <div className="process-line" />
+                            {STEPS.map((step, i) => (
+                                <motion.div
+                                    key={step.num}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
+                                    className="relative pb-10 last:pb-0"
+                                >
+                                    <div className="process-dot" />
+                                    <span className="text-gold text-sm font-semibold tracking-wide mb-1 block">{step.num}</span>
+                                    <h3 className="font-semibold text-text-primary mb-2">{step.title}</h3>
+                                    <p className="text-text-secondary text-sm leading-relaxed">{step.desc}</p>
+                                </motion.div>
+                            ))}
+                        </div>
                     </div>
                     <motion.div {...fadeIn} className="text-center mt-10">
                         <a
                             href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Olá! Gostaria de uma avaliação confidencial do meu caso.")}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-brand hover:text-brand-hover font-medium text-sm transition-colors"
+                            className="inline-flex items-center gap-2 text-gold hover:text-[#d4ac5a] font-medium text-sm transition-colors"
                         >
                             Fale conosco para uma avaliação
                             <ArrowRight className="w-4 h-4" />
@@ -241,7 +270,7 @@ export function Home() {
             </section>
 
             {/* Credibility */}
-            <section className="px-5 sm:px-8 py-16 sm:py-24 border-y border-border-subtle">
+            <section className="credibility-section px-6 sm:px-8 py-20">
                 <div className="max-w-4xl mx-auto text-center">
                     <motion.p
                         {...fadeIn}
@@ -252,28 +281,29 @@ export function Home() {
                     </motion.p>
                     <motion.div
                         {...fadeIn}
-                        className="bg-surface-card border border-border-subtle rounded-xl p-6 sm:p-8"
+                        className="premium-card rounded-xl p-6 sm:p-8 relative"
                     >
-                        <Quote className="w-8 h-8 text-brand/50 mx-auto mb-4" />
-                        <p className="text-text-primary text-base sm:text-lg italic leading-relaxed mb-4">
-                            "A equipe entendeu a complexidade do caso e entregou em 12 dias o que meu advogado tentava há 8 meses."
-                        </p>
-                        <p className="text-text-muted text-sm">
-                            — Cliente confidencial, Diretor Jurídico
-                        </p>
+                        <span className="quote-mark absolute top-4 left-6">"</span>
+                        <div className="relative z-10 pt-8">
+                            <p className="text-text-primary text-base sm:text-lg italic leading-relaxed mb-4">
+                                "A equipe entendeu a complexidade do caso e entregou em 12 dias o que meu advogado tentava há 8 meses."
+                            </p>
+                            <p className="text-text-muted text-sm">
+                                — Cliente confidencial, Diretor Jurídico
+                            </p>
+                        </div>
                     </motion.div>
                 </div>
             </section>
 
             {/* Final CTA */}
-            <section className="px-5 sm:px-8 py-20 sm:py-28 bg-surface-elevated">
+            <section className="px-6 sm:px-8 py-20 sm:py-28 bg-surface-alt">
                 <div className="max-w-3xl mx-auto text-center">
-                    <motion.h2
-                        {...fadeIn}
-                        className="font-heading text-2xl sm:text-3xl md:text-4xl text-text-primary mb-4"
-                    >
-                        Tem uma situação que precisa resolver?
-                    </motion.h2>
+                    <motion.div {...fadeIn} className="section-title-accent-center">
+                        <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl text-text-primary mb-4">
+                            Tem uma situação que precisa resolver?
+                        </h2>
+                    </motion.div>
                     <motion.p
                         {...fadeIn}
                         className="text-text-secondary text-base sm:text-lg mb-10"
@@ -288,14 +318,14 @@ export function Home() {
                             href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Olá! Gostaria de falar com um especialista.")}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-text-primary text-surface font-semibold text-base px-8 py-4 rounded-xl hover:bg-text-secondary transition-colors"
+                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 btn-primary text-base"
                         >
                             <MessageCircle className="w-5 h-5" />
                             Falar pelo WhatsApp
                         </a>
                         <a
                             href={`mailto:${EMAIL}`}
-                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-border-muted text-text-primary font-semibold text-base px-8 py-4 rounded-xl hover:bg-surface-card transition-colors"
+                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 btn-secondary text-base"
                         >
                             <Mail className="w-5 h-5" />
                             Enviar email criptografado

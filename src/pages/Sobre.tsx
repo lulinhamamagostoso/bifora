@@ -23,32 +23,36 @@ const fadeIn = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
-    transition: { duration: 0.5 },
+    transition: { duration: 0.6, ease: "easeOut" },
 };
 
 export function Sobre() {
     return (
         <div className="pt-16 sm:pt-18">
             {/* Hero */}
-            <section className="px-5 sm:px-8 py-16 sm:py-24">
+            <section className="hero-gradient px-6 sm:px-8 py-16 sm:py-24">
                 <div className="max-w-4xl mx-auto text-center">
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="font-heading text-3xl sm:text-4xl md:text-5xl text-text-primary leading-tight mb-6"
-                    >
-                        Quem somos
-                    </motion.h1>
+                    <motion.div className="section-title-accent-center">
+                        <motion.h1
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="font-heading text-3xl sm:text-4xl md:text-5xl leading-tight mb-6 font-extralight tracking-tight text-gradient-headline"
+                            style={{ fontWeight: 200, letterSpacing: "-0.03em" }}
+                        >
+                            Quem somos
+                        </motion.h1>
+                    </motion.div>
                 </div>
             </section>
 
             {/* About Text */}
-            <section className="px-5 sm:px-8 pb-16 sm:pb-24">
+            <section className="px-6 sm:px-8 py-16 sm:py-24 bg-surface">
                 <div className="max-w-3xl mx-auto">
                     <motion.div
                         {...fadeIn}
                         className="flex flex-col gap-6 text-text-secondary text-base sm:text-lg leading-relaxed"
+                        style={{ lineHeight: 1.8 }}
                     >
                         <p>
                             A Bforense é uma agência de investigações privada especializada em inteligência, 
@@ -69,7 +73,7 @@ export function Sobre() {
             </section>
 
             {/* Differentials */}
-            <section className="px-5 sm:px-8 py-16 sm:py-24 bg-surface-elevated">
+            <section className="px-6 sm:px-8 py-16 sm:py-24 bg-surface-alt">
                 <div className="max-w-6xl mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
                         {DIFFERENTIALS.map((item, i) => {
@@ -80,11 +84,11 @@ export function Sobre() {
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.4, delay: i * 0.1 }}
+                                    transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
                                     className="text-center"
                                 >
                                     <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-surface-card border border-border-subtle mb-4">
-                                        <Icon className="w-7 h-7 text-brand" />
+                                        <Icon className="w-7 h-7 text-gold" />
                                     </div>
                                     <h3 className="font-heading text-xl text-text-primary mb-2">{item.title}</h3>
                                     <p className="text-text-secondary text-sm leading-relaxed">{item.desc}</p>

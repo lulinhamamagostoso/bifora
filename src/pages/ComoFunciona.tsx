@@ -34,21 +34,25 @@ export function ComoFunciona() {
     return (
         <div className="pt-16 sm:pt-18">
             {/* Hero */}
-            <section className="px-5 sm:px-8 py-16 sm:py-24">
+            <section className="hero-gradient px-6 sm:px-8 py-16 sm:py-24">
                 <div className="max-w-4xl mx-auto text-center">
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="font-heading text-3xl sm:text-4xl md:text-5xl text-text-primary leading-tight mb-4"
-                    >
-                        Nosso processo
-                    </motion.h1>
+                    <motion.div className="section-title-accent-center">
+                        <motion.h1
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="font-heading text-3xl sm:text-4xl md:text-5xl leading-tight mb-4 font-extralight tracking-tight text-gradient-headline"
+                            style={{ fontWeight: 200, letterSpacing: "-0.03em" }}
+                        >
+                            Nosso processo
+                        </motion.h1>
+                    </motion.div>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.15 }}
-                        className="text-text-secondary text-lg sm:text-xl max-w-2xl mx-auto"
+                        transition={{ duration: 0.5, delay: 0.4 }}
+                        className="text-text-secondary text-lg max-w-2xl mx-auto font-light"
+                        style={{ lineHeight: 1.8, fontWeight: 300 }}
                     >
                         Da primeira conversa à entrega do dossiê. Transparência em cada etapa.
                     </motion.p>
@@ -56,9 +60,12 @@ export function ComoFunciona() {
             </section>
 
             {/* Steps */}
-            <section className="px-5 sm:px-8 pb-16 sm:pb-24">
+            <section className="px-6 sm:px-8 py-16 sm:py-24 bg-surface">
                 <div className="max-w-3xl mx-auto">
-                    <div className="flex flex-col gap-0">
+                    <div className="relative pl-12 sm:pl-16">
+                        {/* Vertical line */}
+                        <div className="process-line" />
+                        
                         {STEPS.map((step, i) => {
                             const Icon = step.icon;
                             const isLast = i === STEPS.length - 1;
@@ -68,28 +75,28 @@ export function ComoFunciona() {
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.4, delay: i * 0.1 }}
-                                    className="relative flex gap-6"
+                                    transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
+                                    className={`relative ${isLast ? '' : 'pb-12'}`}
                                 >
-                                    {/* Timeline */}
-                                    <div className="flex flex-col items-center">
-                                        <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-surface-card border border-border-subtle flex items-center justify-center">
-                                            <Icon className="w-6 h-6 text-brand" />
-                                        </div>
-                                        {!isLast && (
-                                            <div className="w-px flex-1 bg-border-subtle my-4" />
-                                        )}
-                                    </div>
+                                    {/* Gold dot */}
+                                    <div className="process-dot" />
                                     
-                                    {/* Content */}
-                                    <div className={`pb-10 ${isLast ? 'pb-0' : ''}`}>
-                                        <span className="text-brand text-sm font-semibold tracking-wide mb-1 block">
-                                            {step.num}
-                                        </span>
-                                        <h2 className="font-heading text-xl sm:text-2xl text-text-primary mb-3">
+                                    {/* Large background number */}
+                                    <span className="process-number hidden sm:block">{step.num}</span>
+                                    
+                                    <div className="relative z-10">
+                                        <div className="flex items-center gap-3 mb-3">
+                                            <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-surface-card border border-border-subtle flex items-center justify-center">
+                                                <Icon className="w-5 h-5 text-gold" />
+                                            </div>
+                                            <span className="text-gold text-sm font-semibold tracking-wide sm:hidden">
+                                                {step.num}
+                                            </span>
+                                        </div>
+                                        <h2 className="font-heading text-xl sm:text-2xl text-text-primary mb-3 mt-4">
                                             {step.title}
                                         </h2>
-                                        <p className="text-text-secondary text-sm sm:text-base leading-relaxed">
+                                        <p className="text-text-secondary text-sm sm:text-base leading-relaxed max-w-lg">
                                             {step.desc}
                                         </p>
                                     </div>
@@ -101,22 +108,24 @@ export function ComoFunciona() {
             </section>
 
             {/* CTA */}
-            <section className="px-5 sm:px-8 py-16 sm:py-20 bg-surface-elevated">
+            <section className="px-6 sm:px-8 py-16 sm:py-20 bg-surface-alt">
                 <div className="max-w-3xl mx-auto text-center">
-                    <motion.h2
+                    <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
-                        className="font-heading text-2xl sm:text-3xl text-text-primary mb-4"
+                        transition={{ duration: 0.6 }}
+                        className="section-title-accent-center"
                     >
-                        Pronto para começar?
-                    </motion.h2>
+                        <h2 className="font-heading text-2xl sm:text-3xl text-text-primary mb-4">
+                            Pronto para começar?
+                        </h2>
+                    </motion.div>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: 0.1 }}
+                        transition={{ duration: 0.6, delay: 0.1 }}
                         className="text-text-secondary text-base sm:text-lg mb-8"
                     >
                         Inicie uma avaliação confidencial sem compromisso.
@@ -125,11 +134,11 @@ export function ComoFunciona() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
                         href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Olá! Gostaria de iniciar uma avaliação confidencial.")}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-2 bg-text-primary text-surface font-semibold text-base px-8 py-4 rounded-xl hover:bg-text-secondary transition-colors"
+                        className="inline-flex items-center justify-center gap-2 btn-primary text-base"
                     >
                         <MessageCircle className="w-5 h-5" />
                         Iniciar uma avaliação confidencial
