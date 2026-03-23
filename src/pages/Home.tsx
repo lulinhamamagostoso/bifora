@@ -19,10 +19,22 @@ import {
     Map,
     Radar,
     FileText,
+    AlertTriangle,
 } from "lucide-react";
 
 const PHONE = "555131641004";
 const EMAIL = "bscy@pm.me";
+
+// Image URLs
+const IMAGES = {
+    operationsCenter: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wddwdw%281%29-jrhvOUbjJ0QHEcDXRSlEqCDVvST5xH.png",
+    adversaryGroup: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/adversary-group-LDMy9ZdFpdsPlgCixC0IRSKVMgxU1D.png",
+    urgencyBg: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/urgency-bg-t2Zqubwhjc8bjK1SYGxf2E3AwPtbOt.png",
+    dataEngineer: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/data-engineer-analyse-datasets-multiple-monitor-aig41-N3L3bLzSta22ppGOe0EIj7ehHQPJH3.jpg",
+    iconLock: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/681b04ef179e21ce78452075_036-lock-SRSFzsZRkdvpWlfb6jh72JytTW3waQ.png",
+    iconHacker: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/681b00e1acd27c89a25e0301_023-hacker-j4oNq2Vq6OcImmIVvJevG7X52NhUMZ.png",
+    iconShield: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/681b0836c7dd7b00fc37de2e_058-shield-yAYyco3pvnwn0wC8qgad1eBiIsRKHm.png",
+};
 
 const SERVICES = [
     {
@@ -112,6 +124,13 @@ const TESTIMONIALS = [
     },
 ];
 
+const THREATS = [
+    "Sócios desviando recursos da empresa",
+    "Ex-cônjuge ocultando patrimônio",
+    "Parceiro comercial com histórico oculto",
+    "Funcionário vazando informações sensíveis",
+];
+
 const fadeIn = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
@@ -156,8 +175,20 @@ function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
 export function Home() {
     return (
         <div className="pt-16 sm:pt-18">
-            {/* Hero */}
-            <section className="hero-gradient relative min-h-[85vh] flex items-center justify-center px-6 sm:px-8 py-20 sm:py-32">
+            {/* Hero with Background Image */}
+            <section className="relative min-h-[90vh] flex items-center justify-center px-6 sm:px-8 py-20 sm:py-32 overflow-hidden">
+                {/* Background Image */}
+                <div 
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                    style={{ 
+                        backgroundImage: `url(${IMAGES.operationsCenter})`,
+                    }}
+                />
+                {/* Dark Overlay with gradient */}
+                <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/90 via-[#0a0a0a]/80 to-[#0a0a0a]" />
+                {/* Mesh gradient overlay */}
+                <div className="absolute inset-0 hero-gradient opacity-60" />
+                
                 <div className="max-w-3xl mx-auto text-center relative z-10">
                     <motion.h1
                         initial={{ opacity: 0, y: 30 }}
@@ -186,15 +217,15 @@ export function Home() {
                         className="flex flex-wrap items-center justify-center gap-3 mb-10"
                     >
                         <div className="hero-badge">
-                            <Check className="w-4 h-4" />
+                            <img src={IMAGES.iconLock} alt="" className="w-4 h-4 invert opacity-80" />
                             <span>Sigilo Total</span>
                         </div>
                         <div className="hero-badge">
-                            <Check className="w-4 h-4" />
+                            <img src={IMAGES.iconShield} alt="" className="w-4 h-4 invert opacity-80" />
                             <span>100% Legal</span>
                         </div>
                         <div className="hero-badge">
-                            <Check className="w-4 h-4" />
+                            <img src={IMAGES.iconHacker} alt="" className="w-4 h-4 invert opacity-80" />
                             <span>Atuação Nacional</span>
                         </div>
                     </motion.div>
@@ -247,13 +278,75 @@ export function Home() {
                 </div>
             </section>
 
+            {/* Why You Need Us - with Adversary Image */}
+            <section className="relative px-6 sm:px-8 py-20 sm:py-28 bg-surface overflow-hidden">
+                <div className="max-w-6xl mx-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                        {/* Content */}
+                        <motion.div {...fadeIn}>
+                            <span className="section-label">Por que agir agora</span>
+                            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl text-text-primary mb-6">
+                                Enquanto você espera, alguém está agindo contra você.
+                            </h2>
+                            <p className="text-text-secondary text-base sm:text-lg leading-relaxed mb-8">
+                                Fraudes, desvios e ocultação de patrimônio não acontecem por acaso. 
+                                Quem quer esconder algo age rápido. Você também deveria.
+                            </p>
+                            <ul className="flex flex-col gap-4 mb-8">
+                                {THREATS.map((threat, i) => (
+                                    <motion.li
+                                        key={threat}
+                                        initial={{ opacity: 0, x: -20 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ duration: 0.5, delay: i * 0.1 }}
+                                        className="flex items-start gap-3 text-text-secondary"
+                                    >
+                                        <AlertTriangle className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
+                                        <span>{threat}</span>
+                                    </motion.li>
+                                ))}
+                            </ul>
+                            <a
+                                href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Olá! Preciso de uma avaliação urgente.")}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn-primary text-base"
+                            >
+                                <MessageCircle className="w-5 h-5" />
+                                Solicitar avaliação urgente
+                                <ArrowRight className="w-4 h-4" />
+                            </a>
+                        </motion.div>
+
+                        {/* Adversary Image */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                            className="relative"
+                        >
+                            <div className="relative rounded-2xl overflow-hidden">
+                                <img 
+                                    src={IMAGES.adversaryGroup} 
+                                    alt="Ameaças digitais" 
+                                    className="w-full h-auto"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
             {/* Value Proposition */}
             <section className="px-6 sm:px-8 py-16 sm:py-24 bg-surface-alt">
                 <div className="max-w-6xl mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
                         <motion.div {...fadeIn} className="text-center md:text-left">
                             <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-surface-card border border-border-subtle mb-5">
-                                <Lock className="w-6 h-6 text-gold" strokeWidth={1.5} />
+                                <img src={IMAGES.iconLock} alt="" className="w-7 h-7 opacity-80" style={{ filter: "invert(73%) sepia(57%) saturate(394%) hue-rotate(9deg) brightness(92%) contrast(91%)" }} />
                             </div>
                             <h3 className="font-heading text-xl text-text-primary mb-3">Sigilo operacional</h3>
                             <p className="text-text-secondary text-sm leading-relaxed">
@@ -262,7 +355,7 @@ export function Home() {
                         </motion.div>
                         <motion.div {...fadeIn} transition={{ delay: 0.1 }} className="text-center md:text-left">
                             <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-surface-card border border-border-subtle mb-5">
-                                <Scale className="w-6 h-6 text-gold" strokeWidth={1.5} />
+                                <img src={IMAGES.iconShield} alt="" className="w-7 h-7 opacity-80" style={{ filter: "invert(73%) sepia(57%) saturate(394%) hue-rotate(9deg) brightness(92%) contrast(91%)" }} />
                             </div>
                             <h3 className="font-heading text-xl text-text-primary mb-3">Atuação dentro da lei</h3>
                             <p className="text-text-secondary text-sm leading-relaxed">
@@ -271,7 +364,7 @@ export function Home() {
                         </motion.div>
                         <motion.div {...fadeIn} transition={{ delay: 0.2 }} className="text-center md:text-left">
                             <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-surface-card border border-border-subtle mb-5">
-                                <Brain className="w-6 h-6 text-gold" strokeWidth={1.5} />
+                                <img src={IMAGES.iconHacker} alt="" className="w-7 h-7 opacity-80" style={{ filter: "invert(73%) sepia(57%) saturate(394%) hue-rotate(9deg) brightness(92%) contrast(91%)" }} />
                             </div>
                             <h3 className="font-heading text-xl text-text-primary mb-3">Inteligência, não achismo</h3>
                             <p className="text-text-secondary text-sm leading-relaxed">
@@ -405,49 +498,114 @@ export function Home() {
                 </div>
             </section>
 
-            {/* Credibility */}
-            <section className="credibility-section px-6 sm:px-8 py-20 bg-surface-alt">
-                <div className="max-w-4xl mx-auto text-center">
-                    <motion.div {...fadeIn}>
-                        <span className="section-label">Credibilidade</span>
-                    </motion.div>
-                    <motion.p
-                        {...fadeIn}
-                        className="text-text-secondary text-base sm:text-lg leading-relaxed"
-                    >
-                        Equipe com background em investigação forense, inteligência de fontes abertas e análise financeira. 
-                        Atuação em todo o território nacional. Relatórios aceitos como prova em processos judiciais e arbitragens.
-                    </motion.p>
+            {/* Credibility with Image */}
+            <section className="relative px-6 sm:px-8 py-20 sm:py-28 bg-surface-alt overflow-hidden">
+                <div className="max-w-6xl mx-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                        {/* Image */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                            className="relative order-2 lg:order-1"
+                        >
+                            <div className="relative rounded-2xl overflow-hidden">
+                                <img 
+                                    src={IMAGES.dataEngineer} 
+                                    alt="Analista de inteligência" 
+                                    className="w-full h-auto"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/50 via-transparent to-transparent" />
+                            </div>
+                        </motion.div>
+
+                        {/* Content */}
+                        <motion.div {...fadeIn} className="order-1 lg:order-2">
+                            <span className="section-label">Credibilidade</span>
+                            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl text-text-primary mb-6">
+                                Profissionais com background em inteligência
+                            </h2>
+                            <p className="text-text-secondary text-base sm:text-lg leading-relaxed mb-6">
+                                Equipe com experiência em investigação forense, inteligência de fontes abertas e análise financeira. 
+                                Atuação em todo o território nacional.
+                            </p>
+                            <ul className="flex flex-col gap-3 mb-8">
+                                <li className="flex items-center gap-3 text-text-secondary">
+                                    <Check className="w-5 h-5 text-gold flex-shrink-0" />
+                                    <span>Relatórios aceitos como prova judicial</span>
+                                </li>
+                                <li className="flex items-center gap-3 text-text-secondary">
+                                    <Check className="w-5 h-5 text-gold flex-shrink-0" />
+                                    <span>Operação dentro da Lei 13.432/2017</span>
+                                </li>
+                                <li className="flex items-center gap-3 text-text-secondary">
+                                    <Check className="w-5 h-5 text-gold flex-shrink-0" />
+                                    <span>Metodologia forense documentada</span>
+                                </li>
+                            </ul>
+                            <Link
+                                to="/sobre"
+                                className="inline-flex items-center gap-2 text-gold hover:text-[#d4ac5a] font-medium text-sm transition-colors"
+                            >
+                                Conheça nossa equipe
+                                <ArrowRight className="w-4 h-4" />
+                            </Link>
+                        </motion.div>
+                    </div>
                 </div>
             </section>
 
-            {/* Final CTA */}
-            <section className="cta-gradient px-6 sm:px-8 py-20 sm:py-28 grid-pattern">
+            {/* Final CTA with Background Image */}
+            <section className="relative px-6 sm:px-8 py-20 sm:py-28 overflow-hidden">
+                {/* Background Image */}
+                <div 
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                    style={{ 
+                        backgroundImage: `url(${IMAGES.urgencyBg})`,
+                    }}
+                />
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/95 via-[#0a0a0a]/90 to-[#0a0a0a]/80" />
+                {/* Grid Pattern */}
+                <div className="absolute inset-0 grid-pattern opacity-30" />
+                
                 <div className="max-w-3xl mx-auto text-center relative z-10">
-                    <motion.div {...fadeIn}>
-                        <span className="section-label">Contato</span>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <span className="section-label">Próximo passo</span>
                         <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl text-text-primary mb-4">
-                            Tem uma situação que precisa resolver?
+                            Você merece respostas.
                         </h2>
                     </motion.div>
                     <motion.p
-                        {...fadeIn}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.1 }}
                         className="text-text-secondary text-base sm:text-lg mb-10"
                     >
-                        Entre em contato para uma avaliação confidencial. Sem compromisso.
+                        Fale agora com um especialista. Avaliação confidencial, sem compromisso.
                     </motion.p>
                     <motion.div
-                        {...fadeIn}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
                         className="flex flex-col sm:flex-row items-center justify-center gap-4"
                     >
                         <a
-                            href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Olá! Gostaria de falar com um especialista.")}`}
+                            href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Olá! Gostaria de uma avaliação confidencial.")}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="w-full sm:w-auto btn-primary text-base"
                         >
                             <MessageCircle className="w-5 h-5" />
-                            Falar pelo WhatsApp
+                            WhatsApp: Fale agora
                             <ArrowRight className="w-4 h-4" />
                         </a>
                         <a
@@ -455,10 +613,19 @@ export function Home() {
                             className="w-full sm:w-auto btn-secondary text-base"
                         >
                             <Mail className="w-5 h-5" />
-                            Enviar email criptografado
+                            E-mail criptografado
                             <ArrowRight className="w-4 h-4" />
                         </a>
                     </motion.div>
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                        className="text-text-muted text-xs mt-8"
+                    >
+                        Sigilo desde o primeiro contato. Não registramos ligações. Comunicação criptografada disponível.
+                    </motion.p>
                 </div>
             </section>
         </div>

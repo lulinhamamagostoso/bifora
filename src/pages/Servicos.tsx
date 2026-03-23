@@ -3,6 +3,12 @@ import { MessageCircle, Search, ShieldCheck, Gavel, TrendingUp, Heart, Globe, Ar
 
 const PHONE = "555131641004";
 
+// Image URLs
+const IMAGES = {
+    cybercriminal: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/cybercriminal-using-ai-machine-learning-develop-zero-day-exploit-LKdvYauc26lEHcdPqqs1M9RaGfyoBf.jpg",
+    dataEngineer: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/data-engineer-analyse-datasets-multiple-monitor-aig41-N3L3bLzSta22ppGOe0EIj7ehHQPJH3.jpg",
+};
+
 const SERVICES = [
     {
         icon: Search,
@@ -69,9 +75,19 @@ const SERVICES = [
 export function Servicos() {
     return (
         <div className="pt-16 sm:pt-18">
-            {/* Hero */}
-            <section className="hero-gradient px-6 sm:px-8 py-16 sm:py-24">
-                <div className="max-w-4xl mx-auto text-center">
+            {/* Hero with Background Image */}
+            <section className="relative px-6 sm:px-8 py-20 sm:py-28 overflow-hidden">
+                {/* Background Image */}
+                <div 
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                    style={{ 
+                        backgroundImage: `url(${IMAGES.cybercriminal})`,
+                    }}
+                />
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/90 via-[#0a0a0a]/85 to-[#0a0a0a]" />
+                
+                <div className="max-w-4xl mx-auto text-center relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -125,7 +141,7 @@ export function Servicos() {
                                             </p>
                                         </div>
                                     </div>
-                                    <ul className="ml-[4.75rem] mb-6 flex flex-col gap-2">
+                                    <ul className="ml-0 sm:ml-[4.75rem] mb-6 flex flex-col gap-2">
                                         {service.bullets.map((bullet) => (
                                             <li
                                                 key={bullet}
@@ -136,7 +152,7 @@ export function Servicos() {
                                             </li>
                                         ))}
                                     </ul>
-                                    <div className="ml-[4.75rem] flex items-center justify-between">
+                                    <div className="ml-0 sm:ml-[4.75rem] flex items-center justify-between">
                                         <a
                                             href={`https://wa.me/${PHONE}?text=${encodeURIComponent(`Olá! Gostaria de falar sobre ${service.title}.`)}`}
                                             target="_blank"
@@ -152,6 +168,57 @@ export function Servicos() {
                             );
                         })}
                     </div>
+                </div>
+            </section>
+
+            {/* CTA with Image */}
+            <section className="relative px-6 sm:px-8 py-20 sm:py-28 overflow-hidden">
+                {/* Background Image */}
+                <div 
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                    style={{ 
+                        backgroundImage: `url(${IMAGES.dataEngineer})`,
+                    }}
+                />
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/95 via-[#0a0a0a]/90 to-[#0a0a0a]/80" />
+                <div className="absolute inset-0 grid-pattern opacity-30" />
+                
+                <div className="max-w-3xl mx-auto text-center relative z-10">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <span className="section-label">Próximo passo</span>
+                        <h2 className="font-heading text-2xl sm:text-3xl text-text-primary mb-4">
+                            Não encontrou o que precisa?
+                        </h2>
+                    </motion.div>
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                        className="text-text-secondary text-base sm:text-lg mb-8"
+                    >
+                        Cada caso é único. Fale conosco e desenharemos uma operação sob medida.
+                    </motion.p>
+                    <motion.a
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Olá! Preciso de uma operação customizada.")}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-primary text-base"
+                    >
+                        <MessageCircle className="w-5 h-5" />
+                        Solicitar operação customizada
+                        <ArrowRight className="w-4 h-4" />
+                    </motion.a>
                 </div>
             </section>
         </div>
