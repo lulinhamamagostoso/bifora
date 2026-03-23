@@ -3,12 +3,6 @@ import { MessageCircle, Map, Radar, FileText, ArrowRight } from "lucide-react";
 
 const PHONE = "555131641004";
 
-// Image URLs
-const IMAGES = {
-    teamCollab: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6822e1099ac98a3f9cf4026a_bg-JHfqOqfDWtwPv4QgEyFucyFdG7iOFX.png",
-    urgencyBg: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/urgency-bg-t2Zqubwhjc8bjK1SYGxf2E3AwPtbOt.png",
-};
-
 const STEPS = [
     {
         num: "01",
@@ -39,19 +33,9 @@ const STEPS = [
 export function ComoFunciona() {
     return (
         <div className="pt-16 sm:pt-18">
-            {/* Hero with Background Image */}
-            <section className="relative px-6 sm:px-8 py-20 sm:py-28 overflow-hidden">
-                {/* Background Image */}
-                <div 
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                    style={{ 
-                        backgroundImage: `url(${IMAGES.teamCollab})`,
-                    }}
-                />
-                {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/90 via-[#0a0a0a]/85 to-[#0a0a0a]" />
-                
-                <div className="max-w-4xl mx-auto text-center relative z-10">
+            {/* Hero */}
+            <section className="hero-gradient px-6 sm:px-8 py-16 sm:py-24">
+                <div className="max-w-4xl mx-auto text-center">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -111,19 +95,8 @@ export function ComoFunciona() {
                 </div>
             </section>
 
-            {/* CTA with Background Image */}
-            <section className="relative px-6 sm:px-8 py-20 sm:py-28 overflow-hidden">
-                {/* Background Image */}
-                <div 
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                    style={{ 
-                        backgroundImage: `url(${IMAGES.urgencyBg})`,
-                    }}
-                />
-                {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/95 via-[#0a0a0a]/90 to-[#0a0a0a]/80" />
-                <div className="absolute inset-0 grid-pattern opacity-30" />
-                
+            {/* CTA */}
+            <section className="cta-gradient px-6 sm:px-8 py-16 sm:py-20 grid-pattern">
                 <div className="max-w-3xl mx-auto text-center relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
