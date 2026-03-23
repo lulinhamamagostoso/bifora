@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MessageCircle, Search, FileCheck, Gavel, TrendingUp, Heart, Globe } from "lucide-react";
+import { MessageCircle, Search, ShieldCheck, Gavel, TrendingUp, Heart, Globe, ArrowRight } from "lucide-react";
 
 const PHONE = "555131641004";
 
@@ -15,7 +15,7 @@ const SERVICES = [
         ],
     },
     {
-        icon: FileCheck,
+        icon: ShieldCheck,
         title: "Due diligence",
         desc: "Verificação profunda de pessoas e empresas antes de decisões críticas. Vamos além do Google e dos registros públicos.",
         bullets: [
@@ -72,23 +72,25 @@ export function Servicos() {
             {/* Hero */}
             <section className="hero-gradient px-6 sm:px-8 py-16 sm:py-24">
                 <div className="max-w-4xl mx-auto text-center">
-                    <motion.div className="section-title-accent-center">
-                        <motion.h1
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8 }}
-                            className="font-heading text-3xl sm:text-4xl md:text-5xl leading-tight mb-4 font-extralight tracking-tight text-gradient-headline"
-                            style={{ fontWeight: 200, letterSpacing: "-0.03em" }}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <span className="section-label">Serviços</span>
+                        <h1
+                            className="font-heading text-3xl sm:text-4xl md:text-5xl leading-tight mb-4 tracking-tight text-gradient-headline"
+                            style={{ fontWeight: 600, letterSpacing: "-0.02em" }}
                         >
                             Serviços de investigação e inteligência
-                        </motion.h1>
+                        </h1>
                     </motion.div>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.4 }}
-                        className="text-text-secondary text-lg max-w-2xl mx-auto font-light"
-                        style={{ lineHeight: 1.8, fontWeight: 300 }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                        className="text-text-secondary text-lg max-w-2xl mx-auto"
+                        style={{ lineHeight: 1.7, fontWeight: 400 }}
                     >
                         Cada caso define a operação. Nós definimos o resultado.
                     </motion.p>
@@ -98,7 +100,7 @@ export function Servicos() {
             {/* Services */}
             <section className="px-6 sm:px-8 pb-20 sm:pb-28 bg-surface">
                 <div className="max-w-4xl mx-auto">
-                    <div className="flex flex-col gap-8 -mt-8">
+                    <div className="flex flex-col gap-6 -mt-8">
                         {SERVICES.map((service, i) => {
                             const Icon = service.icon;
                             return (
@@ -107,15 +109,15 @@ export function Servicos() {
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
-                                    className="premium-card p-8 rounded-xl"
+                                    transition={{ duration: 0.6, delay: i * 0.08, ease: "easeOut" }}
+                                    className="service-card p-8 rounded-xl group"
                                 >
-                                    <div className="flex items-start gap-4 mb-4">
-                                        <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-surface border border-border-subtle flex items-center justify-center">
-                                            <Icon className="w-6 h-6 text-gold" />
+                                    <div className="flex items-start gap-5 mb-5">
+                                        <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-surface border border-border-subtle flex items-center justify-center">
+                                            <Icon className="w-7 h-7 text-text-secondary card-icon" strokeWidth={1.5} />
                                         </div>
-                                        <div>
-                                            <h2 className="premium-card-title font-heading text-xl sm:text-2xl text-text-primary mb-2">
+                                        <div className="flex-1">
+                                            <h2 className="font-heading text-xl sm:text-2xl text-text-primary mb-2">
                                                 {service.title}
                                             </h2>
                                             <p className="text-text-secondary text-sm sm:text-base leading-relaxed">
@@ -123,18 +125,18 @@ export function Servicos() {
                                             </p>
                                         </div>
                                     </div>
-                                    <ul className="ml-16 mb-6 flex flex-col gap-2">
+                                    <ul className="ml-[4.75rem] mb-6 flex flex-col gap-2">
                                         {service.bullets.map((bullet) => (
                                             <li
                                                 key={bullet}
-                                                className="text-text-secondary text-sm flex items-start gap-2"
+                                                className="text-text-secondary text-sm flex items-start gap-3"
                                             >
                                                 <span className="w-1.5 h-1.5 rounded-full bg-gold mt-2 flex-shrink-0" />
                                                 {bullet}
                                             </li>
                                         ))}
                                     </ul>
-                                    <div className="ml-16">
+                                    <div className="ml-[4.75rem] flex items-center justify-between">
                                         <a
                                             href={`https://wa.me/${PHONE}?text=${encodeURIComponent(`Olá! Gostaria de falar sobre ${service.title}.`)}`}
                                             target="_blank"
@@ -142,8 +144,9 @@ export function Servicos() {
                                             className="inline-flex items-center gap-2 text-gold hover:text-[#d4ac5a] font-medium text-sm transition-colors"
                                         >
                                             <MessageCircle className="w-4 h-4" />
-                                            Fale com um especialista sobre esse serviço
+                                            Falar sobre esse serviço
                                         </a>
+                                        <ArrowRight className="w-5 h-5 text-gold card-arrow" />
                                     </div>
                                 </motion.div>
                             );

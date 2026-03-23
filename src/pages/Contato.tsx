@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MessageCircle, Mail, Send, Loader2 } from "lucide-react";
+import { MessageCircle, Mail, Send, Loader2, ArrowRight } from "lucide-react";
 
 const PHONE = "555131641004";
 const EMAIL = "bscy@pm.me";
@@ -45,23 +45,25 @@ export function Contato() {
             {/* Hero */}
             <section className="hero-gradient px-6 sm:px-8 py-16 sm:py-24">
                 <div className="max-w-4xl mx-auto text-center">
-                    <motion.div className="section-title-accent-center">
-                        <motion.h1
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8 }}
-                            className="font-heading text-3xl sm:text-4xl md:text-5xl leading-tight mb-4 font-extralight tracking-tight text-gradient-headline"
-                            style={{ fontWeight: 200, letterSpacing: "-0.03em" }}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <span className="section-label">Contato</span>
+                        <h1
+                            className="font-heading text-3xl sm:text-4xl md:text-5xl leading-tight mb-4 tracking-tight text-gradient-headline"
+                            style={{ fontWeight: 600, letterSpacing: "-0.02em" }}
                         >
                             Fale conosco
-                        </motion.h1>
+                        </h1>
                     </motion.div>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.4 }}
-                        className="text-text-secondary text-lg max-w-2xl mx-auto font-light"
-                        style={{ lineHeight: 1.8, fontWeight: 300 }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                        className="text-text-secondary text-lg max-w-2xl mx-auto"
+                        style={{ lineHeight: 1.7, fontWeight: 400 }}
                     >
                         Sigilo absoluto desde o primeiro contato. Escolha como prefere falar.
                     </motion.p>
@@ -75,24 +77,25 @@ export function Contato() {
                         {/* WhatsApp */}
                         <motion.div
                             {...fadeIn}
-                            className="premium-card p-8 rounded-xl"
+                            className="service-card p-8 rounded-xl group"
                         >
-                            <div className="flex items-center gap-3 mb-4">
-                                <div className="w-12 h-12 rounded-xl bg-[#25D366]/10 flex items-center justify-center">
-                                    <MessageCircle className="w-6 h-6 text-[#25D366]" />
+                            <div className="flex items-center gap-4 mb-5">
+                                <div className="w-14 h-14 rounded-xl bg-[#25D366]/10 flex items-center justify-center">
+                                    <MessageCircle className="w-7 h-7 text-[#25D366]" strokeWidth={1.5} />
                                 </div>
                                 <h2 className="font-heading text-xl text-text-primary">WhatsApp</h2>
                             </div>
                             <p className="text-text-secondary text-sm mb-6" style={{ lineHeight: 1.7 }}>
-                                Resposta em até 2 horas em horário comercial.
+                                Resposta em até 2 horas em horário comercial. Atendimento sigiloso 24h.
                             </p>
                             <a
                                 href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Olá! Gostaria de falar com um especialista.")}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center gap-2 w-full bg-[#25D366] text-white font-medium text-sm px-6 py-3.5 rounded-md hover:bg-[#1faf55] transition-all hover:-translate-y-0.5"
+                                className="inline-flex items-center justify-center gap-2 w-full bg-[#25D366] text-white font-semibold text-sm px-6 py-3.5 rounded-md hover:bg-[#1faf55] transition-all hover:-translate-y-0.5"
                             >
                                 Abrir conversa no WhatsApp
+                                <ArrowRight className="w-4 h-4" />
                             </a>
                         </motion.div>
 
@@ -100,22 +103,23 @@ export function Contato() {
                         <motion.div
                             {...fadeIn}
                             transition={{ delay: 0.1 }}
-                            className="premium-card p-8 rounded-xl"
+                            className="service-card p-8 rounded-xl group"
                         >
-                            <div className="flex items-center gap-3 mb-4">
-                                <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center">
-                                    <Mail className="w-6 h-6 text-gold" />
+                            <div className="flex items-center gap-4 mb-5">
+                                <div className="w-14 h-14 rounded-xl bg-gold/10 flex items-center justify-center">
+                                    <Mail className="w-7 h-7 text-gold" strokeWidth={1.5} />
                                 </div>
                                 <h2 className="font-heading text-xl text-text-primary">Email criptografado</h2>
                             </div>
                             <p className="text-text-secondary text-sm mb-6" style={{ lineHeight: 1.7 }}>
-                                Para casos que exigem documentação inicial por escrito.
+                                Para casos que exigem documentação inicial por escrito. ProtonMail.
                             </p>
                             <a
                                 href={`mailto:${EMAIL}`}
-                                className="inline-flex items-center justify-center gap-2 w-full btn-primary text-sm"
+                                className="btn-primary w-full text-sm justify-center"
                             >
                                 {EMAIL}
+                                <ArrowRight className="w-4 h-4" />
                             </a>
                         </motion.div>
                     </div>
@@ -127,10 +131,11 @@ export function Contato() {
                 <div className="max-w-2xl mx-auto">
                     <motion.div
                         {...fadeIn}
-                        className="premium-card p-8 rounded-xl"
+                        className="process-card"
                     >
-                        <div className="section-title-accent-center mb-6">
-                            <h2 className="font-heading text-xl text-text-primary text-center">
+                        <div className="text-center mb-8">
+                            <span className="section-label">Formulário</span>
+                            <h2 className="font-heading text-xl text-text-primary">
                                 Ou envie uma mensagem
                             </h2>
                         </div>
@@ -148,7 +153,7 @@ export function Contato() {
                                 </p>
                             </div>
                         ) : (
-                            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                                 <div>
                                     <label className="block text-text-secondary text-sm mb-2">
                                         Nome (primeiro nome)
@@ -198,7 +203,7 @@ export function Contato() {
                                 <button
                                     type="submit"
                                     disabled={loading}
-                                    className="mt-2 w-full btn-primary inline-flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="mt-2 btn-primary w-full justify-center disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     {loading ? (
                                         <>
@@ -208,14 +213,15 @@ export function Contato() {
                                     ) : (
                                         <>
                                             <Send className="w-4 h-4" />
-                                            Enviar
+                                            Enviar mensagem
+                                            <ArrowRight className="w-4 h-4" />
                                         </>
                                     )}
                                 </button>
                             </form>
                         )}
 
-                        <p className="text-text-muted text-xs text-center mt-6">
+                        <p className="text-text-muted text-xs text-center mt-8">
                             Seus dados são tratados com sigilo absoluto. O contato será feito exclusivamente 
                             pelo WhatsApp informado, de forma discreta.
                         </p>

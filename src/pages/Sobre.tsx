@@ -32,16 +32,18 @@ export function Sobre() {
             {/* Hero */}
             <section className="hero-gradient px-6 sm:px-8 py-16 sm:py-24">
                 <div className="max-w-4xl mx-auto text-center">
-                    <motion.div className="section-title-accent-center">
-                        <motion.h1
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8 }}
-                            className="font-heading text-3xl sm:text-4xl md:text-5xl leading-tight mb-6 font-extralight tracking-tight text-gradient-headline"
-                            style={{ fontWeight: 200, letterSpacing: "-0.03em" }}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <span className="section-label">Sobre</span>
+                        <h1
+                            className="font-heading text-3xl sm:text-4xl md:text-5xl leading-tight mb-6 tracking-tight text-gradient-headline"
+                            style={{ fontWeight: 600, letterSpacing: "-0.02em" }}
                         >
                             Quem somos
-                        </motion.h1>
+                        </h1>
                     </motion.div>
                 </div>
             </section>
@@ -75,7 +77,13 @@ export function Sobre() {
             {/* Differentials */}
             <section className="px-6 sm:px-8 py-16 sm:py-24 bg-surface-alt">
                 <div className="max-w-6xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+                    <motion.div {...fadeIn} className="text-center mb-12">
+                        <span className="section-label">Diferenciais</span>
+                        <h2 className="font-heading text-2xl sm:text-3xl text-text-primary">
+                            Por que escolher a Bforense
+                        </h2>
+                    </motion.div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {DIFFERENTIALS.map((item, i) => {
                             const Icon = item.icon;
                             return (
@@ -85,12 +93,12 @@ export function Sobre() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
-                                    className="text-center"
+                                    className="process-card text-center"
                                 >
-                                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-surface-card border border-border-subtle mb-4">
-                                        <Icon className="w-7 h-7 text-gold" />
+                                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-surface-card border border-border-subtle mb-5">
+                                        <Icon className="w-7 h-7 text-gold" strokeWidth={1.5} />
                                     </div>
-                                    <h3 className="font-heading text-xl text-text-primary mb-2">{item.title}</h3>
+                                    <h3 className="font-heading text-xl text-text-primary mb-3">{item.title}</h3>
                                     <p className="text-text-secondary text-sm leading-relaxed">{item.desc}</p>
                                 </motion.div>
                             );

@@ -18,11 +18,12 @@
   --color-surface-alt: #0e0e0e;
   --color-surface-elevated: #080808;
   --color-surface-card: #111111;
-  --color-border-subtle: rgba(255, 255, 255, 0.04);
+  --color-surface-card-hover: #151515;
+  --color-border-subtle: rgba(255, 255, 255, 0.06);
   --color-border-muted: rgba(255, 255, 255, 0.08);
   --color-gold: #b8964e;
   --color-gold-hover: rgba(184, 150, 78, 0.3);
-  --color-gold-glow: rgba(184, 150, 78, 0.05);
+  --color-gold-glow: rgba(184, 150, 78, 0.04);
   --color-gold-border: rgba(184, 150, 78, 0.4);
   --color-text-primary: #ffffff;
   --color-text-secondary: #a0a0a0;
@@ -75,9 +76,53 @@
   }
 }
 
-/* Hero gradient background */
+/* Hero gradient background with mesh effect */
 .hero-gradient {
-  background: radial-gradient(ellipse at 50% 0%, #141414 0%, #0a0a0a 70%);
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(184, 150, 78, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 0%, #141414 0%, #0a0a0a 70%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated mesh background for hero */
+.hero-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(184, 150, 78, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 40%);
+  animation: mesh-float 20s ease-in-out infinite;
+}
+
+@keyframes mesh-float {
+  0%, 100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-10px);
+  }
+}
+
+/* Grid pattern overlay */
+.grid-pattern {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Section label (like SecureFlow's "Features", "Services") */
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-gold);
+  margin-bottom: 12px;
 }
 
 /* Section title accent bar */
@@ -107,35 +152,159 @@
   background-clip: text;
 }
 
+/* Hero badge styles (like SecureFlow's "Security Monitoring" tags) */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 0.875rem;
+  color: #d0d0d0;
+}
+
+.hero-badge svg {
+  color: var(--color-gold);
+}
+
 /* Card styles */
 .premium-card {
   background: var(--color-surface-card);
   border: 1px solid var(--color-border-subtle);
-  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+  position: relative;
 }
 
 .premium-card:hover {
   border-color: var(--color-gold-hover);
   box-shadow: 0 0 30px var(--color-gold-glow);
+  transform: translateY(-2px);
 }
 
-.premium-card-title {
-  border-left: 2px solid var(--color-gold);
-  padding-left: 12px;
+/* Service card with arrow */
+.service-card {
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border-subtle);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card:hover {
+  border-color: var(--color-gold-hover);
+  box-shadow: 0 0 30px var(--color-gold-glow);
+  transform: translateY(-2px);
+}
+
+.service-card .card-arrow {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .card-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.service-card .card-icon {
+  transition: color 0.3s ease;
+}
+
+.service-card:hover .card-icon {
+  color: var(--color-gold);
+}
+
+/* Process card */
+.process-card {
+  background: #0f0f0f;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  padding: 32px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.process-card:hover {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: #121212;
+}
+
+.process-card-number {
+  font-size: 4rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.04);
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  line-height: 1;
+  font-family: var(--font-heading);
+}
+
+/* Counter styles */
+.counter-value {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1;
+  font-family: var(--font-heading);
+}
+
+.counter-label {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin-top: 8px;
+}
+
+/* Testimonial card */
+.testimonial-card {
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 12px;
+  padding: 32px;
+  min-width: 350px;
+  max-width: 400px;
+  flex-shrink: 0;
+}
+
+.testimonial-quote {
+  font-size: 4rem;
+  line-height: 1;
+  color: rgba(184, 150, 78, 0.2);
+  font-family: Georgia, serif;
+  margin-bottom: -20px;
+}
+
+.testimonial-initials {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(184, 150, 78, 0.15);
+  color: var(--color-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 /* Button styles */
 .btn-primary {
-  background: #ffffff;
+  background: var(--color-gold);
   color: #0a0a0a;
-  font-weight: 500;
-  padding: 14px 32px;
+  font-weight: 600;
+  padding: 14px 28px;
   border-radius: 6px;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .btn-primary:hover {
-  background: #e0e0e0;
+  filter: brightness(1.1);
   transform: translateY(-1px);
 }
 
@@ -143,13 +312,17 @@
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #e8e8e8;
-  padding: 14px 32px;
+  font-weight: 500;
+  padding: 14px 28px;
   border-radius: 6px;
-  transition: border-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .btn-secondary:hover {
-  border-color: rgba(184, 150, 78, 0.5);
+  border-color: rgba(255, 255, 255, 0.4);
   color: #ffffff;
   transform: translateY(-1px);
 }
@@ -249,8 +422,22 @@
   font-family: var(--font-heading);
 }
 
+/* CTA gradient section */
+.cta-gradient {
+  background: 
+    radial-gradient(ellipse at 50% 50%, rgba(184, 150, 78, 0.05) 0%, transparent 60%),
+    linear-gradient(180deg, #0e0e0e 0%, #0a0a0a 100%);
+}
+
 /* Credibility section borders */
 .credibility-section {
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+/* Metrics section */
+.metrics-section {
+  background: linear-gradient(180deg, #0d0d0d 0%, #0a0a0a 100%);
   border-top: 1px solid var(--color-border-subtle);
   border-bottom: 1px solid var(--color-border-subtle);
 }
@@ -269,6 +456,21 @@
   animation: marquee 22s linear infinite;
   will-change: transform;
   contain: layout style;
+}
+
+/* Carousel scroll */
+.testimonial-scroll {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 16px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.testimonial-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 /* Custom scrollbar for testimonials */
