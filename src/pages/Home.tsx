@@ -25,18 +25,25 @@ const PHONE = "551131641004";
 
 const SERVICES = [
     {
-        icon: Heart,
-        title: "Investigacao Conjugal",
-        desc: "Descubra a verdade sobre seu relacionamento com provas concretas de traicao, flagrantes de adulterio e relatorios detalhados.",
-        features: ["Flagrantes em foto e video", "Monitoramento discreto", "Relatorio completo"],
-        slug: "investigacao-conjugal",
-    },
-    {
         icon: Search,
         title: "Localizacao de Pessoas",
         desc: "Encontramos pessoas desaparecidas, devedores, pais biologicos, golpistas e individuos que nao desejam ser encontrados.",
         features: ["Rastreamento avancado", "Localizacao de golpistas", "Busca de familiares"],
         slug: "localizacao-pessoas",
+    },
+    {
+        icon: Users,
+        title: "Localizacao de Golpistas",
+        desc: "Encontramos criminosos que aplicam golpes do Pix, veiculos, emprestimos falsos e estelionato em geral.",
+        features: ["Golpes financeiros", "Rastreamento de PIX", "Recuperacao de dados"],
+        slug: "localizacao-golpistas",
+    },
+    {
+        icon: Heart,
+        title: "Investigacao Conjugal",
+        desc: "Descubra a verdade sobre seu relacionamento com provas concretas de traicao, flagrantes de adulterio e relatorios detalhados.",
+        features: ["Flagrantes em foto e video", "Monitoramento discreto", "Relatorio completo"],
+        slug: "investigacao-conjugal",
     },
     {
         icon: Briefcase,
@@ -58,13 +65,6 @@ const SERVICES = [
         desc: "Descobrimos perfis ocultos em redes sociais, sites de relacionamento adulto e atividades suspeitas online.",
         features: ["Perfis ocultos", "Redes sociais", "Rastreamento digital"],
         slug: "investigacao-virtual",
-    },
-    {
-        icon: Users,
-        title: "Localizacao de Golpistas",
-        desc: "Encontramos criminosos que aplicam golpes do Pix, veiculos, emprestimos falsos e estelionato em geral.",
-        features: ["Golpes financeiros", "Rastreamento de PIX", "Recuperacao de dados"],
-        slug: "localizacao-golpistas",
     },
     {
         icon: FileText,
