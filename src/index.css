@@ -21,10 +21,10 @@
   --color-surface-card-hover: #151515;
   --color-border-subtle: rgba(255, 255, 255, 0.06);
   --color-border-muted: rgba(255, 255, 255, 0.08);
-  --color-gold: #b8964e;
-  --color-gold-hover: rgba(184, 150, 78, 0.3);
-  --color-gold-glow: rgba(184, 150, 78, 0.04);
-  --color-gold-border: rgba(184, 150, 78, 0.4);
+  --color-gold: #0030FD;
+  --color-gold-hover: rgba(0, 48, 253, 0.3);
+  --color-gold-glow: rgba(0, 48, 253, 0.04);
+  --color-gold-border: rgba(0, 48, 253, 0.4);
   --color-text-primary: #ffffff;
   --color-text-secondary: #a0a0a0;
   --color-text-muted: #606060;
@@ -79,7 +79,7 @@
 /* Hero gradient background with mesh effect */
 .hero-gradient {
   background: 
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(184, 150, 78, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 48, 253, 0.08) 0%, transparent 50%),
     radial-gradient(ellipse at 50% 0%, #141414 0%, #0a0a0a 70%);
   position: relative;
   overflow: hidden;
@@ -118,7 +118,7 @@
   position: absolute;
   inset: 0;
   background-image: 
-    radial-gradient(circle at center, rgba(184, 150, 78, 0.08) 1px, transparent 1px);
+    radial-gradient(circle at center, rgba(0, 48, 253, 0.08) 1px, transparent 1px);
   background-size: 40px 40px;
   opacity: 0.5;
   pointer-events: none;
@@ -192,7 +192,7 @@
 }
 
 .service-icon-container:hover .service-icon {
-  filter: drop-shadow(0 0 8px rgba(184, 150, 78, 0.3));
+  filter: drop-shadow(0 0 8px rgba(0, 48, 253, 0.3));
 }
 
 /* Draw-in animation for SVG strokes */
@@ -490,7 +490,7 @@
 .testimonial-quote {
   font-size: 5rem;
   line-height: 1;
-  color: rgba(184, 150, 78, 0.15);
+  color: rgba(0, 48, 253, 0.15);
   font-family: Georgia, serif;
   position: absolute;
   top: 16px;
@@ -514,7 +514,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: rgba(184, 150, 78, 0.15);
+  background: rgba(0, 48, 253, 0.15);
   color: var(--color-gold);
   display: flex;
   align-items: center;
@@ -675,7 +675,7 @@
 
 .cta-gradient {
   background: 
-    radial-gradient(ellipse at 50% 50%, rgba(184, 150, 78, 0.05) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 50%, rgba(0, 48, 253, 0.05) 0%, transparent 60%),
     linear-gradient(180deg, #0e0e0e 0%, #0a0a0a 100%);
   position: relative;
 }
@@ -709,8 +709,8 @@
 
 .input-premium:focus {
   outline: none;
-  border-color: rgba(184, 150, 78, 0.5);
-  box-shadow: 0 0 0 2px rgba(184, 150, 78, 0.1);
+  border-color: rgba(0, 48, 253, 0.5);
+  box-shadow: 0 0 0 2px rgba(0, 48, 253, 0.1);
 }
 
 /* ============================================

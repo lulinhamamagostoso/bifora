@@ -56,7 +56,7 @@ export function NetworkBackground() {
         window.addEventListener("resize", resize);
 
         let time = 0;
-        const goldColor = { r: 184, g: 150, b: 78 };
+        const goldColor = { r: 0, g: 48, b: 253 };
 
         const animate = () => {
             if (!canvas || !ctx) return;
