@@ -8,10 +8,12 @@ import { Sobre } from "./pages/Sobre";
 import { Contato } from "./pages/Contato";
 import { Blog } from "./pages/Blog";
 import { BlogPost } from "./pages/BlogPost";
+import { AnalyticsTracker } from "./components/AnalyticsTracker";
 
 export default function App() {
     return (
         <BrowserRouter>
+            <AnalyticsTracker />
             <Routes>
                 <Route element={<Layout />}>
                     <Route path="/" element={<Home />} />

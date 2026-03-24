@@ -95,77 +95,66 @@ const STEPS = [
 ];
 
 const METRICS = [
-    { value: 200, suffix: "+", label: "Operações concluídas" },
-    { value: 12, suffix: "", label: "Estados de atuação" },
-    { value: 98, suffix: "%", label: "Taxa de resolução" },
-    { value: 24, suffix: "h", label: "Tempo de resposta" },
+    { value: 200, suffix: "+", label: "Casos resolvidos" },
+    { value: 98, suffix: "%", label: "Taxa de sucesso" },
+    { value: 30, suffix: "min", label: "Tempo de resposta" },
+    { value: 12, suffix: "+", label: "Estados atendidos" },
 ];
 
 const TESTIMONIALS = [
+    {
+        text: "Recuperamos R$ 340 mil que já dávamos como perdidos. A investigação patrimonial revelou bens ocultos que nem nosso advogado sabia.",
+        name: "Cliente Confidencial",
+        role: "Empresário — Curitiba",
+        initials: "RC",
+        highlight: "R$ 340 mil recuperados",
+    },
+    {
+        text: "Contratei para uma due diligence antes de uma sociedade. Descobriram processos e dívidas que a outra parte omitiu. Evitou um prejuízo de R$ 2 milhões.",
+        name: "Cliente Confidencial",
+        role: "Investidor — São Paulo",
+        initials: "MF",
+        highlight: "R$ 2M em prejuízo evitado",
+    },
     {
         text: "A equipe entendeu a complexidade do caso e entregou em 12 dias o que meu advogado tentava há 8 meses.",
         name: "Cliente Confidencial",
         role: "Diretor Jurídico",
         initials: "DJ",
+        highlight: "12 dias vs 8 meses",
+    },
+    {
+        text: "As provas levantadas mudaram completamente o rumo do processo. Ganhamos a causa após anos de impasse.",
+        name: "Cliente Confidencial",
+        role: "via Escritório de Advocacia",
+        initials: "EA",
+        highlight: "Causa ganha",
     },
     {
         text: "Profissionalismo absoluto. Desde o primeiro contato até a entrega do dossiê, tudo foi conduzido com discrição exemplar.",
         name: "Cliente Confidencial",
         role: "Empresário",
         initials: "EM",
-    },
-    {
-        text: "As provas levantadas mudaram completamente o rumo do processo. Resultado que parecia impossível.",
-        name: "Cliente Confidencial",
-        role: "via Escritório de Advocacia",
-        initials: "EA",
-    },
-    {
-        text: "Recuperamos R$ 340 mil que já dávamos como perdidos. A investigação patrimonial revelou bens ocultos que nem nosso advogado sabia.",
-        name: "Cliente Confidencial",
-        role: "Empresário — Curitiba",
-        initials: "RC",
-    },
-    {
-        text: "Contratei para uma due diligence antes de uma sociedade. Descobriram processos e dívidas que a outra parte omitiu. Evitou um prejuízo enorme.",
-        name: "Cliente Confidencial",
-        role: "Investidor — São Paulo",
-        initials: "MF",
+        highlight: "Discrição total",
     },
 ];
 
 const FAQ_ITEMS = [
     {
         question: "Quanto custa uma investigação?",
-        answer: "O investimento depende da complexidade do caso, do prazo e dos recursos necessários. Após o primeiro contato confidencial, apresentamos um orçamento detalhado antes de qualquer compromisso. Trabalhamos com valores a partir de R$1.500 para investigações pontuais.",
-    },
-    {
-        question: "Como funciona o sigilo?",
-        answer: "Toda comunicação é feita por canais seguros. Não armazenamos dados além do necessário para a operação. O contato pelo WhatsApp é feito de forma discreta, sem identificação do serviço. Relatórios são entregues em formato seguro e deletados de nossos servidores após a entrega.",
+        answer: "O investimento depende da complexidade do caso. Após a avaliação gratuita, apresentamos um orçamento detalhado sem compromisso. Valores a partir de R$1.500 para investigações pontuais. Aceitamos PIX, transferência e cartão em até 6x.",
     },
     {
         question: "A investigação privada é legal?",
-        answer: "Sim. A profissão de detetive particular é regulamentada pela Lei Federal 13.432/2017. Todos os nossos métodos operam dentro da legalidade — não realizamos interceptações telefônicas, quebra de sigilo bancário ou qualquer procedimento que exija ordem judicial.",
+        answer: "Sim. Somos regulamentados pela Lei Federal 13.432/2017. Todos os métodos operam dentro da legalidade e os relatórios são aceitos como prova em processos judiciais, arbitragens e procedimentos administrativos.",
     },
     {
-        question: "Os relatórios servem como prova judicial?",
-        answer: "Sim. Nossos relatórios são elaborados com rigor documental e metodologia que atende aos requisitos para utilização como prova em processos judiciais, arbitragens e procedimentos administrativos.",
-    },
-    {
-        question: "Vocês atendem fora de Porto Alegre?",
-        answer: "Sim. Temos sede em Porto Alegre mas atuamos em todo o território nacional. Já conduzimos operações em mais de 12 estados.",
+        question: "Como funciona o sigilo?",
+        answer: "Comunicação por canais seguros e criptografados. Não armazenamos dados além do necessário. Relatórios entregues em formato seguro e deletados de nossos servidores após a entrega.",
     },
     {
         question: "Quanto tempo dura uma investigação?",
-        answer: "Depende do caso. Investigações pontuais podem ser concluídas em 5 a 15 dias. Operações mais complexas, como rastreamento patrimonial ou suporte a litígios, podem levar de 30 a 90 dias.",
-    },
-    {
-        question: "Quais formas de pagamento vocês aceitam?",
-        answer: "Trabalhamos com PIX, transferência bancária e cartão de crédito em até 6x. Emitimos nota fiscal de todos os serviços prestados.",
-    },
-    {
-        question: "Posso contratar para meu advogado usar?",
-        answer: "Sim. Muitos de nossos clientes são escritórios de advocacia que nos contratam para produção de provas e inteligência em processos. Trabalhamos diretamente com a equipe jurídica do cliente.",
+        answer: "Investigações pontuais: 5 a 15 dias. Operações complexas como rastreamento patrimonial: 30 a 90 dias. Atuamos em todo o Brasil, com sede em Porto Alegre e operações em mais de 12 estados.",
     },
 ];
 
@@ -351,7 +340,7 @@ function ProcessCard({ step, index }: { step: typeof STEPS[0]; index: number }) 
 
 export function Home() {
     return (
-        <div className="pt-16 sm:pt-18">
+        <div className="pt-16 sm:pt-18 pb-20 md:pb-0">
             {/* Hero */}
             <section className="hero-section relative min-h-screen overflow-hidden">
                 {/* Absolute background layer */}
@@ -403,33 +392,69 @@ export function Home() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
-                            className="text-[#b0ada8] text-base lg:text-lg max-w-lg mb-10"
+                            className="text-[#b0ada8] text-base lg:text-lg max-w-lg mb-6"
                             style={{ lineHeight: 1.75 }}
                         >
                             Uma agência privada completa, com investigadores de campo, detetives, analistas de inteligência e hackers éticos, para quem precisa vencer, proteger o que é seu ou revelar o que tentaram esconder.
                         </motion.p>
+
+                        {/* Social Proof Mini - Above the fold */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.4 }}
+                            className="flex flex-wrap items-center gap-4 mb-8"
+                        >
+                            <div className="flex items-center gap-2">
+                                <div className="flex -space-x-2">
+                                    {["DJ", "EM", "EA"].map((initials, i) => (
+                                        <div key={i} className="w-8 h-8 rounded-full bg-elevation border-2 border-bg flex items-center justify-center text-xs font-medium text-gold">
+                                            {initials}
+                                        </div>
+                                    ))}
+                                </div>
+                                <span className="text-sm text-text-secondary">+200 casos resolvidos</span>
+                            </div>
+                            <div className="hidden sm:flex items-center gap-1.5">
+                                {[...Array(5)].map((_, i) => (
+                                    <Star key={i} className="w-4 h-4 fill-gold text-gold" />
+                                ))}
+                                <span className="text-sm text-text-secondary ml-1">98% de sucesso</span>
+                            </div>
+                        </motion.div>
 
                         {/* CTA Buttons */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.5 }}
-                            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-12"
+                            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-8"
                         >
                             <a
-                                href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Olá! Gostaria de falar com um especialista.")}`}
+                                href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Olá! Gostaria de uma avaliação gratuita do meu caso.")}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="btn-primary text-base"
+                                className="btn-primary text-base group"
                             >
                                 <MessageCircle className="w-5 h-5" />
-                                Fale com um especialista
-                                <ArrowRight className="w-4 h-4" />
+                                Avaliação gratuita do caso
+                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </a>
                             <Link to="/servicos" className="btn-secondary text-base">
-                                Conheça os serviços
+                                Ver serviços
                                 <ArrowRight className="w-4 h-4" />
                             </Link>
+                        </motion.div>
+                        
+                        {/* Response time badge */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.5, delay: 0.7 }}
+                            className="flex items-center gap-2 text-sm text-text-secondary"
+                        >
+                            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                            Resposta em até 30 minutos
                         </motion.div>
 
                     </div>
@@ -440,12 +465,13 @@ export function Home() {
             </section>
 
             {/* Trust badges strip */}
-            <div className="trust-strip px-6 sm:px-8 py-4">
-                <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-x-8 gap-y-2">
+            <div className="trust-strip px-6 sm:px-8 py-5">
+                <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-x-6 sm:gap-x-10 gap-y-3">
                     {[
-                        { icon: <Shield className="w-3.5 h-3.5" />, label: "Sigilo Total" },
-                        { icon: <Check className="w-3.5 h-3.5" />, label: "100% Legal" },
-                        { icon: <MapPin className="w-3.5 h-3.5" />, label: "Atuação Nacional" },
+                        { icon: <Shield className="w-4 h-4" />, label: "Sigilo Absoluto" },
+                        { icon: <Scale className="w-4 h-4" />, label: "Lei 13.432/2017" },
+                        { icon: <Check className="w-4 h-4" />, label: "Avaliação Gratuita" },
+                        { icon: <MapPin className="w-4 h-4" />, label: "12 Estados" },
                     ].map((item, i) => (
                         <div key={i} className="hero-trust-badge">
                             {item.icon}
@@ -598,8 +624,14 @@ export function Home() {
                         {TESTIMONIALS.map((testimonial, i) => (
                             <div key={i} className="testimonial-card">
                                 <span className="testimonial-quote">"</span>
+                                {/* Highlight badge */}
+                                <div className="relative z-10 mt-4 mb-3">
+                                    <span className="inline-block px-3 py-1 bg-gold/10 border border-gold/20 rounded-full text-gold text-xs font-medium">
+                                        {testimonial.highlight}
+                                    </span>
+                                </div>
                                 {/* Stars */}
-                                <div className="testimonial-stars relative z-10 mt-4">
+                                <div className="testimonial-stars relative z-10">
                                     {[...Array(5)].map((_, j) => (
                                         <Star key={j} className="w-4 h-4" />
                                     ))}
@@ -617,53 +649,6 @@ export function Home() {
                                     </div>
                                 </div>
                             </div>
-                        ))}
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* Divider */}
-            <div className="section-divider-glow" />
-
-            {/* Geographic Coverage */}
-            <section className="px-6 sm:px-8 py-20 sm:py-28 bg-surface-alt">
-                <div className="max-w-6xl mx-auto">
-                    <motion.div {...fadeIn} className="text-center mb-10">
-                        <span className="section-label">Cobertura</span>
-                        <h2 className="font-heading text-2xl sm:text-3xl text-text-primary">
-                            Onde <span className="text-gold-accent">atuamos</span>
-                        </h2>
-                        <p className="text-text-secondary mt-4 max-w-xl mx-auto">
-                            Sede em Porto Alegre — RS. Operações em todo o Brasil.
-                        </p>
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="flex flex-wrap items-center justify-center gap-3"
-                    >
-                        {[
-                            "Porto Alegre",
-                            "Região Metropolitana",
-                            "Litoral Gaúcho",
-                            "Serra Gaúcha",
-                            "Interior do RS",
-                            "Santa Catarina",
-                            "Paraná",
-                            "São Paulo",
-                            "Rio de Janeiro",
-                            "Brasília",
-                            "Minas Gerais",
-                            "Nordeste",
-                        ].map((region, i) => (
-                            <span
-                                key={region}
-                                className="region-tag"
-                            >
-                                {region}
-                            </span>
                         ))}
                     </motion.div>
                 </div>
