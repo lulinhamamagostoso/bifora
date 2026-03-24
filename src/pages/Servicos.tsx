@@ -1,70 +1,9 @@
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { MessageCircle, Search, ShieldCheck, Gavel, TrendingUp, Heart, Globe, ArrowRight } from "lucide-react";
+import { MessageCircle, ArrowRight } from "lucide-react";
+import { SERVICES } from "../data/services";
 
 const PHONE = "555131641004";
-
-const SERVICES = [
-    {
-        icon: Search,
-        title: "Investigação patrimonial",
-        desc: "Rastreamento de bens, empresas de fachada, laranjas e estruturas offshore. Identificamos quem realmente controla os ativos — mesmo quando não há rastro em papel.",
-        bullets: [
-            "Mapeamento de CNPJs e participações societárias ocultas",
-            "Identificação de testas-de-ferro e estruturas de blindagem",
-            "Relatório com cadeia de propriedade documentada",
-        ],
-    },
-    {
-        icon: ShieldCheck,
-        title: "Due diligence",
-        desc: "Verificação profunda de pessoas e empresas antes de decisões críticas. Vamos além do Google e dos registros públicos.",
-        bullets: [
-            "Background check de sócios, parceiros e executivos",
-            "Análise de reputação, litígios, dívidas e vínculos ocultos",
-            "Verificação de credenciais e histórico profissional",
-        ],
-    },
-    {
-        icon: Gavel,
-        title: "Suporte a litígios",
-        desc: "Produção de provas e inteligência estratégica para disputas judiciais, arbitragens e processos de alta complexidade.",
-        bullets: [
-            "Acervo probatório robusto para litígios e arbitragens",
-            "Investigação de testemunhas, peritos e partes adversas",
-            "Inteligência para fundamentar teses jurídicas",
-        ],
-    },
-    {
-        icon: TrendingUp,
-        title: "Inteligência financeira",
-        desc: "Investigação de movimentações suspeitas, desvios de capital, fraude societária e lavagem de dinheiro. Seguimos o dinheiro até o destino final.",
-        bullets: [
-            "Rastreamento de fluxos financeiros e transações atípicas",
-            "Análise de contas intermediárias e padrões de movimentação",
-            "Evidências para suporte jurídico e contábil",
-        ],
-    },
-    {
-        icon: Heart,
-        title: "Investigação conjugal",
-        desc: "Monitoramento discreto, coleta de provas e documentação completa para casos de infidelidade e questões pessoais. Sigilo absoluto.",
-        bullets: [
-            "Monitoramento e levantamento de provas em campo",
-            "Documentação fotográfica e relatório detalhado",
-            "Material aceito como prova judicial",
-        ],
-    },
-    {
-        icon: Globe,
-        title: "Investigação digital",
-        desc: "Análise de pegada digital, redes sociais, domínios, registros e rastros online. Tudo que alguém tenta esconder na internet, nós encontramos.",
-        bullets: [
-            "Mapeamento de presença digital e perfis vinculados",
-            "Análise de domínios, registros e infraestrutura web",
-            "Recuperação de conteúdo deletado e análise de metadados",
-        ],
-    },
-];
 
 export function Servicos() {
     return (
@@ -97,61 +36,88 @@ export function Servicos() {
                 </div>
             </section>
 
-            {/* Services */}
+            {/* Services Grid */}
             <section className="px-6 sm:px-8 pb-20 sm:pb-28 bg-surface">
-                <div className="max-w-4xl mx-auto">
-                    <div className="flex flex-col gap-6 -mt-8">
+                <div className="max-w-6xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 -mt-8">
                         {SERVICES.map((service, i) => {
                             const Icon = service.icon;
                             return (
                                 <motion.div
-                                    key={service.title}
+                                    key={service.slug}
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.6, delay: i * 0.08, ease: "easeOut" }}
-                                    className="service-card p-8 rounded-xl group"
+                                    transition={{ duration: 0.6, delay: i * 0.05, ease: "easeOut" }}
                                 >
-                                    <div className="flex items-start gap-5 mb-5">
-                                        <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-surface border border-border-subtle flex items-center justify-center">
-                                            <Icon className="w-7 h-7 text-text-secondary card-icon" strokeWidth={1.5} />
+                                    <Link
+                                        to={`/servicos/${service.slug}`}
+                                        className="service-card p-6 sm:p-8 rounded-xl group block h-full"
+                                    >
+                                        <div className="flex items-start gap-4 mb-4">
+                                            <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-surface border border-border-subtle flex items-center justify-center">
+                                                <Icon className="w-6 h-6 text-text-secondary card-icon" strokeWidth={1.5} />
+                                            </div>
+                                            <div className="flex-1">
+                                                <h2 className="font-heading text-lg sm:text-xl text-text-primary mb-2 group-hover:text-gold transition-colors">
+                                                    {service.title}
+                                                </h2>
+                                                <p className="text-text-secondary text-sm leading-relaxed">
+                                                    {service.shortDesc}
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div className="flex-1">
-                                            <h2 className="font-heading text-xl sm:text-2xl text-text-primary mb-2">
-                                                {service.title}
-                                            </h2>
-                                            <p className="text-text-secondary text-sm sm:text-base leading-relaxed">
-                                                {service.desc}
-                                            </p>
+                                        <ul className="ml-16 mb-4 flex flex-col gap-1.5">
+                                            {service.bullets.slice(0, 3).map((bullet) => (
+                                                <li
+                                                    key={bullet}
+                                                    className="text-text-secondary text-sm flex items-start gap-2"
+                                                >
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-gold mt-1.5 flex-shrink-0" />
+                                                    {bullet}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                        <div className="ml-16 flex items-center justify-between">
+                                            <span className="inline-flex items-center gap-2 text-gold font-medium text-sm">
+                                                Saiba mais
+                                                <ArrowRight className="w-4 h-4 card-arrow" />
+                                            </span>
                                         </div>
-                                    </div>
-                                    <ul className="ml-[4.75rem] mb-6 flex flex-col gap-2">
-                                        {service.bullets.map((bullet) => (
-                                            <li
-                                                key={bullet}
-                                                className="text-text-secondary text-sm flex items-start gap-3"
-                                            >
-                                                <span className="w-1.5 h-1.5 rounded-full bg-gold mt-2 flex-shrink-0" />
-                                                {bullet}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    <div className="ml-[4.75rem] flex items-center justify-between">
-                                        <a
-                                            href={`https://wa.me/${PHONE}?text=${encodeURIComponent(`Olá! Gostaria de falar sobre ${service.title}.`)}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-2 text-gold hover:text-[#d4ac5a] font-medium text-sm transition-colors"
-                                        >
-                                            <MessageCircle className="w-4 h-4" />
-                                            Falar sobre esse serviço
-                                        </a>
-                                        <ArrowRight className="w-5 h-5 text-gold card-arrow" />
-                                    </div>
+                                    </Link>
                                 </motion.div>
                             );
                         })}
                     </div>
+                </div>
+            </section>
+
+            {/* CTA */}
+            <section className="px-6 sm:px-8 py-16 sm:py-20 bg-surface-alt">
+                <div className="max-w-3xl mx-auto text-center">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <h2 className="font-heading text-2xl sm:text-3xl text-text-primary mb-4">
+                            Não encontrou o que precisa?
+                        </h2>
+                        <p className="text-text-secondary mb-8">
+                            Cada caso é único. Fale conosco e descreva sua situação — avaliamos e propomos a melhor abordagem.
+                        </p>
+                        <a
+                            href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Olá! Gostaria de falar sobre um caso específico.")}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn-primary text-base"
+                        >
+                            <MessageCircle className="w-5 h-5" />
+                            Fale com um especialista
+                            <ArrowRight className="w-4 h-4" />
+                        </a>
+                    </motion.div>
                 </div>
             </section>
         </div>

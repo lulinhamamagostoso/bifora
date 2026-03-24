@@ -9,6 +9,7 @@ import {
     Brain,
     Check,
     Star,
+    ChevronDown,
 } from "lucide-react";
 import { NetworkBackground } from "../components/NetworkBackground";
 import {
@@ -113,12 +114,112 @@ const TESTIMONIALS = [
     },
 ];
 
+const FAQ_ITEMS = [
+    {
+        question: "Quanto custa uma investigação?",
+        answer: "O investimento depende da complexidade do caso, do prazo e dos recursos necessários. Após o primeiro contato confidencial, apresentamos um orçamento detalhado antes de qualquer compromisso. Trabalhamos com valores a partir de R$1.500 para investigações pontuais.",
+    },
+    {
+        question: "Como funciona o sigilo?",
+        answer: "Toda comunicação é feita por canais seguros. Não armazenamos dados além do necessário para a operação. O contato pelo WhatsApp é feito de forma discreta, sem identificação do serviço. Relatórios são entregues em formato seguro e deletados de nossos servidores após a entrega.",
+    },
+    {
+        question: "A investigação privada é legal?",
+        answer: "Sim. A profissão de detetive particular é regulamentada pela Lei Federal 13.432/2017. Todos os nossos métodos operam dentro da legalidade — não realizamos interceptações telefônicas, quebra de sigilo bancário ou qualquer procedimento que exija ordem judicial.",
+    },
+    {
+        question: "Os relatórios servem como prova judicial?",
+        answer: "Sim. Nossos relatórios são elaborados com rigor documental e metodologia que atende aos requisitos para utilização como prova em processos judiciais, arbitragens e procedimentos administrativos.",
+    },
+    {
+        question: "Vocês atendem fora de Porto Alegre?",
+        answer: "Sim. Temos sede em Porto Alegre mas atuamos em todo o território nacional. Já conduzimos operações em mais de 12 estados.",
+    },
+    {
+        question: "Quanto tempo dura uma investigação?",
+        answer: "Depende do caso. Investigações pontuais podem ser concluídas em 5 a 15 dias. Operações mais complexas, como rastreamento patrimonial ou suporte a litígios, podem levar de 30 a 90 dias.",
+    },
+    {
+        question: "Quais formas de pagamento vocês aceitam?",
+        answer: "Trabalhamos com PIX, transferência bancária e cartão de crédito em até 6x. Emitimos nota fiscal de todos os serviços prestados.",
+    },
+    {
+        question: "Posso contratar para meu advogado usar?",
+        answer: "Sim. Muitos de nossos clientes são escritórios de advocacia que nos contratam para produção de provas e inteligência em processos. Trabalhamos diretamente com a equipe jurídica do cliente.",
+    },
+];
+
 const fadeIn = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
     transition: { duration: 0.6, ease: "easeOut" },
 };
+
+// FAQ Accordion Item
+function FAQItem({ item, isOpen, onClick }: { item: typeof FAQ_ITEMS[0]; isOpen: boolean; onClick: () => void }) {
+    return (
+        <div className="border-b border-border-subtle">
+            <button
+                onClick={onClick}
+                className="w-full py-5 flex items-center justify-between text-left group"
+            >
+                <span className="font-medium text-text-primary group-hover:text-gold transition-colors pr-4">
+                    {item.question}
+                </span>
+                <ChevronDown
+                    className={`w-5 h-5 text-text-secondary flex-shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                />
+            </button>
+            <div
+                className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-96 pb-5" : "max-h-0"}`}
+            >
+                <p className="text-text-secondary leading-relaxed">
+                    {item.answer}
+                </p>
+            </div>
+        </div>
+    );
+}
+
+// FAQ Section Component
+function FAQSection() {
+    const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+    return (
+        <section className="px-6 sm:px-8 py-16 sm:py-24 bg-surface">
+            <div className="max-w-3xl mx-auto">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-10"
+                >
+                    <span className="section-label">Dúvidas</span>
+                    <h2 className="font-heading text-2xl sm:text-3xl text-text-primary">
+                        Perguntas frequentes
+                    </h2>
+                </motion.div>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                >
+                    {FAQ_ITEMS.map((item, i) => (
+                        <FAQItem
+                            key={i}
+                            item={item}
+                            isOpen={openIndex === i}
+                            onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                        />
+                    ))}
+                </motion.div>
+            </div>
+        </section>
+    );
+}
 
 // Animated counter component
 function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
@@ -458,6 +559,53 @@ export function Home() {
                     </motion.div>
                 </div>
             </section>
+
+            {/* Geographic Coverage */}
+            <section className="px-6 sm:px-8 py-16 sm:py-24 bg-surface-alt">
+                <div className="max-w-6xl mx-auto">
+                    <motion.div {...fadeIn} className="text-center mb-10">
+                        <span className="section-label">Cobertura</span>
+                        <TextReveal className="font-heading text-2xl sm:text-3xl text-text-primary">
+                            Onde atuamos
+                        </TextReveal>
+                        <p className="text-text-secondary mt-4 max-w-xl mx-auto">
+                            Sede em Porto Alegre — RS. Operações em todo o Brasil.
+                        </p>
+                    </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="flex flex-wrap items-center justify-center gap-3"
+                    >
+                        {[
+                            "Porto Alegre",
+                            "Região Metropolitana",
+                            "Litoral Gaúcho",
+                            "Serra Gaúcha",
+                            "Interior do RS",
+                            "Santa Catarina",
+                            "Paraná",
+                            "São Paulo",
+                            "Rio de Janeiro",
+                            "Brasília",
+                            "Minas Gerais",
+                            "Nordeste",
+                        ].map((region, i) => (
+                            <span
+                                key={region}
+                                className="px-4 py-2 rounded-full bg-surface-card border border-border-subtle text-text-secondary text-sm hover:border-gold hover:text-gold transition-colors"
+                            >
+                                {region}
+                            </span>
+                        ))}
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* FAQ */}
+            <FAQSection />
 
             {/* Credibility */}
             <section className="credibility-section px-6 sm:px-8 py-20 bg-surface-alt">
