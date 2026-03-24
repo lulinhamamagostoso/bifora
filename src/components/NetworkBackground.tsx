@@ -56,7 +56,7 @@ export function NetworkBackground() {
         window.addEventListener("resize", resize);
 
         let time = 0;
-        const goldColor = { r: 0, g: 48, b: 253 };
+        const goldColor = { r: 218, g: 197, b: 166 }; // #DAC5A6 champagne
 
         const animate = () => {
             if (!canvas || !ctx) return;
