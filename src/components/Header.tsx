@@ -1,23 +1,39 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const PHONE = "555131641004";
+const PHONE = "551131641004";
 const NAV_LINKS = [
     { label: "Serviços", href: "/servicos" },
     { label: "Como funciona", href: "/como-funciona" },
     { label: "Sobre", href: "/sobre" },
+    { label: "Blog", href: "/blog" },
     { label: "Contato", href: "/contato" },
 ];
 
 export function Header() {
     const [mobileOpen, setMobileOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
     const location = useLocation();
 
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-md border-b border-border-subtle">
-            <div className="max-w-6xl mx-auto px-5 sm:px-8">
+        <header 
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+                scrolled 
+                    ? "bg-[rgba(10,10,10,0.8)] backdrop-blur-[20px] border-b border-[rgba(255,255,255,0.04)]" 
+                    : "bg-[rgba(10,10,10,0.8)] backdrop-blur-[20px] border-b border-transparent"
+            }`}
+        >
+            <div className="max-w-6xl mx-auto px-6 sm:px-8">
                 <div className="flex items-center justify-between h-16 sm:h-18">
                     {/* Logo */}
                     <Link to="/" className="flex-shrink-0">
@@ -50,7 +66,7 @@ export function Header() {
                         href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Olá! Gostaria de falar com um especialista.")}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hidden md:inline-flex items-center gap-2 bg-text-primary text-surface font-semibold text-sm px-5 py-2.5 rounded-lg hover:bg-text-secondary transition-colors"
+                        className="hidden md:inline-flex items-center gap-2 btn-header font-medium text-sm px-5 py-2.5 rounded-md"
                     >
                         <MessageCircle className="w-4 h-4" />
                         Fale conosco
@@ -74,9 +90,9 @@ export function Header() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-surface border-b border-border-subtle overflow-hidden"
+                        className="md:hidden bg-surface border-b border-[rgba(255,255,255,0.04)] overflow-hidden"
                     >
-                        <nav className="flex flex-col px-5 py-4 gap-1">
+                        <nav className="flex flex-col px-6 py-4 gap-1">
                             {NAV_LINKS.map((link) => (
                                 <Link
                                     key={link.href}
@@ -95,7 +111,7 @@ export function Header() {
                                 href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Olá! Gostaria de falar com um especialista.")}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="mt-2 flex items-center justify-center gap-2 bg-text-primary text-surface font-semibold text-sm px-5 py-3 rounded-lg"
+                                className="mt-2 flex items-center justify-center gap-2 btn-header font-medium text-sm px-5 py-3 rounded-md"
                             >
                                 <MessageCircle className="w-4 h-4" />
                                 Fale conosco

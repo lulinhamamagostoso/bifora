@@ -1,77 +1,171 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
 import {
     MessageCircle,
     ArrowRight,
     Lock,
     Scale,
     Brain,
-    Search,
-    FileCheck,
-    Gavel,
-    TrendingUp,
-    Heart,
-    Globe,
-    Quote,
-    Mail,
+    Check,
+    Star,
+    ChevronDown,
+    Shield,
+    MapPin,
 } from "lucide-react";
+import { NetworkBackground } from "../components/NetworkBackground";
+import {
+    IconPatrimonial,
+    IconDueDiligence,
+    IconLitigios,
+    IconFinanceira,
+    IconConjugal,
+    IconDigital,
+    ProcessIcon,
+    useIntersectionObserver,
+} from "../components/ServiceIcons";
 
-const PHONE = "555131641004";
-const EMAIL = "bscy@pm.me";
+const PHONE = "551131641004";
+const EMAIL = "bforense@pm.me";
 
 const SERVICES = [
     {
-        icon: Search,
+        Icon: IconPatrimonial,
         title: "Investigação patrimonial",
         desc: "Rastreamento de bens, empresas de fachada e patrimônio oculto.",
+        slug: "investigacao-patrimonial",
     },
     {
-        icon: FileCheck,
+        Icon: IconDueDiligence,
         title: "Due diligence",
         desc: "Verificação profunda de pessoas e empresas antes de decisões críticas.",
+        slug: "due-diligence",
     },
     {
-        icon: Gavel,
+        Icon: IconLitigios,
         title: "Suporte a litígios",
         desc: "Produção de provas e inteligência para disputas judiciais e arbitragens.",
+        slug: "suporte-a-litigios",
     },
     {
-        icon: TrendingUp,
+        Icon: IconFinanceira,
         title: "Inteligência financeira",
         desc: "Investigação de desvios, movimentações suspeitas e fraude societária.",
+        slug: "inteligencia-financeira",
     },
     {
-        icon: Heart,
+        Icon: IconConjugal,
         title: "Investigação conjugal",
         desc: "Monitoramento, levantamento de provas e documentação para casos pessoais.",
+        slug: "investigacao-conjugal",
     },
     {
-        icon: Globe,
+        Icon: IconDigital,
         title: "Investigação digital",
         desc: "Análise de pegada digital, redes sociais, domínios e rastros online.",
+        slug: "investigacao-digital",
     },
 ];
 
 const STEPS = [
     {
         num: "01",
+        type: "contact" as const,
         title: "Contato confidencial",
         desc: "Você fala com um especialista. Tudo sob sigilo desde o primeiro minuto.",
     },
     {
         num: "02",
+        type: "assessment" as const,
         title: "Avaliação do caso",
         desc: "Entendemos a situação, definimos o que é viável e apresentamos um plano.",
     },
     {
         num: "03",
+        type: "execution" as const,
         title: "Execução da operação",
         desc: "Nossa equipe coleta, analisa e cruza informações em campo e no digital.",
     },
     {
         num: "04",
+        type: "delivery" as const,
         title: "Entrega do dossiê",
         desc: "Relatório completo com provas documentadas, pronto para uso jurídico.",
+    },
+];
+
+const METRICS = [
+    { value: 200, suffix: "+", label: "Operações concluídas" },
+    { value: 12, suffix: "", label: "Estados de atuação" },
+    { value: 98, suffix: "%", label: "Taxa de resolução" },
+    { value: 24, suffix: "h", label: "Tempo de resposta" },
+];
+
+const TESTIMONIALS = [
+    {
+        text: "A equipe entendeu a complexidade do caso e entregou em 12 dias o que meu advogado tentava há 8 meses.",
+        name: "Cliente Confidencial",
+        role: "Diretor Jurídico",
+        initials: "DJ",
+    },
+    {
+        text: "Profissionalismo absoluto. Desde o primeiro contato até a entrega do dossiê, tudo foi conduzido com discrição exemplar.",
+        name: "Cliente Confidencial",
+        role: "Empresário",
+        initials: "EM",
+    },
+    {
+        text: "As provas levantadas mudaram completamente o rumo do processo. Resultado que parecia impossível.",
+        name: "Cliente Confidencial",
+        role: "via Escritório de Advocacia",
+        initials: "EA",
+    },
+    {
+        text: "Recuperamos R$ 340 mil que já dávamos como perdidos. A investigação patrimonial revelou bens ocultos que nem nosso advogado sabia.",
+        name: "Cliente Confidencial",
+        role: "Empresário — Curitiba",
+        initials: "RC",
+    },
+    {
+        text: "Contratei para uma due diligence antes de uma sociedade. Descobriram processos e dívidas que a outra parte omitiu. Evitou um prejuízo enorme.",
+        name: "Cliente Confidencial",
+        role: "Investidor — São Paulo",
+        initials: "MF",
+    },
+];
+
+const FAQ_ITEMS = [
+    {
+        question: "Quanto custa uma investigação?",
+        answer: "O investimento depende da complexidade do caso, do prazo e dos recursos necessários. Após o primeiro contato confidencial, apresentamos um orçamento detalhado antes de qualquer compromisso. Trabalhamos com valores a partir de R$1.500 para investigações pontuais.",
+    },
+    {
+        question: "Como funciona o sigilo?",
+        answer: "Toda comunicação é feita por canais seguros. Não armazenamos dados além do necessário para a operação. O contato pelo WhatsApp é feito de forma discreta, sem identificação do serviço. Relatórios são entregues em formato seguro e deletados de nossos servidores após a entrega.",
+    },
+    {
+        question: "A investigação privada é legal?",
+        answer: "Sim. A profissão de detetive particular é regulamentada pela Lei Federal 13.432/2017. Todos os nossos métodos operam dentro da legalidade — não realizamos interceptações telefônicas, quebra de sigilo bancário ou qualquer procedimento que exija ordem judicial.",
+    },
+    {
+        question: "Os relatórios servem como prova judicial?",
+        answer: "Sim. Nossos relatórios são elaborados com rigor documental e metodologia que atende aos requisitos para utilização como prova em processos judiciais, arbitragens e procedimentos administrativos.",
+    },
+    {
+        question: "Vocês atendem fora de Porto Alegre?",
+        answer: "Sim. Temos sede em Porto Alegre mas atuamos em todo o território nacional. Já conduzimos operações em mais de 12 estados.",
+    },
+    {
+        question: "Quanto tempo dura uma investigação?",
+        answer: "Depende do caso. Investigações pontuais podem ser concluídas em 5 a 15 dias. Operações mais complexas, como rastreamento patrimonial ou suporte a litígios, podem levar de 30 a 90 dias.",
+    },
+    {
+        question: "Quais formas de pagamento vocês aceitam?",
+        answer: "Trabalhamos com PIX, transferência bancária e cartão de crédito em até 6x. Emitimos nota fiscal de todos os serviços prestados.",
+    },
+    {
+        question: "Posso contratar para meu advogado usar?",
+        answer: "Sim. Muitos de nossos clientes são escritórios de advocacia que nos contratam para produção de provas e inteligência em processos. Trabalhamos diretamente com a equipe jurídica do cliente.",
     },
 ];
 
@@ -79,84 +173,340 @@ const fadeIn = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
-    transition: { duration: 0.5 },
+    transition: { duration: 0.6, ease: "easeOut" },
 };
+
+// FAQ Accordion Item
+function FAQItem({ item, isOpen, onClick }: { item: typeof FAQ_ITEMS[0]; isOpen: boolean; onClick: () => void }) {
+    return (
+        <div className="border-b border-border-subtle">
+            <button
+                onClick={onClick}
+                className="w-full py-5 flex items-center justify-between text-left group"
+            >
+                <span className="font-medium text-text-primary group-hover:text-gold transition-colors pr-4">
+                    {item.question}
+                </span>
+                <ChevronDown
+                    className={`w-5 h-5 text-text-secondary flex-shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                />
+            </button>
+            <div
+                className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-96 pb-5" : "max-h-0"}`}
+            >
+                <p className="text-text-secondary leading-relaxed">
+                    {item.answer}
+                </p>
+            </div>
+        </div>
+    );
+}
+
+// FAQ Section Component
+function FAQSection() {
+    const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+    return (
+        <section className="px-6 sm:px-8 py-20 sm:py-28 bg-surface">
+            <div className="max-w-3xl mx-auto">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-10"
+                >
+                    <span className="section-label">Dúvidas</span>
+                    <h2 className="font-heading text-2xl sm:text-3xl text-text-primary">
+                        Perguntas <span className="text-gold-accent">frequentes</span>
+                    </h2>
+                </motion.div>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                >
+                    {FAQ_ITEMS.map((item, i) => (
+                        <FAQItem
+                            key={i}
+                            item={item}
+                            isOpen={openIndex === i}
+                            onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                        />
+                    ))}
+                </motion.div>
+            </div>
+        </section>
+    );
+}
+
+// Animated counter component
+function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
+    const [count, setCount] = useState(0);
+    const ref = useRef<HTMLSpanElement>(null);
+    const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+    useEffect(() => {
+        if (!isInView) return;
+        
+        const duration = 2000;
+        const steps = 60;
+        const increment = value / steps;
+        let current = 0;
+        
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= value) {
+                setCount(value);
+                clearInterval(timer);
+            } else {
+                setCount(Math.floor(current));
+            }
+        }, duration / steps);
+
+        return () => clearInterval(timer);
+    }, [isInView, value]);
+
+    return (
+        <span ref={ref} className="counter-value">
+            {count}{suffix}
+        </span>
+    );
+}
+
+// Text reveal component for section titles
+function TextReveal({ children, className = "" }: { children: string; className?: string }) {
+    const ref = useRef<HTMLHeadingElement>(null);
+    const isInView = useInView(ref, { once: true, margin: "-50px" });
+    const words = children.split(" ");
+
+    return (
+        <h2 ref={ref} className={className}>
+            {words.map((word, i) => (
+                <span
+                    key={i}
+                    className="text-reveal-word"
+                    style={{
+                        transitionDelay: `${i * 0.08}s`,
+                        ...(isInView ? { opacity: 1, transform: "translateY(0)" } : {}),
+                    }}
+                >
+                    {word}{" "}
+                </span>
+            ))}
+        </h2>
+    );
+}
+
+// Service card with animated icon
+function ServiceCard({ service, index }: { service: typeof SERVICES[0]; index: number }) {
+    const [isHovered, setIsHovered] = useState(false);
+    const { Icon } = service;
+
+    return (
+        <Link to={`/servicos/${service.slug}`}>
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+                className="service-card p-8 rounded-xl group service-icon-container h-full"
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+            >
+                <Icon className="mb-5" animate={isHovered} />
+                <h3 className="font-semibold text-lg text-text-primary mb-2">{service.title}</h3>
+                <p className="text-text-secondary text-sm leading-relaxed mb-4">{service.desc}</p>
+                <ArrowRight className="w-5 h-5 text-gold card-arrow" />
+            </motion.div>
+        </Link>
+    );
+}
+
+// Process step card with animated icon
+function ProcessCard({ step, index }: { step: typeof STEPS[0]; index: number }) {
+    const { ref, isInView } = useIntersectionObserver(0.3);
+
+    return (
+        <motion.div
+            ref={ref}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+            className="process-card"
+        >
+            <span className="process-card-number">{step.num}</span>
+            <div className="relative z-10">
+                <div className="icon-container-gold mb-4" style={{ width: 48, height: 48, borderRadius: 12 }}>
+                    <ProcessIcon type={step.type} inView={isInView} />
+                </div>
+                <h3 className="font-semibold text-text-primary mb-2">{step.title}</h3>
+                <p className="text-text-secondary text-sm leading-relaxed">{step.desc}</p>
+            </div>
+        </motion.div>
+    );
+}
 
 export function Home() {
     return (
         <div className="pt-16 sm:pt-18">
             {/* Hero */}
-            <section className="relative min-h-[80vh] flex items-center justify-center px-5 sm:px-8 py-20 sm:py-32">
-                <div className="max-w-3xl mx-auto text-center">
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-text-primary leading-tight mb-6"
-                    >
-                        A informação certa muda o resultado.
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.15 }}
-                        className="text-text-secondary text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
-                    >
-                        Investigação privada e inteligência para quem precisa de respostas — não de suposições.
-                    </motion.p>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.3 }}
-                        className="flex flex-col sm:flex-row items-center justify-center gap-4"
-                    >
-                        <a
-                            href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Olá! Gostaria de falar com um especialista.")}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-text-primary text-surface font-semibold text-base px-8 py-4 rounded-xl hover:bg-text-secondary transition-colors"
+            <section className="hero-section relative min-h-screen overflow-hidden">
+                {/* Absolute background layer */}
+                <div className="absolute inset-0 hero-gradient" />
+                <NetworkBackground />
+
+                {/* Grid pattern subtle */}
+                <div className="absolute inset-0 hero-grid-overlay pointer-events-none" aria-hidden="true" />
+
+                {/* Mobile background image */}
+                <div className="hero-mobile-bg md:hidden" aria-hidden="true" />
+
+                {/* Desktop — fullbleed image right half */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1.2, delay: 0.15 }}
+                    className="hero-desktop-image hidden md:block"
+                    aria-hidden="true"
+                >
+                    <img
+                        src="/hero-desktop.webp"
+                        alt=""
+                        className="hero-desktop-img"
+                        loading="eager"
+                        decoding="async"
+                    />
+                    <div className="hero-img-fade-left" />
+                    <div className="hero-img-fade-bottom" />
+                    <div className="hero-img-fade-top" />
+                </motion.div>
+
+                {/* Content — left side */}
+                <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 min-h-screen flex flex-col justify-start pt-24 md:justify-center md:pt-0 pb-0 md:pb-0">
+                    <div className="md:max-w-[50%] lg:max-w-[45%]">
+                        <motion.h1
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7, delay: 0.1 }}
+                            className="font-heading text-[2rem] sm:text-[2.5rem] lg:text-[3.2rem] xl:text-[3.75rem] leading-[1.08] mb-7 tracking-tight"
+                            style={{ fontWeight: 600, letterSpacing: "-0.02em" }}
                         >
-                            <MessageCircle className="w-5 h-5" />
-                            Fale com um especialista
-                        </a>
-                        <Link
-                            to="/servicos"
-                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-border-muted text-text-primary font-semibold text-base px-8 py-4 rounded-xl hover:bg-surface-card transition-colors"
+                            <span className="text-white">Investigadores. </span>
+                            <span className="text-white">Detetives. </span>
+                            <span className="text-gold-accent">Hackers.</span>
+                        </motion.h1>
+
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.3 }}
+                            className="text-[#b0ada8] text-base lg:text-lg max-w-lg mb-10"
+                            style={{ lineHeight: 1.75 }}
                         >
-                            Conheça os serviços
-                            <ArrowRight className="w-5 h-5" />
-                        </Link>
-                    </motion.div>
+                            Uma agência privada completa, com investigadores de campo, detetives, analistas de inteligência e hackers éticos, para quem precisa vencer, proteger o que é seu ou revelar o que tentaram esconder.
+                        </motion.p>
+
+                        {/* CTA Buttons */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.5 }}
+                            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-12"
+                        >
+                            <a
+                                href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Olá! Gostaria de falar com um especialista.")}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn-primary text-base"
+                            >
+                                <MessageCircle className="w-5 h-5" />
+                                Fale com um especialista
+                                <ArrowRight className="w-4 h-4" />
+                            </a>
+                            <Link to="/servicos" className="btn-secondary text-base">
+                                Conheça os serviços
+                                <ArrowRight className="w-4 h-4" />
+                            </Link>
+                        </motion.div>
+
+                    </div>
+                </div>
+
+                {/* Bottom gradient fade */}
+                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#000000] to-transparent z-20 pointer-events-none" />
+            </section>
+
+            {/* Trust badges strip */}
+            <div className="trust-strip px-6 sm:px-8 py-4">
+                <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-x-8 gap-y-2">
+                    {[
+                        { icon: <Shield className="w-3.5 h-3.5" />, label: "Sigilo Total" },
+                        { icon: <Check className="w-3.5 h-3.5" />, label: "100% Legal" },
+                        { icon: <MapPin className="w-3.5 h-3.5" />, label: "Atuação Nacional" },
+                    ].map((item, i) => (
+                        <div key={i} className="hero-trust-badge">
+                            {item.icon}
+                            <span>{item.label}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Metrics Section */}
+            <section className="metrics-section metrics-grid-pattern px-6 sm:px-8 py-16 sm:py-20">
+                <div className="max-w-6xl mx-auto">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0">
+                        {METRICS.map((metric, i) => (
+                            <motion.div
+                                key={metric.label}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: i * 0.1 }}
+                                className="text-center relative"
+                            >
+                                <AnimatedCounter value={metric.value} suffix={metric.suffix} />
+                                <p className="counter-label">{metric.label}</p>
+                                {i < METRICS.length - 1 && <div className="metrics-divider" />}
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </section>
 
+            {/* Divider */}
+            <div className="section-divider-glow" />
+
             {/* Value Proposition */}
-            <section className="px-5 sm:px-8 py-16 sm:py-24 bg-surface-elevated">
+            <section className="px-6 sm:px-8 py-20 sm:py-28 bg-surface-alt section-glow-bg">
                 <div className="max-w-6xl mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-                        <motion.div {...fadeIn} className="text-center md:text-left">
-                            <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-surface-card border border-border-subtle mb-4">
-                                <Lock className="w-6 h-6 text-brand" />
+                        <motion.div {...fadeIn} className="text-center md:text-left group">
+                            <div className="icon-container-gold mb-5">
+                                <Lock className="w-6 h-6 text-gold" strokeWidth={1.5} />
                             </div>
-                            <h3 className="font-heading text-xl text-text-primary mb-2">Sigilo operacional</h3>
+                            <h3 className="font-heading text-xl text-text-primary mb-3">Sigilo <span className="text-gold-accent">operacional</span></h3>
                             <p className="text-text-secondary text-sm leading-relaxed">
                                 Toda interação é confidencial. Do primeiro contato à entrega do relatório.
                             </p>
                         </motion.div>
-                        <motion.div {...fadeIn} transition={{ delay: 0.1 }} className="text-center md:text-left">
-                            <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-surface-card border border-border-subtle mb-4">
-                                <Scale className="w-6 h-6 text-brand" />
+                        <motion.div {...fadeIn} transition={{ delay: 0.1 }} className="text-center md:text-left group">
+                            <div className="icon-container-gold mb-5">
+                                <Scale className="w-6 h-6 text-gold" strokeWidth={1.5} />
                             </div>
-                            <h3 className="font-heading text-xl text-text-primary mb-2">Atuação dentro da lei</h3>
+                            <h3 className="font-heading text-xl text-text-primary mb-3">Atuação dentro da <span className="text-gold-accent">lei</span></h3>
                             <p className="text-text-secondary text-sm leading-relaxed">
                                 Operamos sob a Lei 13.432/2017. Resultados sólidos com metodologia legal.
                             </p>
                         </motion.div>
-                        <motion.div {...fadeIn} transition={{ delay: 0.2 }} className="text-center md:text-left">
-                            <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-surface-card border border-border-subtle mb-4">
-                                <Brain className="w-6 h-6 text-brand" />
+                        <motion.div {...fadeIn} transition={{ delay: 0.2 }} className="text-center md:text-left group">
+                            <div className="icon-container-gold mb-5">
+                                <Brain className="w-6 h-6 text-gold" strokeWidth={1.5} />
                             </div>
-                            <h3 className="font-heading text-xl text-text-primary mb-2">Inteligência, não achismo</h3>
+                            <h3 className="font-heading text-xl text-text-primary mb-3"><span className="text-gold-accent">Inteligência</span>, não achismo</h3>
                             <p className="text-text-secondary text-sm leading-relaxed">
                                 Cruzamos fontes abertas, registros públicos e inteligência humana para entregar fatos documentados.
                             </p>
@@ -165,35 +515,28 @@ export function Home() {
                 </div>
             </section>
 
+            {/* Divider */}
+            <div className="section-divider-glow" />
+
             {/* Services */}
-            <section className="px-5 sm:px-8 py-16 sm:py-24">
-                <div className="max-w-6xl mx-auto">
+            <section className="px-6 sm:px-8 py-20 sm:py-28 bg-surface section-glow-bg relative overflow-hidden">
+                <div className="glow-orb glow-orb-lg animate-pulse-glow" style={{ top: "20%", right: "-10%" }} aria-hidden="true" />
+                <div className="max-w-6xl mx-auto relative z-10">
                     <motion.div {...fadeIn} className="text-center mb-12">
-                        <h2 className="font-heading text-2xl sm:text-3xl text-text-primary mb-3">O que resolvemos</h2>
+                        <span className="section-label">Serviços</span>
+                        <h2 className="font-heading text-2xl sm:text-3xl text-text-primary">
+                            O que <span className="text-gold-accent">resolvemos</span>
+                        </h2>
                     </motion.div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {SERVICES.map((service, i) => {
-                            const Icon = service.icon;
-                            return (
-                                <motion.div
-                                    key={service.title}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.4, delay: i * 0.05 }}
-                                    className="p-6 rounded-xl bg-surface-card border border-border-subtle hover:border-brand/30 transition-colors"
-                                >
-                                    <Icon className="w-6 h-6 text-brand mb-4" />
-                                    <h3 className="font-semibold text-text-primary mb-2">{service.title}</h3>
-                                    <p className="text-text-secondary text-sm leading-relaxed">{service.desc}</p>
-                                </motion.div>
-                            );
-                        })}
+                        {SERVICES.map((service, i) => (
+                            <ServiceCard key={service.title} service={service} index={i} />
+                        ))}
                     </div>
-                    <motion.div {...fadeIn} className="text-center mt-8">
+                    <motion.div {...fadeIn} className="text-center mt-10">
                         <Link
                             to="/servicos"
-                            className="inline-flex items-center gap-2 text-brand hover:text-brand-hover font-medium text-sm transition-colors"
+                            className="inline-flex items-center gap-2 text-gold hover:text-[#d4ac5a] font-medium text-sm transition-colors"
                         >
                             Ver todos os serviços
                             <ArrowRight className="w-4 h-4" />
@@ -202,28 +545,21 @@ export function Home() {
                 </div>
             </section>
 
+            {/* Divider */}
+            <div className="section-divider-glow" />
+
             {/* How it works */}
-            <section className="px-5 sm:px-8 py-16 sm:py-24 bg-surface-elevated">
+            <section className="px-6 sm:px-8 py-20 sm:py-28 bg-surface-alt">
                 <div className="max-w-6xl mx-auto">
                     <motion.div {...fadeIn} className="text-center mb-12">
-                        <h2 className="font-heading text-2xl sm:text-3xl text-text-primary mb-3">
-                            Do primeiro contato ao relatório final
+                        <span className="section-label">Processo</span>
+                        <h2 className="font-heading text-2xl sm:text-3xl text-text-primary">
+                            Do primeiro contato ao <span className="text-gold-accent">relatório final</span>
                         </h2>
                     </motion.div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         {STEPS.map((step, i) => (
-                            <motion.div
-                                key={step.num}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.4, delay: i * 0.1 }}
-                                className="relative"
-                            >
-                                <span className="text-5xl font-heading text-brand/20 mb-2 block">{step.num}</span>
-                                <h3 className="font-semibold text-text-primary mb-2">{step.title}</h3>
-                                <p className="text-text-secondary text-sm leading-relaxed">{step.desc}</p>
-                            </motion.div>
+                            <ProcessCard key={step.num} step={step} index={i} />
                         ))}
                     </div>
                     <motion.div {...fadeIn} className="text-center mt-10">
@@ -231,7 +567,7 @@ export function Home() {
                             href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Olá! Gostaria de uma avaliação confidencial do meu caso.")}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-brand hover:text-brand-hover font-medium text-sm transition-colors"
+                            className="inline-flex items-center gap-2 text-gold hover:text-[#d4ac5a] font-medium text-sm transition-colors"
                         >
                             Fale conosco para uma avaliação
                             <ArrowRight className="w-4 h-4" />
@@ -240,66 +576,184 @@ export function Home() {
                 </div>
             </section>
 
-            {/* Credibility */}
-            <section className="px-5 sm:px-8 py-16 sm:py-24 border-y border-border-subtle">
-                <div className="max-w-4xl mx-auto text-center">
-                    <motion.p
-                        {...fadeIn}
-                        className="text-text-secondary text-base sm:text-lg leading-relaxed mb-10"
-                    >
-                        Equipe com background em investigação forense, inteligência de fontes abertas e análise financeira. 
-                        Atuação em todo o território nacional. Relatórios aceitos como prova em processos judiciais e arbitragens.
-                    </motion.p>
+            {/* Divider */}
+            <div className="section-divider-glow" />
+
+            {/* Testimonials Carousel */}
+            <section className="px-6 sm:px-8 py-20 sm:py-28 bg-surface">
+                <div className="max-w-6xl mx-auto">
+                    <motion.div {...fadeIn} className="text-center mb-12">
+                        <span className="section-label">Depoimentos</span>
+                        <h2 className="font-heading text-2xl sm:text-3xl text-text-primary">
+                            O que dizem nossos <span className="text-gold-accent">clientes</span>
+                        </h2>
+                    </motion.div>
                     <motion.div
-                        {...fadeIn}
-                        className="bg-surface-card border border-border-subtle rounded-xl p-6 sm:p-8"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="testimonial-scroll -mx-6 px-6"
                     >
-                        <Quote className="w-8 h-8 text-brand/50 mx-auto mb-4" />
-                        <p className="text-text-primary text-base sm:text-lg italic leading-relaxed mb-4">
-                            "A equipe entendeu a complexidade do caso e entregou em 12 dias o que meu advogado tentava há 8 meses."
-                        </p>
-                        <p className="text-text-muted text-sm">
-                            — Cliente confidencial, Diretor Jurídico
-                        </p>
+                        {TESTIMONIALS.map((testimonial, i) => (
+                            <div key={i} className="testimonial-card">
+                                <span className="testimonial-quote">"</span>
+                                {/* Stars */}
+                                <div className="testimonial-stars relative z-10 mt-4">
+                                    {[...Array(5)].map((_, j) => (
+                                        <Star key={j} className="w-4 h-4" />
+                                    ))}
+                                </div>
+                                <p className="text-text-primary text-base leading-relaxed my-4 relative z-10">
+                                    {testimonial.text}
+                                </p>
+                                <div className="flex items-center gap-3 relative z-10">
+                                    <div className="testimonial-initials">
+                                        {testimonial.initials}
+                                    </div>
+                                    <div>
+                                        <p className="text-text-primary text-sm font-medium">{testimonial.name}</p>
+                                        <p className="text-text-muted text-xs">{testimonial.role}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </motion.div>
                 </div>
             </section>
 
-            {/* Final CTA */}
-            <section className="px-5 sm:px-8 py-20 sm:py-28 bg-surface-elevated">
-                <div className="max-w-3xl mx-auto text-center">
-                    <motion.h2
-                        {...fadeIn}
-                        className="font-heading text-2xl sm:text-3xl md:text-4xl text-text-primary mb-4"
-                    >
-                        Tem uma situação que precisa resolver?
-                    </motion.h2>
-                    <motion.p
-                        {...fadeIn}
-                        className="text-text-secondary text-base sm:text-lg mb-10"
-                    >
-                        Entre em contato para uma avaliação confidencial. Sem compromisso.
-                    </motion.p>
+            {/* Divider */}
+            <div className="section-divider-glow" />
+
+            {/* Geographic Coverage */}
+            <section className="px-6 sm:px-8 py-20 sm:py-28 bg-surface-alt">
+                <div className="max-w-6xl mx-auto">
+                    <motion.div {...fadeIn} className="text-center mb-10">
+                        <span className="section-label">Cobertura</span>
+                        <h2 className="font-heading text-2xl sm:text-3xl text-text-primary">
+                            Onde <span className="text-gold-accent">atuamos</span>
+                        </h2>
+                        <p className="text-text-secondary mt-4 max-w-xl mx-auto">
+                            Sede em Porto Alegre — RS. Operações em todo o Brasil.
+                        </p>
+                    </motion.div>
                     <motion.div
-                        {...fadeIn}
-                        className="flex flex-col sm:flex-row items-center justify-center gap-4"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="flex flex-wrap items-center justify-center gap-3"
                     >
-                        <a
-                            href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Olá! Gostaria de falar com um especialista.")}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-text-primary text-surface font-semibold text-base px-8 py-4 rounded-xl hover:bg-text-secondary transition-colors"
-                        >
-                            <MessageCircle className="w-5 h-5" />
-                            Falar pelo WhatsApp
-                        </a>
-                        <a
-                            href={`mailto:${EMAIL}`}
-                            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-border-muted text-text-primary font-semibold text-base px-8 py-4 rounded-xl hover:bg-surface-card transition-colors"
-                        >
-                            <Mail className="w-5 h-5" />
-                            Enviar email criptografado
-                        </a>
+                        {[
+                            "Porto Alegre",
+                            "Região Metropolitana",
+                            "Litoral Gaúcho",
+                            "Serra Gaúcha",
+                            "Interior do RS",
+                            "Santa Catarina",
+                            "Paraná",
+                            "São Paulo",
+                            "Rio de Janeiro",
+                            "Brasília",
+                            "Minas Gerais",
+                            "Nordeste",
+                        ].map((region, i) => (
+                            <span
+                                key={region}
+                                className="region-tag"
+                            >
+                                {region}
+                            </span>
+                        ))}
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* FAQ */}
+            <FAQSection />
+
+            {/* Divider */}
+            <div className="section-divider-glow" />
+
+            {/* Credibility */}
+            <section className="credibility-section px-6 sm:px-8 py-20 sm:py-28 bg-surface-alt relative overflow-hidden">
+                <div className="glow-orb glow-orb-sm animate-float" style={{ top: "10%", left: "-5%" }} aria-hidden="true" />
+                <div className="max-w-6xl mx-auto relative z-10">
+                    <motion.div {...fadeIn} className="text-center mb-12">
+                        <span className="section-label">Credibilidade</span>
+                        <h2 className="font-heading text-2xl sm:text-3xl text-text-primary mb-4">
+                            Por que confiar na <span className="text-gold-accent">Bforense</span>
+                        </h2>
+                        <p className="text-text-secondary max-w-2xl mx-auto">
+                            Equipe com background em investigação forense, inteligência de fontes abertas e análise financeira.
+                            Relatórios aceitos como prova em processos judiciais e arbitragens.
+                        </p>
+                    </motion.div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {[
+                            { icon: "shield", title: "Lei 13.432/2017", desc: "Atuação regulamentada pela legislação federal que disciplina a profissão de detetive particular." },
+                            { icon: "file", title: "Relatórios judiciais", desc: "Dossiês com rigor documental aceitos como prova em processos, arbitragens e procedimentos administrativos." },
+                            { icon: "lock", title: "Canais seguros", desc: "Comunicação criptografada. Dados deletados após entrega. Sem rastros." },
+                            { icon: "map", title: "Atuação nacional", desc: "Sede em Porto Alegre com operações já conduzidas em mais de 12 estados brasileiros." },
+                        ].map((item, i) => (
+                            <motion.div
+                                key={item.title}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: i * 0.1 }}
+                                className="credibility-card"
+                            >
+                                <div className="icon-container-gold mb-4" style={{ width: 48, height: 48, borderRadius: 12 }}>
+                                    {item.icon === "shield" && <Scale className="w-5 h-5 text-gold" strokeWidth={1.5} />}
+                                    {item.icon === "file" && <Check className="w-5 h-5 text-gold" strokeWidth={1.5} />}
+                                    {item.icon === "lock" && <Lock className="w-5 h-5 text-gold" strokeWidth={1.5} />}
+                                    {item.icon === "map" && <Star className="w-5 h-5 text-gold" strokeWidth={1.5} />}
+                                </div>
+                                <h3 className="font-semibold text-text-primary text-sm mb-2">{item.title}</h3>
+                                <p className="text-text-secondary text-xs leading-relaxed">{item.desc}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Divider */}
+            <div className="section-divider-glow" />
+
+            {/* Final CTA */}
+            <section className="cta-gradient px-6 sm:px-8 py-24 sm:py-32 grid-pattern relative overflow-hidden">
+                <div className="cta-bg-image" aria-hidden="true" />
+                <div className="glow-orb glow-orb-lg animate-pulse-glow" style={{ top: "30%", left: "10%" }} aria-hidden="true" />
+                <div className="glow-orb glow-orb-sm animate-float-slow" style={{ bottom: "20%", right: "15%" }} aria-hidden="true" />
+                <div className="max-w-3xl mx-auto text-center relative z-10">
+                    <motion.div {...fadeIn}>
+                        <span className="section-label">Comece agora</span>
+                        <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl text-text-primary mb-4">
+                            Pronto para ter <span className="text-gold-accent">clareza</span> sobre a situação?
+                        </h2>
+                        <p className="text-text-secondary mb-8 max-w-xl mx-auto">
+                            O primeiro contato é sigiloso e sem compromisso. Avaliamos seu caso e apresentamos as possibilidades.
+                        </p>
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <a
+                                href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Olá! Gostaria de uma avaliação confidencial do meu caso.")}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full sm:w-auto btn-primary text-base"
+                            >
+                                <MessageCircle className="w-5 h-5" />
+                                Falar com especialista
+                                <ArrowRight className="w-4 h-4" />
+                            </a>
+                            <a
+                                href={`mailto:${EMAIL}`}
+                                className="w-full sm:w-auto btn-secondary text-base"
+                            >
+                                Enviar e-mail seguro
+                                <ArrowRight className="w-4 h-4" />
+                            </a>
+                        </div>
                     </motion.div>
                 </div>
             </section>
